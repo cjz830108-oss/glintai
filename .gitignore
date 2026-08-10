@@ -1,0 +1,20 @@
+# ===== Secret / env =====
+.env
+.env.*
+*.local
+
+# ===== Vercel local auth (token must NEVER be committed) =====
+.vercel/*
+!.vercel/project.json
+
+# ===== Node =====
+node_modules/
+
+# ===== Agent / editor state (not project source) =====
+.workbuddy/
+.vscode/
+.idea/
+
+# ===== OS junk =====
+Thumbs.db
+.DS_Store

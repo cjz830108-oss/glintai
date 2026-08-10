@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What Reading Ease Score Your Landing Page Actually Needs</title>
+<meta name="description" content="Benchmark Flesch reading ease scores by page type, and learn how to fix copy that's too hard to read — with a free in-browser readability checker." />
+<meta name="author" content="Glint AI" />
+<link rel="canonical" href="https://glintai.tools/blog/reading-ease-score-landing-page" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="What Reading Ease Score Your Landing Page Actually Needs" />
+<meta property="og:description" content="Benchmark Flesch reading ease scores by page type and fix hard-to-read copy." />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"Article",
+  "headline":"What Reading Ease Score Your Landing Page Actually Needs",
+  "description":"Benchmark Flesch reading ease scores by page type, and learn how to fix copy that's too hard to read.",
+  "author":{"@type":"Organization","name":"Glint AI"},
+  "publisher":{"@type":"Organization","name":"Glint AI"},
+  "datePublished":"2026-08-06",
+  "mainEntityOfPage":"https://glintai.tools/blog/reading-ease-score-landing-page"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Is a high reading ease score always better?","acceptedAnswer":{"@type":"Answer","text":"No. Technical and legal pages should score lower because the audience expects precision. Match the score to the reader — a technical docs page at 40–60 is appropriate, while a homepage should aim for 70–80."}},
+    {"@type":"Question","name":"Does Google rank pages by reading ease?","acceptedAnswer":{"@type":"Answer","text":"Not directly, but readable pages tend to have lower bounce rates and longer dwell time, which are correlation signals Google uses when assessing quality."}},
+    {"@type":"Question","name":"Can I check a whole landing page at once?","acceptedAnswer":{"@type":"Answer","text":"Paste the main copy block — headings and navigation don't count toward comprehension the same way body text does, so focus the score on the paragraphs visitors actually read."}}
+  ]
+}
+</script>
+<style>
+:root{--bg:#fff;--soft:#f7f7fb;--text:#16161d;--muted:#5b5b6b;--line:#e7e7ef;--brand:#4f46e5;--brand2:#7c3aed;--brandsoft:#eef0ff;--ok:#0f9d58;--shadow:0 10px 30px rgba(20,20,40,.08);--maxw:760px}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;color:var(--text)}
+.logo .dot{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:#fff}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-weight:700;font-size:14px;border:1px solid var(--line);background:var(--soft);color:var(--text)}
+.btn:hover{border-color:var(--brand);color:var(--brand);text-decoration:none}
+.cat{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--brand);background:var(--brandsoft);padding:5px 12px;border-radius:999px;margin:30px 0 12px}
+h1{font-size:clamp(28px,4vw,42px);line-height:1.15;letter-spacing:-.02em;margin:0 0 12px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:24px}
+.lead{font-size:19px;color:var(--text)}
+.content h2{font-size:24px;margin:38px 0 10px;letter-spacing:-.01em}
+.content h3{font-size:19px;margin:26px 0 8px}
+.content p{margin:14px 0}
+.content ul,.content ol{padding-left:22px;margin:14px 0}
+.content li{margin:8px 0}
+.callout{background:var(--brandsoft);border:1px solid #d9dcff;border-left:4px solid var(--brand);border-radius:10px;padding:16px 18px;margin:22px 0;font-size:15px}
+.callout b{color:var(--brand)}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left}
+th{background:var(--soft);font-weight:700}
+pre{background:#0f1020;color:#e7e7ff;padding:16px;border-radius:12px;overflow:auto;font-size:13.5px;line-height:1.5}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--soft);padding:2px 6px;border-radius:6px;font-size:14px}
+pre code{background:none;padding:0}
+footer{border-top:1px solid var(--line);margin-top:50px;padding:30px 0;color:var(--muted);font-size:14px}
+.rel{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:20px;margin:34px 0}
+.rel h3{margin:0 0 10px;font-size:17px}
+.rel a{display:block;padding:5px 0;font-weight:600}
+/* === cyberpunk theme override === */
+:root{
+  --bg:#07070d;
+  --soft:#0e0e1a;
+  --text:#e8e8f5;
+  --muted:#9aa0c0;
+  --line:rgba(120,120,200,.22);
+  --brand:#00f0ff;
+  --brand2:#ff2e97;
+  --brandsoft:rgba(0,240,255,.10);
+  --ok:#39ff14;
+  --shadow:0 0 30px rgba(0,240,255,.18);
+  --maxw:780px
+}
+body{
+  background:#07070d;
+  color:var(--text);
+  background-image:
+    radial-gradient(900px 500px at 50% -200px, rgba(0,240,255,.10), transparent),
+    linear-gradient(rgba(0,240,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,240,255,.04) 1px, transparent 1px);
+  background-size:auto, 40px 40px, 40px 40px;
+}
+a{color:var(--brand)}
+header.nav{background:rgba(10,10,20,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{color:var(--text)}
+.btn{background:var(--soft);border:1px solid var(--line);color:var(--text)}
+.btn:hover{border-color:var(--brand);color:var(--brand)}
+.cat{color:var(--brand);background:var(--brandsoft)}
+.meta{color:var(--muted)}
+.callout{background:var(--brandsoft);border:1px solid rgba(0,240,255,.3);border-left:4px solid var(--brand);color:var(--text)}
+.callout b{color:var(--brand)}
+pre{background:#0b0b16;color:#cfe9ff;border:1px solid var(--line)}
+code{background:var(--soft);color:#aef}
+.tpl{background:var(--soft);border:1px solid var(--line);color:var(--text)}
+th,td{border:1px solid var(--line)}
+th{background:var(--soft)}
+.rel{background:var(--soft);border:1px solid var(--line)}
+footer{border-top:1px solid var(--line);color:var(--muted)}
+.hero-img{
+  width:100%;
+  display:block;
+  border-radius:14px;
+  margin:26px 0 10px;
+  border:1px solid rgba(0,240,255,.35);
+  box-shadow:0 0 28px rgba(0,240,255,.25);
+}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap nav-inner">
+<a class="logo" href="/"><span class="dot">✦</span> Glint AI</a>
+<a class="btn" href="/#tools">Try the free tools →</a>
+</div></header>
+
+<div class="wrap">
+<span class="cat">Copywriting</span>
+<h1>What Reading Ease Score Your Landing Page Actually Needs</h1>
+<div class="meta">Updated Aug 6, 2026 · 9 min read · by Glint AI</div>
+<p class="lead">Most landing pages are written for the founder, not the visitor. The result: copy that scores like a corporate legal memo and converts like one too. Here's the number you should actually aim for — and how to hit it.</p>
+
+<img class="hero-img" src="assets/reading.png" alt="Cyberpunk dashboard showing a readability score gauge and text analytics" />
+
+<div class="content">
+<h2>What "reading ease" means</h2>
+<p>The most common metric is the <b>Flesch Reading Ease</b> score. It runs from 0 (very hard) to 100 (very easy), based on two things: average words per sentence, and average syllables per word. Short sentences and plain words score high.</p>
+<pre><code>Score = 206.835 − 1.015 × (words / sentences)
+        − 84.6 × (syllables / words)</code></pre>
+
+<h2>Benchmark by page type</h2>
+<table>
+<tr><th>Page type</th><th>Target score</th><th>Plain-English equivalent</th></tr>
+<tr><td>Homepage / hero</td><td>70–80</td><td>Easy, like a magazine</td></tr>
+<tr><td>Product / feature page</td><td>60–70</td><td>Standard, conversational</td></tr>
+<tr><td>Pricing page</td><td>65–75</td><td>Easy — reduce friction</td></tr>
+<tr><td>Blog post</td><td>60–70</td><td>Standard, readable</td></tr>
+<tr><td>Docs / technical</td><td>40–60</td><td>Acceptable for experts</td></tr>
+<tr><td>Legal / compliance</td><td>30–50</td><td>Difficult, but expected</td></tr>
+</table>
+<div class="callout"><b>Don't chase 100.</b> A score of 90+ often reads like it's written for a child. For a SaaS or B2B site, 60–75 is the sweet spot: clear, but still credible.</div>
+
+<h2>Reading ease by industry, not just page type</h2>
+<p>The page-type table above is a starting point, but the <em>right</em> score also depends on who you sell to. A consumer fitness app can sit at 75–85 because the reader is half-distracted on a phone. A developer-tool landing page can legitimately sit at 50–60 because the audience expects precise, technical language and will distrust copy that's too simple. Match the score to the reader's expertise and context, not to a universal ideal.</p>
+<table>
+<tr><th>Audience</th><th>Comfortable range</th><th>Why</th></tr>
+<tr><td>Mass consumer (fitness, finance app)</td><td>75–85</td><td>Skimming on mobile, low patience</td></tr>
+<tr><td>B2C SaaS</td><td>65–75</td><td>Mixed audience, some jargon OK</td></tr>
+<tr><td>B2B / SaaS</td><td>55–70</td><td>Buyers are pros, want specifics</td></tr>
+<tr><td>Developer tools</td><td>45–60</td><td>Technical readers expect density</td></tr>
+<tr><td>Healthcare / legal</td><td>40–55</td><td>Compliance language is required</td></tr>
+</table>
+
+<h2>The mistakes that tank your score</h2>
+<p>Most low scores come from a handful of repeat offenders:</p>
+<ul>
+<li><b>Nominalizations.</b> "We performed an analysis of" → "We analyzed". Verbs are shorter and clearer than noun forms.</li>
+<li><b>Stacked modifiers.</b> "Highly optimized, fully automated, enterprise-ready solution" — three adjectives where one would do.</li>
+<li><b>Hidden verbs.</b> "Provide assistance" → "help"; "make a decision" → "decide".</li>
+<li><b>Long lead-ins.</b> "It is important to note that" — just delete it and start with the point.</li>
+</ul>
+
+<h2>A reusable readability checklist</h2>
+<p>Run this before any page goes live:</p>
+<ol>
+<li>Average sentence length under 17 words.</li>
+<li>One idea per sentence.</li>
+<li>No word longer than three syllables where a shorter one exists.</li>
+<li>Every paragraph answers "so what?" for the reader.</li>
+<li>Score the body copy, not the nav or buttons.</li>
+</ol>
+<p>Glint AI's <a href="/#tools">Readability Analyzer</a> gives you the live number so you can tick these off as you write.</p>
+
+<h2>How to A/B test copy readability</h2>
+<p>Readability is testable, not just measurable. In your A/B tool, keep the offer and design identical and swap only the copy: variant A at ~55, variant B at ~72. Watch bounce rate and time-on-page for two weeks. Often the easier version wins not because it's smarter, but because it lowers the cost of the first scroll. Let the score follow the conversion data, not the other way around.</p>
+
+<h2>Reading ease and SEO: the indirect link</h2>
+<p>Google does not have a "reading ease" ranking signal you can point to. But the behaviors readable pages earn — people stay, scroll, and do not bounce — are exactly the engagement signals Google does watch. Clean, well-structured copy also tends to earn featured snippets because it states answers plainly. Treat readability as a conversion and retention lever first; the SEO benefit is the compounding side effect.</p>
+
+<h2>Why it moves conversions</h2>
+<p>Reading ease isn't vanity. Every extra cognitive step between the visitor and the "why should I care" answer is a chance for them to leave. Shorter sentences lower the cost of understanding. You're not dumbing down — you're removing friction.</p>
+
+<h2>How to raise your score (without rewriting everything)</h2>
+<ul>
+<li><b>Split run-on sentences.</b> If a sentence has two commas and a semicolon, it's probably two sentences.</li>
+<li><b>Swap $5 words for $1 words.</b> "Utilize" → "use", "facilitate" → "help", "leverage" → "use".</li>
+<li><b>Lead with the verb.</b> "Our platform enables teams to ship faster" → "Ship faster with our platform."</li>
+<li><b>Cut the hedges.</b> "In order to" → "to"; "at this point in time" → "now".</li>
+</ul>
+
+<h2>Measure it for free</h2>
+<p>Glint AI's <a href="/#tools">Readability Analyzer</a> scores your copy live, in the browser. Paste a paragraph and it shows word count, sentence count, estimated read time, and the Flesch-style reading-ease number — no signup, nothing uploaded. Tweak the text and watch the score move in real time.</p>
+
+<h2>Quick wins you can ship this week</h2>
+<p>You don't need a full rewrite to move the number. Three fast changes: (1) cut your hero subhead to one sentence under 14 words; (2) replace every "We help you to" with a direct verb; (3) split any paragraph longer than four sentences. These alone typically lift a homepage from the 40s into the 60s, and they take an afternoon. Measure before and after with the analyzer so you can show the change to a client or co-founder with proof, not opinion.</p>
+
+<h2>Worked example</h2>
+<p><b>Before (score ~28):</b> "Our comprehensive, enterprise-grade platform facilitates the seamless orchestration of cross-functional workflows."</p>
+<p><b>After (score ~75):</b> "Our platform helps your teams work together without the chaos."</p>
+<p>Same claim. Half the syllables. Twice the clarity.</p>
+
+<div class="rel">
+<h3>Keep reading</h3>
+<a href="/blog/how-to-summarize-long-articles.html">→ How to summarize long articles without losing the meaning</a>
+<a href="/blog/why-marketers-need-a-json-formatter.html">→ Why every marketer needs a JSON formatter</a>
+<a href="/#tools">→ Try the readability tool free</a>
+</div>
+
+<h2>FAQ</h2>
+<p><b>Is a high score always better?</b> No. Technical and legal pages should score lower because the audience expects precision. Match the score to the reader.</p>
+<p><b>Does Google rank by reading ease?</b> Not directly, but readable pages have lower bounce rates and longer dwell time — both correlation signals Google uses.</p>
+<p><b>Can I check a whole page at once?</b> Paste the main copy block. Headings and nav don't count toward comprehension the same way body text does.</p>
+</div>
+</div>
+
+<footer><div class="wrap">© 2026 Glint AI · <a href="/">Home</a> · <a href="/#tools">Tools</a> · <a href="/#blog">Blog</a></div></footer>
+</body>
+</html>

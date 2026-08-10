@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Generating API Keys Safely as a Solo Founder</title>
+<meta name="description" content="A practical security checklist for solo founders: how to generate, store, rotate, and scope API keys without a security team — using free local tooling." />
+<meta name="author" content="Glint AI" />
+<link rel="canonical" href="https://glintai.tools/blog/generate-api-keys-safely" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Generating API Keys Safely as a Solo Founder" />
+<meta property="og:description" content="How to generate, store, rotate, and scope API keys without a security team." />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"Article",
+  "headline":"Generating API Keys Safely as a Solo Founder",
+  "description":"A practical security checklist for solo founders: how to generate, store, rotate, and scope API keys without a security team.",
+  "author":{"@type":"Organization","name":"Glint AI"},
+  "publisher":{"@type":"Organization","name":"Glint AI"},
+  "datePublished":"2026-08-06",
+  "mainEntityOfPage":"https://glintai.tools/blog/generate-api-keys-safely"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Is a browser-based key generator safe?","acceptedAnswer":{"@type":"Answer","text":"Yes, if it runs fully client-side and shows the key only on your screen. Nothing is sent to a server. Verify the tool's privacy claim before trusting it with production secrets."}},
+    {"@type":"Question","name":"How long should an API key be?","acceptedAnswer":{"@type":"Answer","text":"32 or more characters with mixed character classes is a solid baseline for secret keys. Longer is better, and avoid dictionary words."}},
+    {"@type":"Question","name":"Should I encrypt my .env file?","acceptedAnswer":{"@type":"Answer","text":"For a solo founder, gitignoring it and storing it in your password manager is enough. Encrypt it only if the machine itself is shared or untrusted."}}
+  ]
+}
+</script>
+<style>
+:root{--bg:#fff;--soft:#f7f7fb;--text:#16161d;--muted:#5b5b6b;--line:#e7e7ef;--brand:#4f46e5;--brand2:#7c3aed;--brandsoft:#eef0ff;--ok:#0f9d58;--shadow:0 10px 30px rgba(20,20,40,.08);--maxw:760px}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;color:var(--text)}
+.logo .dot{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:#fff}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-weight:700;font-size:14px;border:1px solid var(--line);background:var(--soft);color:var(--text)}
+.btn:hover{border-color:var(--brand);color:var(--brand);text-decoration:none}
+.cat{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--brand);background:var(--brandsoft);padding:5px 12px;border-radius:999px;margin:30px 0 12px}
+h1{font-size:clamp(28px,4vw,42px);line-height:1.15;letter-spacing:-.02em;margin:0 0 12px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:24px}
+.lead{font-size:19px;color:var(--text)}
+.content h2{font-size:24px;margin:38px 0 10px;letter-spacing:-.01em}
+.content h3{font-size:19px;margin:26px 0 8px}
+.content p{margin:14px 0}
+.content ul,.content ol{padding-left:22px;margin:14px 0}
+.content li{margin:8px 0}
+.callout{background:var(--brandsoft);border:1px solid #d9dcff;border-left:4px solid var(--brand);border-radius:10px;padding:16px 18px;margin:22px 0;font-size:15px}
+.callout b{color:var(--brand)}
+pre{background:#0f1020;color:#e7e7ff;padding:16px;border-radius:12px;overflow:auto;font-size:13.5px;line-height:1.5}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--soft);padding:2px 6px;border-radius:6px;font-size:14px}
+pre code{background:none;padding:0}
+footer{border-top:1px solid var(--line);margin-top:50px;padding:30px 0;color:var(--muted);font-size:14px}
+.rel{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:20px;margin:34px 0}
+.rel h3{margin:0 0 10px;font-size:17px}
+.rel a{display:block;padding:5px 0;font-weight:600}
+/* === cyberpunk theme override === */
+:root{
+  --bg:#07070d;
+  --soft:#0e0e1a;
+  --text:#e8e8f5;
+  --muted:#9aa0c0;
+  --line:rgba(120,120,200,.22);
+  --brand:#00f0ff;
+  --brand2:#ff2e97;
+  --brandsoft:rgba(0,240,255,.10);
+  --ok:#39ff14;
+  --shadow:0 0 30px rgba(0,240,255,.18);
+  --maxw:780px
+}
+body{
+  background:#07070d;
+  color:var(--text);
+  background-image:
+    radial-gradient(900px 500px at 50% -200px, rgba(0,240,255,.10), transparent),
+    linear-gradient(rgba(0,240,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,240,255,.04) 1px, transparent 1px);
+  background-size:auto, 40px 40px, 40px 40px;
+}
+a{color:var(--brand)}
+header.nav{background:rgba(10,10,20,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{color:var(--text)}
+.btn{background:var(--soft);border:1px solid var(--line);color:var(--text)}
+.btn:hover{border-color:var(--brand);color:var(--brand)}
+.cat{color:var(--brand);background:var(--brandsoft)}
+.meta{color:var(--muted)}
+.callout{background:var(--brandsoft);border:1px solid rgba(0,240,255,.3);border-left:4px solid var(--brand);color:var(--text)}
+.callout b{color:var(--brand)}
+pre{background:#0b0b16;color:#cfe9ff;border:1px solid var(--line)}
+code{background:var(--soft);color:#aef}
+.tpl{background:var(--soft);border:1px solid var(--line);color:var(--text)}
+th,td{border:1px solid var(--line)}
+th{background:var(--soft)}
+.rel{background:var(--soft);border:1px solid var(--line)}
+footer{border-top:1px solid var(--line);color:var(--muted)}
+.hero-img{
+  width:100%;
+  display:block;
+  border-radius:14px;
+  margin:26px 0 10px;
+  border:1px solid rgba(0,240,255,.35);
+  box-shadow:0 0 28px rgba(0,240,255,.25);
+}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap nav-inner">
+<a class="logo" href="/"><span class="dot">✦</span> Glint AI</a>
+<a class="btn" href="/#tools">Try the free tools →</a>
+</div></header>
+
+<div class="wrap">
+<span class="cat">Security</span>
+<h1>Generating API Keys Safely as a Solo Founder</h1>
+<div class="meta">Updated Aug 6, 2026 · 9 min read · by Glint AI</div>
+<p class="lead">When you're a team of one, you are the security team. The good news: you don't need one to do API keys responsibly. You need a habit. Here's the checklist.</p>
+
+<img class="hero-img" src="assets/api-keys.png" alt="Cyberpunk security scene with a glowing padlock and floating encrypted API key tokens" />
+
+<div class="content">
+<h2>The one mistake that causes 90% of leaks</h2>
+<p>Keys get committed to a public Git repo. A bot scrapes it within minutes and your bill is $4,000 by morning. Everything below exists to make that impossible.</p>
+
+<h2>What a leaked key actually costs you</h2>
+<p>It is rarely just the key. A leaked Stripe key means charges on your account and refunds you have to process. A leaked cloud key can spin up mining instances that show up as a five-figure bill. A leaked email provider key means someone sends phishing from your domain, and your deliverability dies for months. The cost is almost never the key itself — it is the cleanup, the chargebacks, and the lost trust.</p>
+
+<h2>The .gitignore safety net</h2>
+<p>Before your very first commit, add the files that hold secrets to <code>.gitignore</code>. This is the cheapest insurance in software:</p>
+<pre><code># .gitignore
+.env
+.env.*
+secrets.json
+*.key
+credentials/</code></pre>
+<p>If a secret was committed by accident, deleting it from the latest commit is not enough — it stays in history. Use a tool like <code>git filter-repo</code> to purge it, then rotate the key anyway.</p>
+
+<h2>Using env vars the right way</h2>
+<p>Env vars keep secrets out of source code. In most stacks you read them at runtime:</p>
+<pre><code>// Node.js
+const key = process.env.STRIPE_SECRET_KEY;
+// Python
+import os
+key = os.environ["STRIPE_SECRET_KEY"]</code></pre>
+<p>Never log the value, never echo it in a build step you cannot see, and never print it to the browser console. The moment a secret hits a log file, treat it as burned and rotate it.</p>
+
+<h2>1. Generate locally, never in a chat window</h2>
+<p>Don't ask an AI assistant to "make me a key" and paste it into Slack. Generate it on your own machine so it never touches another system. Glint AI's <a href="/#tools">Password & Key Generator</a> runs entirely in your browser — the key is created on your device and never uploaded.</p>
+<pre><code># Example: a strong key has length + mixed classes
+sk_live_8Kf2$mPq9wLx!3RtYbNcA1dE7hUvZ</code></pre>
+
+<h2>2. Store, don't scatter</h2>
+<ul>
+<li><b>Use a password manager</b> (1Password, Bitwarden) as your key vault. One place, encrypted.</li>
+<li><b>Use env vars in code:</b> read keys from the environment, never hardcode them.</li>
+<li><b>Add a .gitignore rule</b> for <code>.env</code> before your first commit.</li>
+</ul>
+<pre><code># .env  (never commit this file)
+STRIPE_SECRET_KEY=sk_live_...</code></pre>
+
+<h2>3. Scope every key to the minimum</h2>
+<p>If a key only needs read access, don't grant write. If it only needs one service, don't grant the whole account. Most providers let you set scopes or create restricted keys — use that, even when it's one extra click.</p>
+
+<h2>4. Rotate on a schedule</h2>
+<p>Set a calendar reminder: rotate keys every 90 days, and immediately on any suspicion of exposure. Keep the old key active for 24 hours during rotation so nothing breaks, then revoke.</p>
+
+<h2>5. Separate environments</h2>
+<p>Never use a production key in local development or in a demo video. Maintain at least:</p>
+<ul>
+<li><b>dev</b> — fake or low-limit keys</li>
+<li><b>staging</b> — mirror of prod, separate key</li>
+<li><b>prod</b> — the only key that touches real money/data</li>
+</ul>
+
+<h2>Third-party services and shared secrets</h2>
+<p>Your risk is not only your own keys. Every integration you connect (analytics, email, payments) holds a secret too. When a vendor asks for your key, ask: can they scope it? Do they store it encrypted? Can you revoke it without breaking the integration? The safest setups use short-lived tokens or OAuth instead of long-lived keys you cannot see expire.</p>
+
+<h2>How to revoke and recover</h2>
+<p>When you suspect a leak, the order matters:</p>
+<ol>
+<li><b>Revoke the key now.</b> Stop the bleeding before analysis.</li>
+<li><b>Check recent activity</b> for charges, sends, or reads you didn't make.</li>
+<li><b>Issue a new scoped key</b> and update only the places that need it.</li>
+<li><b>Document what happened</b> so the same gap doesn't reopen.</li>
+</ol>
+
+<h2>A simple key inventory</h2>
+<p>Future you will forget where each key lives. Keep a one-line note per key (stored in your password manager, never in the repo):</p>
+<pre><code>STRIPE_SECRET_KEY  | prod | rotates 2026-11-01 | used by: checkout
+MAILGUN_KEY        | prod | rotates 2026-12-15 | used by: transactional</code></pre>
+
+<div class="callout"><b>If a key leaks:</b> revoke it first, investigate second. A revoked key can't be billed. Speed beats forensics in the first 10 minutes.</div>
+
+<h2>A note on mobile and shared machines</h2>
+<p>Most leaks happen on the laptop you travel with. Enable disk encryption (FileVault on Mac, BitLocker on Windows) so a stolen machine doesn't hand over every local key. On a shared or borrowed computer, never paste a production key into a browser tab you can't fully close — use a temporary restricted key instead, and revoke it the moment you're done. The rule is simple: the more exposed the device, the more restricted the key it's allowed to hold. A borrowed machine is never trusted with prod.</p>
+
+<h2>A 2-minute solo-founder routine</h2>
+<ol>
+<li>Generate the key in a local tool (not in chat).</li>
+<li>Paste it only into your password manager and your <code>.env</code>.</li>
+<li>Confirm <code>.env</code> is gitignored.</li>
+<li>Set a 90-day rotation reminder.</li>
+<li>Write down where it's used — future you will forget.</li>
+</ol>
+
+<div class="rel">
+<h3>Keep reading</h3>
+<a href="/blog/why-marketers-need-a-json-formatter.html">→ Why every marketer needs a JSON formatter</a>
+<a href="/blog/markdown-to-html-workflow.html">→ Markdown to HTML: the fastest workflow for creators</a>
+<a href="/#tools">→ Generate a key locally, free</a>
+</div>
+
+<h2>FAQ</h2>
+<p><b>Is a browser-based generator safe?</b> Yes, if it runs fully client-side and shows the key only on your screen. Nothing is sent to a server. Verify the tool's privacy claim before trusting it.</p>
+<p><b>How long should a key be?</b> 32+ characters with mixed classes is a solid baseline for secret keys.</p>
+<p><b>Should I encrypt .env?</b> For a solo founder, gitignoring it and storing it in your password manager is enough. Encrypt if the machine is shared.</p>
+</div>
+</div>
+
+<footer><div class="wrap">© 2026 Glint AI · <a href="/">Home</a> · <a href="/#tools">Tools</a> · <a href="/#blog">Blog</a></div></footer>
+</body>
+</html>
