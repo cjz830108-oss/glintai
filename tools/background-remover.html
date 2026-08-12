@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Background Remover — Glint AI</title>
+  <meta name="description" content="Remove image backgrounds free with Glint's on-device background remover. An AI model runs locally in your browser via WASM — nothing is uploaded. Download a transparent PNG." />
+  <meta name="keywords" content="background remover, remove bg, remove background from image, transparent png maker, free background remover" />
+  <link rel="canonical" href="https://glintai.tools/tools/background-remover.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Free Background Remover — Glint AI" />
+  <meta property="og:description" content="Remove image backgrounds free with Glint's on-device background remover. An AI model runs locally in your browser via WASM — nothing is uploaded. Download a transparent PNG." />
+  <meta property="og:url" content="https://glintai.tools/tools/background-remover.html" />
+  <meta property="og:site_name" content="Glint AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/tools.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Background Remover", "operatingSystem": "Web", "applicationCategory": "UtilitiesApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": "https://glintai.tools/tools/background-remover.html"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my image uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. The model runs in your browser; the image never leaves your device."}}, {"@type": "Question", "name": "Why does the first run take longer?", "acceptedAnswer": {"@type": "Answer", "text": "The model (~40MB) downloads once and is cached by your browser for instant reuse."}}, {"@type": "Question", "name": "What format do I get?", "acceptedAnswer": {"@type": "Answer", "text": "Output is a transparent PNG you can drop into any design tool."}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <nav class="nav-links">
+        <a href="/index.html#tools">Tools</a>
+        <a href="/index.html#blog">Blog</a>
+        <a href="/index.html#pricing">Pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap tool-page">
+    <nav class="crumbs"><a href="/index.html">Home</a> › <span>Background Remover</span></nav>
+    <h1>Background Remover</h1>
+    <p class="lede">Strip backgrounds from any image using an AI model that runs entirely on your device. The first run downloads the model (~40MB, then cached); after that, removal happens locally via WASM — your image never leaves the browser. Download a transparent PNG.</p>
+    <section class="tool-card-wrap"><div class="tool-card">
+  <h3>🧹 Background Remover</h3>
+  <div class="sub">Strip backgrounds from images right in your browser using an on-device AI model. <em>Nothing is uploaded — the model runs locally via WASM.</em></div>
+  <input id="bgFile" type="file" accept="image/*" style="margin-top:6px;color:var(--text);" />
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <button class="btn btn-primary mini" onclick="removeBg()">Remove background</button>
+    <a class="btn btn-ghost mini" id="bgDl" style="display:none;" download="no-bg.png">Download PNG</a>
+  </div>
+  <div class="hint" id="bgHint">Pick an image to start.</div>
+  <div id="bgOut" style="margin-top:10px;"></div>
+</div></section>
+    <section class="how">
+      <h2>How to use the Background Remover</h2>
+      <ol><li>Pick an image file above.</li><li>Click Remove background; the on-device model processes it locally.</li><li>Download the transparent PNG.</li></ol>
+    </section>
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="qa"><h3>Is my image uploaded?</h3><p>No. The model runs in your browser; the image never leaves your device.</p></div><div class="qa"><h3>Why does the first run take longer?</h3><p>The model (~40MB) downloads once and is cached by your browser for instant reuse.</p></div><div class="qa"><h3>What format do I get?</h3><p>Output is a transparent PNG you can drop into any design tool.</p></div>
+    </section>
+    <section class="related">
+      <h2>Related guides</h2>
+      <ul><li><a href="/blog/ai-prompt-engineering-guide.html">Prompt Engineering Guide for Better AI Output</a></li><li><a href="/tools/pdf-summarizer.html">PDF Summarizer</a></li></ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <p>Free AI tools for creators, marketers and solo founders.</p>
+      <p class="muted"><a href="/index.html#tools">All tools</a> · <a href="/index.html#blog">Blog</a> · <a href="/index.html#pricing">Pricing</a></p>
+    </div>
+  </footer>
+  <script src="/assets/tools.js"></script>
+</body>
+</html>

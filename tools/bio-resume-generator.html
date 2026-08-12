@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Bio & Resume Generator — Glint AI</title>
+  <meta name="description" content="Generate a LinkedIn summary, Twitter / X bio, and resume pitch free with Glint's bio generator. Templates only — instant, no AI calls, no upload." />
+  <meta name="keywords" content="bio generator, resume generator, linkedin summary generator, twitter bio generator, about me generator" />
+  <link rel="canonical" href="https://glintai.tools/tools/bio-resume-generator.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Free Bio & Resume Generator — Glint AI" />
+  <meta property="og:description" content="Generate a LinkedIn summary, Twitter / X bio, and resume pitch free with Glint's bio generator. Templates only — instant, no AI calls, no upload." />
+  <meta property="og:url" content="https://glintai.tools/tools/bio-resume-generator.html" />
+  <meta property="og:site_name" content="Glint AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/tools.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Bio & Resume Generator", "operatingSystem": "Web", "applicationCategory": "UtilitiesApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": "https://glintai.tools/tools/bio-resume-generator.html"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this a real AI bio writer?", "acceptedAnswer": {"@type": "Answer", "text": "It's a fast template generator, not a language model. For richer, AI-written copy, feed the output into the AI Text Summarizer's Pro mode or your own ChatGPT."}}, {"@type": "Question", "name": "Is my info uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. Everything stays in your browser."}}, {"@type": "Question", "name": "Can I use these for my resume?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the one-line pitch works as a resume headline; expand it with your experience bullets."}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <nav class="nav-links">
+        <a href="/index.html#tools">Tools</a>
+        <a href="/index.html#blog">Blog</a>
+        <a href="/index.html#pricing">Pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap tool-page">
+    <nav class="crumbs"><a href="/index.html">Home</a> › <span>Bio & Resume Generator</span></nav>
+    <h1>Bio & Resume Generator</h1>
+    <p class="lede">Turn a few facts into three ready-to-use intros: a LinkedIn summary, a Twitter / X bio, and a one-line resume pitch. Pure templates — instant, private, no AI calls, no account.</p>
+    <section class="tool-card-wrap"><div class="tool-card">
+  <h3>🪪 Bio & Resume Generator</h3>
+  <div class="sub">Turn a few facts into a LinkedIn summary, a Twitter / X bio, and a one-line resume pitch. <em>Templates only — instant, no AI calls.</em></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">
+    <input id="bioName" type="text" placeholder="Your name" />
+    <input id="bioRole" type="text" placeholder="Current role / title" />
+    <input id="bioYr" type="text" placeholder="Years of experience (e.g. 5)" />
+    <input id="bioSkills" type="text" placeholder="Top skills (comma separated)" />
+  </div>
+  <input id="bioGoal" type="text" placeholder="Goal (e.g. land a senior PM role)" style="margin-top:8px;width:100%;box-sizing:border-box;" />
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <button class="btn btn-primary mini" onclick="generateBio()">Generate bios</button>
+    <button class="btn btn-ghost mini" onclick="copyOut('bioOut')">Copy</button>
+  </div>
+  <div class="out" id="bioOut" style="white-space:pre-wrap;">Your generated bios appear here.</div>
+</div></section>
+    <section class="how">
+      <h2>How to use the Bio & Resume Generator</h2>
+      <ol><li>Fill in your name, role, years of experience, and top skills.</li><li>Add a goal (e.g. 'land a senior PM role').</li><li>Click Generate bios and copy what you need.</li></ol>
+    </section>
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="qa"><h3>Is this a real AI bio writer?</h3><p>It's a fast template generator, not a language model. For richer, AI-written copy, feed the output into the AI Text Summarizer's Pro mode or your own ChatGPT.</p></div><div class="qa"><h3>Is my info uploaded?</h3><p>No. Everything stays in your browser.</p></div><div class="qa"><h3>Can I use these for my resume?</h3><p>Yes — the one-line pitch works as a resume headline; expand it with your experience bullets.</p></div>
+    </section>
+    <section class="related">
+      <h2>Related guides</h2>
+      <ul><li><a href="/blog/ai-essay-writer-guide.html">AI Essay Writer Guide</a></li><li><a href="/tools/ai-text-summarizer.html">AI Text Summarizer</a></li></ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <p>Free AI tools for creators, marketers and solo founders.</p>
+      <p class="muted"><a href="/index.html#tools">All tools</a> · <a href="/index.html#blog">Blog</a> · <a href="/index.html#pricing">Pricing</a></p>
+    </div>
+  </footer>
+  <script src="/assets/tools.js"></script>
+</body>
+</html>

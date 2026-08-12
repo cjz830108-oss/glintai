@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Paraphraser — Rewrite Text Instantly — Glint AI</title>
+  <meta name="description" content="Rephrase sentences and paragraphs with Glint's free paraphraser. Pick a style — standard, fluent, formal, simple — and rewrite instantly in your browser, no API." />
+  <meta name="keywords" content="paraphraser, paraphrase tool, rephrase sentence, paraphrase online, rewrite text" />
+  <link rel="canonical" href="https://glintai.tools/tools/paraphraser.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Free Paraphraser — Rewrite Text Instantly — Glint AI" />
+  <meta property="og:description" content="Rephrase sentences and paragraphs with Glint's free paraphraser. Pick a style — standard, fluent, formal, simple — and rewrite instantly in your browser, no API." />
+  <meta property="og:url" content="https://glintai.tools/tools/paraphraser.html" />
+  <meta property="og:site_name" content="Glint AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/tools.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Paraphraser", "operatingSystem": "Web", "applicationCategory": "UtilitiesApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": "https://glintai.tools/tools/paraphraser.html"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the paraphraser free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — it runs entirely in your browser and never sends your text anywhere."}}, {"@type": "Question", "name": "Does it change the meaning?", "acceptedAnswer": {"@type": "Answer", "text": "It swaps synonyms and rhythm; meaning stays close. Always read the output, especially in Formal or Simple mode."}}, {"@type": "Question", "name": "Can I use it to avoid AI detectors?", "acceptedAnswer": {"@type": "Answer", "text": "It helps vary wording, but pair it with the AI Humanizer for best results on AI-written text."}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <nav class="nav-links">
+        <a href="/index.html#tools">Tools</a>
+        <a href="/index.html#blog">Blog</a>
+        <a href="/index.html#pricing">Pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap tool-page">
+    <nav class="crumbs"><a href="/index.html">Home</a> › <span>Paraphraser</span></nav>
+    <h1>Paraphraser</h1>
+    <p class="lede">Reword any paragraph in a click with a built-in synonym engine. Choose a tone — Standard, Fluent, Formal, or Simple — and get an instant rewrite. No API, no upload, no account.</p>
+    <section class="tool-card-wrap"><div class="tool-card">
+  <h3>🔄 Paraphraser</h3>
+  <div class="sub">Reword sentences with a built-in synonym engine. Pick a style and rephrase instantly — no API, no upload.</div>
+  <textarea id="paraIn" rows="8" placeholder="Paste a paragraph to rephrase…"></textarea>
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <select id="paraMode" style="padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);">
+      <option value="standard">Standard</option>
+      <option value="fluent">Fluent</option>
+      <option value="formal">Formal</option>
+      <option value="simple">Simple</option>
+    </select>
+    <button class="btn btn-primary mini" onclick="paraphrase()">Paraphrase</button>
+    <button class="btn btn-ghost mini" onclick="copyOut('paraOut')">Copy</button>
+  </div>
+  <div class="out" id="paraOut" style="white-space:pre-wrap;">Reworded text appears here.</div>
+</div></section>
+    <section class="how">
+      <h2>How to use the Paraphraser</h2>
+      <ol><li>Paste a paragraph into the box above.</li><li>Pick a style from the dropdown (Simple swaps the most words).</li><li>Click Paraphrase, then copy the result.</li></ol>
+    </section>
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="qa"><h3>Is the paraphraser free?</h3><p>Yes — it runs entirely in your browser and never sends your text anywhere.</p></div><div class="qa"><h3>Does it change the meaning?</h3><p>It swaps synonyms and rhythm; meaning stays close. Always read the output, especially in Formal or Simple mode.</p></div><div class="qa"><h3>Can I use it to avoid AI detectors?</h3><p>It helps vary wording, but pair it with the AI Humanizer for best results on AI-written text.</p></div>
+    </section>
+    <section class="related">
+      <h2>Related guides</h2>
+      <ul><li><a href="/blog/paraphrase-without-losing-meaning.html">How to Paraphrase Without Losing Meaning</a></li><li><a href="/tools/ai-humanizer.html">AI Humanizer</a></li></ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <p>Free AI tools for creators, marketers and solo founders.</p>
+      <p class="muted"><a href="/index.html#tools">All tools</a> · <a href="/index.html#blog">Blog</a> · <a href="/index.html#pricing">Pricing</a></p>
+    </div>
+  </footer>
+  <script src="/assets/tools.js"></script>
+</body>
+</html>

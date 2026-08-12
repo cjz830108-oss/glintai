@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free AI Content Detector — Glint AI</title>
+  <meta name="description" content="Check whether text reads as AI-generated with Glint's free AI detector. Heuristic scoring for burstiness, phrasing, and vocabulary — runs in your browser, no signup." />
+  <meta name="keywords" content="ai content detector, ai detector, detect ai text, ai text detector, is this ai generated" />
+  <link rel="canonical" href="https://glintai.tools/tools/ai-content-detector.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Free AI Content Detector — Glint AI" />
+  <meta property="og:description" content="Check whether text reads as AI-generated with Glint's free AI detector. Heuristic scoring for burstiness, phrasing, and vocabulary — runs in your browser, no signup." />
+  <meta property="og:url" content="https://glintai.tools/tools/ai-content-detector.html" />
+  <meta property="og:site_name" content="Glint AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/tools.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "AI Content Detector", "operatingSystem": "Web", "applicationCategory": "UtilitiesApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": "https://glintai.tools/tools/ai-content-detector.html"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this AI detector accurate?", "acceptedAnswer": {"@type": "Answer", "text": "It's a fast heuristic, not a lab-grade classifier. Treat the score as a rough signal; for high-stakes decisions use a paid detector."}}, {"@type": "Question", "name": "Do you upload my text?", "acceptedAnswer": {"@type": "Answer", "text": "No. Scanning happens locally in your browser."}}, {"@type": "Question", "name": "What is burstiness and why does it matter?", "acceptedAnswer": {"@type": "Answer", "text": "Burstiness is how much sentence length varies. Human writing swings between short and long sentences; AI text tends to be uniform. Low burstiness raises the AI score."}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <nav class="nav-links">
+        <a href="/index.html#tools">Tools</a>
+        <a href="/index.html#blog">Blog</a>
+        <a href="/index.html#pricing">Pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap tool-page">
+    <nav class="crumbs"><a href="/index.html">Home</a> › <span>AI Content Detector</span></nav>
+    <h1>AI Content Detector</h1>
+    <p class="lede">Paste any text and get a quick, transparent AI-likelihood score. Glint's detector measures sentence-length variation (burstiness), vocabulary diversity, and common AI-tell phrases — entirely in your browser, no account needed.</p>
+    <section class="tool-card-wrap"><div class="tool-card">
+  <h3>🔍 AI Content Detector</h3>
+  <div class="sub">A free, instant heuristic check for AI-likely text. Scores burstiness, phrasing, and vocabulary — runs 100% in your browser. <em>Experimental, not a substitute for paid detectors.</em></div>
+  <textarea id="detIn" rows="8" placeholder="Paste text to scan…"></textarea>
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <button class="btn btn-primary mini" onclick="detectAi()">Scan</button>
+  </div>
+  <div class="out" id="detOut" style="white-space:normal;">Score appears here.</div>
+</div></section>
+    <section class="how">
+      <h2>How to use the AI Content Detector</h2>
+      <ol><li>Paste the text you want to check into the box above.</li><li>Click Scan to get a 0–100 AI-likelihood score plus the signals behind it.</li><li>Use the breakdown (burstiness, vocab diversity, AI tells) to decide whether a manual edit is worth it.</li></ol>
+    </section>
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="qa"><h3>Is this AI detector accurate?</h3><p>It's a fast heuristic, not a lab-grade classifier. Treat the score as a rough signal; for high-stakes decisions use a paid detector.</p></div><div class="qa"><h3>Do you upload my text?</h3><p>No. Scanning happens locally in your browser.</p></div><div class="qa"><h3>What is burstiness and why does it matter?</h3><p>Burstiness is how much sentence length varies. Human writing swings between short and long sentences; AI text tends to be uniform. Low burstiness raises the AI score.</p></div>
+    </section>
+    <section class="related">
+      <h2>Related guides</h2>
+      <ul><li><a href="/blog/ai-content-detector-guide.html">How Accurate Are AI Detectors, Really?</a></li><li><a href="/tools/ai-humanizer.html">AI Humanizer</a></li></ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <p>Free AI tools for creators, marketers and solo founders.</p>
+      <p class="muted"><a href="/index.html#tools">All tools</a> · <a href="/index.html#blog">Blog</a> · <a href="/index.html#pricing">Pricing</a></p>
+    </div>
+  </footer>
+  <script src="/assets/tools.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free PDF Summarizer — Glint AI</title>
+  <meta name="description" content="Summarize PDFs in your browser with Glint's free PDF summarizer. Text is extracted locally with pdf.js — never uploaded. Get an extractive summary in seconds." />
+  <meta name="keywords" content="pdf summarizer, summarize pdf, pdf summary tool, summarize pdf free, pdf text extractor" />
+  <link rel="canonical" href="https://glintai.tools/tools/pdf-summarizer.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Free PDF Summarizer — Glint AI" />
+  <meta property="og:description" content="Summarize PDFs in your browser with Glint's free PDF summarizer. Text is extracted locally with pdf.js — never uploaded. Get an extractive summary in seconds." />
+  <meta property="og:url" content="https://glintai.tools/tools/pdf-summarizer.html" />
+  <meta property="og:site_name" content="Glint AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/tools.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PDF Summarizer", "operatingSystem": "Web", "applicationCategory": "UtilitiesApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": "https://glintai.tools/tools/pdf-summarizer.html"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my PDF uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The file is read in your browser with pdf.js; nothing is sent to a server."}}, {"@type": "Question", "name": "Why does it say 'no extractable text'?", "acceptedAnswer": {"@type": "Answer", "text": "Scanned/image-only PDFs have no text layer. Use an OCR step first, or paste the text into the AI Text Summarizer."}}, {"@type": "Question", "name": "What is an extractive summary?", "acceptedAnswer": {"@type": "Answer", "text": "It keeps the most important existing sentences from the PDF. Abstractive (rewritten) summaries are a Pro feature."}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <nav class="nav-links">
+        <a href="/index.html#tools">Tools</a>
+        <a href="/index.html#blog">Blog</a>
+        <a href="/index.html#pricing">Pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap tool-page">
+    <nav class="crumbs"><a href="/index.html">Home</a> › <span>PDF Summarizer</span></nav>
+    <h1>PDF Summarizer</h1>
+    <p class="lede">Drop a PDF and get a tight extractive summary without leaving your device. Glint reads the text locally using pdf.js, scores sentences by keyword frequency, and returns the most important lines. Your file never touches a server.</p>
+    <section class="tool-card-wrap"><div class="tool-card">
+  <h3>📄 PDF Summarizer</h3>
+  <div class="sub">Drop a PDF and get an extractive summary — text is read in your browser, never uploaded. <em>Free mode runs locally; Pro unlocks GPT-level summaries.</em></div>
+  <input id="pdfFile" type="file" accept="application/pdf" style="margin-top:6px;color:var(--text);" />
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <div>
+      <label for="pdfRatio">Summary length</label>
+      <input type="range" id="pdfRatio" min="10" max="60" value="30" style="width:100%">
+      <span class="hint" id="pdfRatioLbl">~30% of original</span>
+    </div>
+    <button class="btn btn-primary mini" onclick="summarizePdf()">Summarize PDF</button>
+  </div>
+  <div class="hint" id="pdfHint">Choose a PDF file to begin.</div>
+  <div class="out" id="pdfOut" style="white-space:pre-wrap;">Your PDF summary appears here.</div>
+</div></section>
+    <section class="how">
+      <h2>How to use the PDF Summarizer</h2>
+      <ol><li>Choose a PDF file above (text-based PDFs work best).</li><li>Set the summary length with the slider (10–60% of the original).</li><li>Click Summarize PDF and copy the result. Pro adds GPT-level abstractive summaries.</li></ol>
+    </section>
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="qa"><h3>Is my PDF uploaded anywhere?</h3><p>No. The file is read in your browser with pdf.js; nothing is sent to a server.</p></div><div class="qa"><h3>Why does it say 'no extractable text'?</h3><p>Scanned/image-only PDFs have no text layer. Use an OCR step first, or paste the text into the AI Text Summarizer.</p></div><div class="qa"><h3>What is an extractive summary?</h3><p>It keeps the most important existing sentences from the PDF. Abstractive (rewritten) summaries are a Pro feature.</p></div>
+    </section>
+    <section class="related">
+      <h2>Related guides</h2>
+      <ul><li><a href="/blog/summarize-pdf-guide.html">How to Summarize a PDF in Minutes</a></li><li><a href="/tools/ai-text-summarizer.html">AI Text Summarizer</a></li></ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <p>Free AI tools for creators, marketers and solo founders.</p>
+      <p class="muted"><a href="/index.html#tools">All tools</a> · <a href="/index.html#blog">Blog</a> · <a href="/index.html#pricing">Pricing</a></p>
+    </div>
+  </footer>
+  <script src="/assets/tools.js"></script>
+</body>
+</html>

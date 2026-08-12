@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Grammar Checker — Glint AI</title>
+  <meta name="description" content="Catch grammar, spelling, and style issues free with Glint's grammar checker. Flags homophones, doubled words, and AI-sounding filler — runs in your browser, no upload." />
+  <meta name="keywords" content="grammar checker, grammar check, free grammar checker, spell check, grammar corrector" />
+  <link rel="canonical" href="https://glintai.tools/tools/grammar-checker.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Free Grammar Checker — Glint AI" />
+  <meta property="og:description" content="Catch grammar, spelling, and style issues free with Glint's grammar checker. Flags homophones, doubled words, and AI-sounding filler — runs in your browser, no upload." />
+  <meta property="og:url" content="https://glintai.tools/tools/grammar-checker.html" />
+  <meta property="og:site_name" content="Glint AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/tools.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Grammar Checker", "operatingSystem": "Web", "applicationCategory": "UtilitiesApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": "https://glintai.tools/tools/grammar-checker.html"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the grammar checker free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, fully free and runs in your browser."}}, {"@type": "Question", "name": "Does it catch every error?", "acceptedAnswer": {"@type": "Answer", "text": "It catches common mechanical issues and filler. For nuanced style and context, use the ChatGPT prompt it generates."}}, {"@type": "Question", "name": "Is my text uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "No. Checking happens locally on your device."}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <nav class="nav-links">
+        <a href="/index.html#tools">Tools</a>
+        <a href="/index.html#blog">Blog</a>
+        <a href="/index.html#pricing">Pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap tool-page">
+    <nav class="crumbs"><a href="/index.html">Home</a> › <span>Grammar Checker</span></nav>
+    <h1>Grammar Checker</h1>
+    <p class="lede">Spot the obvious mistakes before you publish. Glint's grammar checker flags repeated words, double spaces, sentence-start capitals, common homophone confusion, and AI-sounding filler — all locally in your browser. Copy a ChatGPT prompt for a full proofread.</p>
+    <section class="tool-card-wrap"><div class="tool-card">
+  <h3>✍️ Grammar Checker</h3>
+  <div class="sub">Catch common mistakes — homophone confusion, doubled words, double spaces, sentence-start caps — and copy a prompt to fix the rest in ChatGPT. <em>Runs locally, no upload.</em></div>
+  <textarea id="gramIn" rows="8" placeholder="Paste your text here to check…"></textarea>
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <button class="btn btn-primary mini" onclick="checkGrammar()">Check grammar</button>
+    <button class="btn btn-ghost mini" onclick="copyGramPrompt()">Copy ChatGPT prompt</button>
+    <button class="btn btn-ghost mini" onclick="copyOut('gramOut')">Copy</button>
+  </div>
+  <div class="out" id="gramOut" style="white-space:pre-wrap;">Issues (if any) appear here.</div>
+</div></section>
+    <section class="how">
+      <h2>How to use the Grammar Checker</h2>
+      <ol><li>Paste your text into the box above.</li><li>Click Check grammar to see a list of issues.</li><li>For a deep edit, click Copy ChatGPT prompt and run it in ChatGPT.</li></ol>
+    </section>
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="qa"><h3>Is the grammar checker free?</h3><p>Yes, fully free and runs in your browser.</p></div><div class="qa"><h3>Does it catch every error?</h3><p>It catches common mechanical issues and filler. For nuanced style and context, use the ChatGPT prompt it generates.</p></div><div class="qa"><h3>Is my text uploaded?</h3><p>No. Checking happens locally on your device.</p></div>
+    </section>
+    <section class="related">
+      <h2>Related guides</h2>
+      <ul><li><a href="/blog/ai-prompt-engineering-guide.html">Prompt Engineering Guide for Better AI Output</a></li><li><a href="/tools/paraphraser.html">Paraphraser</a></li></ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <p>Free AI tools for creators, marketers and solo founders.</p>
+      <p class="muted"><a href="/index.html#tools">All tools</a> · <a href="/index.html#blog">Blog</a> · <a href="/index.html#pricing">Pricing</a></p>
+    </div>
+  </footer>
+  <script src="/assets/tools.js"></script>
+</body>
+</html>

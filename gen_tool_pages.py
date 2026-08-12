@@ -139,7 +139,103 @@ PANELS = {
     <div class="stat"><b id="wcPara">0</b><span>Paragraphs</span></div>
     <div class="stat"><b id="wcRead">0m</b><span>Read time</span></div>
   </div>
-  <div class="hint" id="wcHint">Start typing to see live counts.</div>
+      <div class="hint" id="wcHint">Start typing to see live counts.</div>
+    </div>''',
+
+"human": '''<div class="tool-card">
+  <h3>🤖 AI Humanizer</h3>
+  <div class="sub">Make AI-written text read more naturally. Run a free local light-edit, or copy a proven prompt to finish the job in ChatGPT / Claude. <em>Zero cost, no upload.</em></div>
+  <textarea id="humIn" rows="8" placeholder="Paste AI-generated text here…"></textarea>
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <button class="btn btn-primary mini" onclick="humanizeLocal()">Light humanize</button>
+    <button class="btn btn-ghost mini" onclick="copyHumanPrompt()">Copy ChatGPT prompt</button>
+    <button class="btn btn-ghost mini" onclick="copyOut('humOut')">Copy</button>
+  </div>
+  <div class="out" id="humOut" style="white-space:pre-wrap;">Your humanized text appears here.</div>
+</div>''',
+
+"detect": '''<div class="tool-card">
+  <h3>🔍 AI Content Detector</h3>
+  <div class="sub">A free, instant heuristic check for AI-likely text. Scores burstiness, phrasing, and vocabulary — runs 100% in your browser. <em>Experimental, not a substitute for paid detectors.</em></div>
+  <textarea id="detIn" rows="8" placeholder="Paste text to scan…"></textarea>
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <button class="btn btn-primary mini" onclick="detectAi()">Scan</button>
+  </div>
+  <div class="out" id="detOut" style="white-space:normal;">Score appears here.</div>
+</div>''',
+
+"para": '''<div class="tool-card">
+  <h3>🔄 Paraphraser</h3>
+  <div class="sub">Reword sentences with a built-in synonym engine. Pick a style and rephrase instantly — no API, no upload.</div>
+  <textarea id="paraIn" rows="8" placeholder="Paste a paragraph to rephrase…"></textarea>
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <select id="paraMode" style="padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);">
+      <option value="standard">Standard</option>
+      <option value="fluent">Fluent</option>
+      <option value="formal">Formal</option>
+      <option value="simple">Simple</option>
+    </select>
+    <button class="btn btn-primary mini" onclick="paraphrase()">Paraphrase</button>
+    <button class="btn btn-ghost mini" onclick="copyOut('paraOut')">Copy</button>
+  </div>
+  <div class="out" id="paraOut" style="white-space:pre-wrap;">Reworded text appears here.</div>
+</div>''',
+
+"pdf": '''<div class="tool-card">
+  <h3>📄 PDF Summarizer</h3>
+  <div class="sub">Drop a PDF and get an extractive summary — text is read in your browser, never uploaded. <em>Free mode runs locally; Pro unlocks GPT-level summaries.</em></div>
+  <input id="pdfFile" type="file" accept="application/pdf" style="margin-top:6px;color:var(--text);" />
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <div>
+      <label for="pdfRatio">Summary length</label>
+      <input type="range" id="pdfRatio" min="10" max="60" value="30" style="width:100%">
+      <span class="hint" id="pdfRatioLbl">~30% of original</span>
+    </div>
+    <button class="btn btn-primary mini" onclick="summarizePdf()">Summarize PDF</button>
+  </div>
+  <div class="hint" id="pdfHint">Choose a PDF file to begin.</div>
+  <div class="out" id="pdfOut" style="white-space:pre-wrap;">Your PDF summary appears here.</div>
+</div>''',
+
+"grammar": '''<div class="tool-card">
+  <h3>✍️ Grammar Checker</h3>
+  <div class="sub">Catch common mistakes — homophone confusion, doubled words, double spaces, sentence-start caps — and copy a prompt to fix the rest in ChatGPT. <em>Runs locally, no upload.</em></div>
+  <textarea id="gramIn" rows="8" placeholder="Paste your text here to check…"></textarea>
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <button class="btn btn-primary mini" onclick="checkGrammar()">Check grammar</button>
+    <button class="btn btn-ghost mini" onclick="copyGramPrompt()">Copy ChatGPT prompt</button>
+    <button class="btn btn-ghost mini" onclick="copyOut('gramOut')">Copy</button>
+  </div>
+  <div class="out" id="gramOut" style="white-space:pre-wrap;">Issues (if any) appear here.</div>
+</div>''',
+
+"bio": '''<div class="tool-card">
+  <h3>🪪 Bio & Resume Generator</h3>
+  <div class="sub">Turn a few facts into a LinkedIn summary, a Twitter / X bio, and a one-line resume pitch. <em>Templates only — instant, no AI calls.</em></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">
+    <input id="bioName" type="text" placeholder="Your name" />
+    <input id="bioRole" type="text" placeholder="Current role / title" />
+    <input id="bioYr" type="text" placeholder="Years of experience (e.g. 5)" />
+    <input id="bioSkills" type="text" placeholder="Top skills (comma separated)" />
+  </div>
+  <input id="bioGoal" type="text" placeholder="Goal (e.g. land a senior PM role)" style="margin-top:8px;width:100%;box-sizing:border-box;" />
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <button class="btn btn-primary mini" onclick="generateBio()">Generate bios</button>
+    <button class="btn btn-ghost mini" onclick="copyOut('bioOut')">Copy</button>
+  </div>
+  <div class="out" id="bioOut" style="white-space:pre-wrap;">Your generated bios appear here.</div>
+</div>''',
+
+"bg": '''<div class="tool-card">
+  <h3>🧹 Background Remover</h3>
+  <div class="sub">Strip backgrounds from images right in your browser using an on-device AI model. <em>Nothing is uploaded — the model runs locally via WASM.</em></div>
+  <input id="bgFile" type="file" accept="image/*" style="margin-top:6px;color:var(--text);" />
+  <div class="row" style="flex:0 0 auto;margin-top:10px;">
+    <button class="btn btn-primary mini" onclick="removeBg()">Remove background</button>
+    <a class="btn btn-ghost mini" id="bgDl" style="display:none;" download="no-bg.png">Download PNG</a>
+  </div>
+  <div class="hint" id="bgHint">Pick an image to start.</div>
+  <div id="bgOut" style="margin-top:10px;"></div>
 </div>''',
 }
 
@@ -305,7 +401,133 @@ TOOLS = [
     ("Does the counter upload my text?", "No. Counting happens in your browser."),
     ("Is there a word counter for essays?", "Yes — the word and paragraph counts work for any long-form text, including essays and articles."),
   ],
-  "related": [("/blog/ai-essay-writer-guide.html","AI Essay Writer Guide"), ("/blog/meta-description-ctr-guide.html","How to Write Meta Descriptions That Improve CTR")],
+    "related": [("/blog/ai-essay-writer-guide.html","AI Essay Writer Guide"), ("/blog/meta-description-ctr-guide.html","How to Write Meta Descriptions That Improve CTR")],
+  },
+{
+  "slug": "ai-humanizer", "key": "human", "name": "AI Humanizer",
+  "title": "Free AI Humanizer — Make AI Text Sound Human — Glint AI",
+  "meta": "Humanize AI-generated text for free. Glint's AI humanizer rewrites robotic phrasing locally in your browser — no signup, no upload, passes detection better.",
+  "keywords": "ai humanizer, humanize ai text, make ai text sound human, ai text humanizer, undetectable ai",
+  "intro": "Paste AI-written copy and get a cleaner, more natural rewrite in one click. Glint's humanizer swaps robotic filler phrases, varies sentence rhythm, and hands you a ChatGPT prompt for a deeper pass — all in your browser, nothing uploaded.",
+  "steps": [
+    "Paste the AI-generated text into the box above.",
+    "Click Light humanize to strip common AI tells (delve, leverage, it is important to note) and smooth the rhythm.",
+    "For a deeper rewrite, click Copy ChatGPT prompt and finish the job in ChatGPT or Claude.",
+  ],
+  "faq": [
+    ("Is the AI humanizer really free?", "Yes. The local light-edit runs 100% in your browser and is free forever. The ChatGPT prompt is just text you paste into your own account."),
+    ("Does humanizing guarantee AI detectors won't flag my text?", "No tool can guarantee that. Our local pass removes obvious tells; for sensitive work, combine it with a careful manual edit and the provided ChatGPT prompt."),
+    ("Is my text uploaded to a server?", "No. Everything runs locally in your browser. The optional ChatGPT step happens only when you paste the prompt into ChatGPT yourself."),
+  ],
+  "related": [("/blog/humanize-ai-text.html","How to Humanize AI Text So Detectors Don't Flag It"), ("/tools/ai-content-detector.html","AI Content Detector")],
+},
+{
+  "slug": "ai-content-detector", "key": "detect", "name": "AI Content Detector",
+  "title": "Free AI Content Detector — Glint AI",
+  "meta": "Check whether text reads as AI-generated with Glint's free AI detector. Heuristic scoring for burstiness, phrasing, and vocabulary — runs in your browser, no signup.",
+  "keywords": "ai content detector, ai detector, detect ai text, ai text detector, is this ai generated",
+  "intro": "Paste any text and get a quick, transparent AI-likelihood score. Glint's detector measures sentence-length variation (burstiness), vocabulary diversity, and common AI-tell phrases — entirely in your browser, no account needed.",
+  "steps": [
+    "Paste the text you want to check into the box above.",
+    "Click Scan to get a 0–100 AI-likelihood score plus the signals behind it.",
+    "Use the breakdown (burstiness, vocab diversity, AI tells) to decide whether a manual edit is worth it.",
+  ],
+  "faq": [
+    ("Is this AI detector accurate?", "It's a fast heuristic, not a lab-grade classifier. Treat the score as a rough signal; for high-stakes decisions use a paid detector."),
+    ("Do you upload my text?", "No. Scanning happens locally in your browser."),
+    ("What is burstiness and why does it matter?", "Burstiness is how much sentence length varies. Human writing swings between short and long sentences; AI text tends to be uniform. Low burstiness raises the AI score."),
+  ],
+  "related": [("/blog/ai-content-detector-guide.html","How Accurate Are AI Detectors, Really?"), ("/tools/ai-humanizer.html","AI Humanizer")],
+},
+{
+  "slug": "paraphraser", "key": "para", "name": "Paraphraser",
+  "title": "Free Paraphraser — Rewrite Text Instantly — Glint AI",
+  "meta": "Rephrase sentences and paragraphs with Glint's free paraphraser. Pick a style — standard, fluent, formal, simple — and rewrite instantly in your browser, no API.",
+  "keywords": "paraphraser, paraphrase tool, rephrase sentence, paraphrase online, rewrite text",
+  "intro": "Reword any paragraph in a click with a built-in synonym engine. Choose a tone — Standard, Fluent, Formal, or Simple — and get an instant rewrite. No API, no upload, no account.",
+  "steps": [
+    "Paste a paragraph into the box above.",
+    "Pick a style from the dropdown (Simple swaps the most words).",
+    "Click Paraphrase, then copy the result.",
+  ],
+  "faq": [
+    ("Is the paraphraser free?", "Yes — it runs entirely in your browser and never sends your text anywhere."),
+    ("Does it change the meaning?", "It swaps synonyms and rhythm; meaning stays close. Always read the output, especially in Formal or Simple mode."),
+    ("Can I use it to avoid AI detectors?", "It helps vary wording, but pair it with the AI Humanizer for best results on AI-written text."),
+  ],
+  "related": [("/blog/paraphrase-without-losing-meaning.html","How to Paraphrase Without Losing Meaning"), ("/tools/ai-humanizer.html","AI Humanizer")],
+},
+{
+  "slug": "pdf-summarizer", "key": "pdf", "name": "PDF Summarizer",
+  "title": "Free PDF Summarizer — Glint AI",
+  "meta": "Summarize PDFs in your browser with Glint's free PDF summarizer. Text is extracted locally with pdf.js — never uploaded. Get an extractive summary in seconds.",
+  "keywords": "pdf summarizer, summarize pdf, pdf summary tool, summarize pdf free, pdf text extractor",
+  "intro": "Drop a PDF and get a tight extractive summary without leaving your device. Glint reads the text locally using pdf.js, scores sentences by keyword frequency, and returns the most important lines. Your file never touches a server.",
+  "steps": [
+    "Choose a PDF file above (text-based PDFs work best).",
+    "Set the summary length with the slider (10–60% of the original).",
+    "Click Summarize PDF and copy the result. Pro adds GPT-level abstractive summaries.",
+  ],
+  "faq": [
+    ("Is my PDF uploaded anywhere?", "No. The file is read in your browser with pdf.js; nothing is sent to a server."),
+    ("Why does it say 'no extractable text'?", "Scanned/image-only PDFs have no text layer. Use an OCR step first, or paste the text into the AI Text Summarizer."),
+    ("What is an extractive summary?", "It keeps the most important existing sentences from the PDF. Abstractive (rewritten) summaries are a Pro feature."),
+  ],
+  "related": [("/blog/summarize-pdf-guide.html","How to Summarize a PDF in Minutes"), ("/tools/ai-text-summarizer.html","AI Text Summarizer")],
+},
+{
+  "slug": "grammar-checker", "key": "grammar", "name": "Grammar Checker",
+  "title": "Free Grammar Checker — Glint AI",
+  "meta": "Catch grammar, spelling, and style issues free with Glint's grammar checker. Flags homophones, doubled words, and AI-sounding filler — runs in your browser, no upload.",
+  "keywords": "grammar checker, grammar check, free grammar checker, spell check, grammar corrector",
+  "intro": "Spot the obvious mistakes before you publish. Glint's grammar checker flags repeated words, double spaces, sentence-start capitals, common homophone confusion, and AI-sounding filler — all locally in your browser. Copy a ChatGPT prompt for a full proofread.",
+  "steps": [
+    "Paste your text into the box above.",
+    "Click Check grammar to see a list of issues.",
+    "For a deep edit, click Copy ChatGPT prompt and run it in ChatGPT.",
+  ],
+  "faq": [
+    ("Is the grammar checker free?", "Yes, fully free and runs in your browser."),
+    ("Does it catch every error?", "It catches common mechanical issues and filler. For nuanced style and context, use the ChatGPT prompt it generates."),
+    ("Is my text uploaded?", "No. Checking happens locally on your device."),
+  ],
+  "related": [("/blog/ai-prompt-engineering-guide.html","Prompt Engineering Guide for Better AI Output"), ("/tools/paraphraser.html","Paraphraser")],
+},
+{
+  "slug": "bio-resume-generator", "key": "bio", "name": "Bio & Resume Generator",
+  "title": "Free Bio & Resume Generator — Glint AI",
+  "meta": "Generate a LinkedIn summary, Twitter / X bio, and resume pitch free with Glint's bio generator. Templates only — instant, no AI calls, no upload.",
+  "keywords": "bio generator, resume generator, linkedin summary generator, twitter bio generator, about me generator",
+  "intro": "Turn a few facts into three ready-to-use intros: a LinkedIn summary, a Twitter / X bio, and a one-line resume pitch. Pure templates — instant, private, no AI calls, no account.",
+  "steps": [
+    "Fill in your name, role, years of experience, and top skills.",
+    "Add a goal (e.g. 'land a senior PM role').",
+    "Click Generate bios and copy what you need.",
+  ],
+  "faq": [
+    ("Is this a real AI bio writer?", "It's a fast template generator, not a language model. For richer, AI-written copy, feed the output into the AI Text Summarizer's Pro mode or your own ChatGPT."),
+    ("Is my info uploaded?", "No. Everything stays in your browser."),
+    ("Can I use these for my resume?", "Yes — the one-line pitch works as a resume headline; expand it with your experience bullets."),
+  ],
+  "related": [("/blog/ai-essay-writer-guide.html","AI Essay Writer Guide"), ("/tools/ai-text-summarizer.html","AI Text Summarizer")],
+},
+{
+  "slug": "background-remover", "key": "bg", "name": "Background Remover",
+  "title": "Free Background Remover — Glint AI",
+  "meta": "Remove image backgrounds free with Glint's on-device background remover. An AI model runs locally in your browser via WASM — nothing is uploaded. Download a transparent PNG.",
+  "keywords": "background remover, remove bg, remove background from image, transparent png maker, free background remover",
+  "intro": "Strip backgrounds from any image using an AI model that runs entirely on your device. The first run downloads the model (~40MB, then cached); after that, removal happens locally via WASM — your image never leaves the browser. Download a transparent PNG.",
+  "steps": [
+    "Pick an image file above.",
+    "Click Remove background; the on-device model processes it locally.",
+    "Download the transparent PNG.",
+  ],
+  "faq": [
+    ("Is my image uploaded?", "No. The model runs in your browser; the image never leaves your device."),
+    ("Why does the first run take longer?", "The model (~40MB) downloads once and is cached by your browser for instant reuse."),
+    ("What format do I get?", "Output is a transparent PNG you can drop into any design tool."),
+  ],
+  "related": [("/blog/ai-prompt-engineering-guide.html","Prompt Engineering Guide for Better AI Output"), ("/tools/pdf-summarizer.html","PDF Summarizer")],
 },
 ]
 
