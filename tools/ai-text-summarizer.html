@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free AI Text Summarizer — Glint AI</title>
+  <meta name="description" content="Summarize articles, transcripts, and notes in seconds with Glint's free AI text summarizer. Runs in your browser, no signup, no upload." />
+  <meta name="keywords" content="ai text summarizer, summarize text, article summarizer, text summary tool, free summarizer" />
+  <link rel="canonical" href="https://glintai.tools/tools/ai-text-summarizer.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Free AI Text Summarizer — Glint AI" />
+  <meta property="og:description" content="Summarize articles, transcripts, and notes in seconds with Glint's free AI text summarizer. Runs in your browser, no signup, no upload." />
+  <meta property="og:url" content="https://glintai.tools/tools/ai-text-summarizer.html" />
+  <meta property="og:site_name" content="Glint AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/tools.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "AI Text Summarizer", "operatingSystem": "Web", "applicationCategory": "UtilitiesApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": "https://glintai.tools/tools/ai-text-summarizer.html"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the AI text summarizer really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The extractive summarizer runs 100% in your browser and is free forever. A Pro plan adds GPT-powered abstractive summaries."}}, {"@type": "Question", "name": "Do you upload my text to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The free summarizer processes everything locally in your browser. Nothing is sent to our servers, which keeps your drafts private."}}, {"@type": "Question", "name": "What is the difference between extractive and abstractive summarization?", "acceptedAnswer": {"@type": "Answer", "text": "Extractive picks and keeps the most important existing sentences. Abstractive rewrites the content in new words using a language model — a Pro feature for when you need smoother output."}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <nav class="nav-links">
+        <a href="/index.html#tools">Tools</a>
+        <a href="/index.html#blog">Blog</a>
+        <a href="/index.html#pricing">Pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap tool-page">
+    <nav class="crumbs"><a href="/index.html">Home</a> › <span>AI Text Summarizer</span></nav>
+    <h1>AI Text Summarizer</h1>
+    <p class="lede">Paste any article, transcript, or meeting notes and get a tight extractive summary in seconds. Glint's summarizer scores sentences by keyword frequency and keeps the most important ones — entirely in your browser, so your text never leaves the page.</p>
+    <section class="tool-card-wrap"><div class="tool-card">
+  <h3>📝 AI Text Summarizer</h3>
+  <div class="sub">Extractive summary using sentence-frequency scoring. <em>Free mode runs locally — Pro unlocks GPT-level abstractive summaries.</em></div>
+  <textarea id="sumIn" rows="8" placeholder="Paste your article, transcript, or notes here…"></textarea>
+  <div class="row">
+    <div>
+      <label for="sumRatio">Summary length</label>
+      <input type="range" id="sumRatio" min="10" max="60" value="30" style="width:100%">
+      <span class="hint" id="sumRatioLbl">~30% of original</span>
+    </div>
+    <div style="flex:0 0 auto; align-self:flex-end;">
+      <button class="btn btn-primary mini" onclick="runSummarize()">Summarize</button>
+    </div>
+  </div>
+  <div class="out" id="sumOut">Your summary will appear here.</div>
+</div></section>
+    <section class="how">
+      <h2>How to use the AI Text Summarizer</h2>
+      <ol><li>Paste your text into the box above.</li><li>Drag the length slider to set how short you want the summary (10–60% of the original).</li><li>Hit Summarize and copy the result. A Pro plan adds GPT-level abstractive summaries.</li></ol>
+    </section>
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="qa"><h3>Is the AI text summarizer really free?</h3><p>Yes. The extractive summarizer runs 100% in your browser and is free forever. A Pro plan adds GPT-powered abstractive summaries.</p></div><div class="qa"><h3>Do you upload my text to a server?</h3><p>No. The free summarizer processes everything locally in your browser. Nothing is sent to our servers, which keeps your drafts private.</p></div><div class="qa"><h3>What is the difference between extractive and abstractive summarization?</h3><p>Extractive picks and keeps the most important existing sentences. Abstractive rewrites the content in new words using a language model — a Pro feature for when you need smoother output.</p></div>
+    </section>
+    <section class="related">
+      <h2>Related guides</h2>
+      <ul><li><a href="/blog/summarize-pdf-guide.html">How to Summarize a PDF in Minutes</a></li><li><a href="/blog/humanize-ai-text.html">How to Humanize AI Text So Detectors Don't Flag It</a></li></ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <p>Free AI tools for creators, marketers and solo founders.</p>
+      <p class="muted"><a href="/index.html#tools">All tools</a> · <a href="/index.html#blog">Blog</a> · <a href="/index.html#pricing">Pricing</a></p>
+    </div>
+  </footer>
+  <script src="/assets/tools.js"></script>
+</body>
+</html>

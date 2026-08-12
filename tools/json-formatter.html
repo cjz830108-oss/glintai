@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free JSON Formatter & Validator — Glint AI</title>
+  <meta name="description" content="Pretty-print, minify, and validate JSON instantly in your browser. No upload, no signup — just paste and format." />
+  <meta name="keywords" content="json formatter, json validator, format json, json minify, pretty print json, validate json" />
+  <link rel="canonical" href="https://glintai.tools/tools/json-formatter.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Free JSON Formatter & Validator — Glint AI" />
+  <meta property="og:description" content="Pretty-print, minify, and validate JSON instantly in your browser. No upload, no signup — just paste and format." />
+  <meta property="og:url" content="https://glintai.tools/tools/json-formatter.html" />
+  <meta property="og:site_name" content="Glint AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/assets/tools.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "JSON Formatter & Validator", "operatingSystem": "Web", "applicationCategory": "UtilitiesApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": "https://glintai.tools/tools/json-formatter.html"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is the JSON formatter safe to use with secrets?", "acceptedAnswer": {"@type": "Answer", "text": "Formatting happens locally in your browser — your JSON is never sent to a server. Still, avoid pasting production secrets into any web tool as a habit."}}, {"@type": "Question", "name": "What does 'Invalid JSON' mean?", "acceptedAnswer": {"@type": "Answer", "text": "It means the syntax is malformed — a missing comma, unquoted key, or trailing comma. The error message points to the problem so you can fix it."}}, {"@type": "Question", "name": "Can I minify JSON for production?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Minify strips whitespace to reduce payload size, which is useful for APIs and config files."}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <nav class="nav-links">
+        <a href="/index.html#tools">Tools</a>
+        <a href="/index.html#blog">Blog</a>
+        <a href="/index.html#pricing">Pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap tool-page">
+    <nav class="crumbs"><a href="/index.html">Home</a> › <span>JSON Formatter & Validator</span></nav>
+    <h1>JSON Formatter & Validator</h1>
+    <p class="lede">Paste any JSON and get it pretty-printed, minified, or validated in a click. Great for API responses, config files, and debugging — and it runs entirely in your browser.</p>
+    <section class="tool-card-wrap"><div class="tool-card">
+  <h3>{} JSON Formatter &amp; Validator</h3>
+  <div class="sub">Pretty-print, minify, and validate JSON instantly.</div>
+  <textarea id="jsonIn" rows="8" placeholder="{'name':'Glint','tools':['summarize','format']}"></textarea>
+  <div class="row" style="flex:0 0 auto;">
+    <button class="btn btn-primary mini" onclick="jsonFmt()">Format</button>
+    <button class="btn btn-ghost mini" onclick="jsonMin()">Minify</button>
+    <button class="btn btn-ghost mini" onclick="copyOut('jsonOut')">Copy</button>
+  </div>
+  <div class="out" id="jsonOut">Result appears here.</div>
+</div></section>
+    <section class="how">
+      <h2>How to use the JSON Formatter & Validator</h2>
+      <ol><li>Paste your JSON into the box above.</li><li>Click Format for readable, indented output, or Minify to shrink it for transport.</li><li>If the JSON is invalid, the tool tells you exactly what went wrong.</li></ol>
+    </section>
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="qa"><h3>Is the JSON formatter safe to use with secrets?</h3><p>Formatting happens locally in your browser — your JSON is never sent to a server. Still, avoid pasting production secrets into any web tool as a habit.</p></div><div class="qa"><h3>What does 'Invalid JSON' mean?</h3><p>It means the syntax is malformed — a missing comma, unquoted key, or trailing comma. The error message points to the problem so you can fix it.</p></div><div class="qa"><h3>Can I minify JSON for production?</h3><p>Yes. Minify strips whitespace to reduce payload size, which is useful for APIs and config files.</p></div>
+    </section>
+    <section class="related">
+      <h2>Related guides</h2>
+      <ul><li><a href="/blog/generate-api-keys-safely.html">How to Generate and Store API Keys Safely</a></li><li><a href="/blog/ai-prompt-engineering-guide.html">Prompt Engineering Guide for Better AI Output</a></li></ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a class="logo" href="/index.html"><span class="dot">✦</span> Glint AI</a>
+      <p>Free AI tools for creators, marketers and solo founders.</p>
+      <p class="muted"><a href="/index.html#tools">All tools</a> · <a href="/index.html#blog">Blog</a> · <a href="/index.html#pricing">Pricing</a></p>
+    </div>
+  </footer>
+  <script src="/assets/tools.js"></script>
+</body>
+</html>
