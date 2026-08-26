@@ -2,3 +2,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://glintai.tools/sitemap.xml
+
+# Private / build paths
+Disallow: /dashboard/
+Disallow: /api/

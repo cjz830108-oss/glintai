@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glint AI — Blog & Playbooks for Creators & Marketers</title>
+  <meta name="description" content="SEO-optimized guides on writing, SEO, and productivity from Glint AI. Free, no signup." />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://glintai.tools/blog/" />
+  <style>
+    :root{--bg:#07070d;--bg-soft:#0d0d18;--text:#e8e8f5;--text-soft:#9aa0c0;--line:rgba(120,120,200,.20);--brand:#00f0ff;--brand-2:#ff2e97;--radius:16px;--maxw:1120px;}
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);background:#07070d;
+      background-image:radial-gradient(1200px 600px at 50% -300px,rgba(0,240,255,.12),transparent),radial-gradient(900px 500px at 100% 0,rgba(255,46,151,.08),transparent),linear-gradient(rgba(0,240,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.045) 1px,transparent 1px);
+      background-size:auto,auto,44px 44px,44px 44px;background-attachment:fixed;line-height:1.6;-webkit-font-smoothing:antialiased;}
+    a{color:inherit;text-decoration:none;}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+    header.nav{position:sticky;top:0;z-index:50;background:rgba(7,7,13,.8);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);box-shadow:0 0 24px rgba(0,240,255,.08);}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;}
+    .logo .dot{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#02121a;font-size:16px;box-shadow:0 0 16px rgba(0,240,255,.5);}
+    .nav-links{display:flex;gap:26px;font-size:15px;color:var(--text-soft);}
+    .nav-links a:hover,.nav-links a.active{color:var(--brand);text-shadow:0 0 12px rgba(0,240,255,.6);}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;border:1px solid transparent;transition:.15s;}
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#02121a;box-shadow:0 0 22px rgba(0,240,255,.45);}
+    .btn-ghost{background:var(--bg-soft);color:var(--text);border-color:var(--line);}
+    .btn-sm{padding:8px 16px;font-size:14px;}
+    section{padding:60px 0;}
+    .sec-head{text-align:center;max-width:680px;margin:0 auto 40px;}
+    .sec-head h2{font-size:clamp(26px,3.5vw,38px);margin:0 0 10px;}
+    .sec-head p{color:var(--text-soft);font-size:17px;margin:0;}
+    
+  .blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
+  .post{background:rgba(18,18,32,.72);backdrop-filter:blur(6px);border:1px solid rgba(120,120,200,.20);border-radius:16px;overflow:hidden;transition:.15s;}
+  .post:hover{transform:translateY(-3px);box-shadow:0 0 30px rgba(0,240,255,.15);}
+  .post .thumb{height:130px;background:linear-gradient(135deg,rgba(0,240,255,.18),rgba(255,46,151,.18));overflow:hidden;display:grid;place-items:center;font-size:30px;}
+  .post .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .post .body{padding:18px;}
+  .post .cat{font-size:12px;font-weight:700;color:#00f0ff;text-transform:uppercase;letter-spacing:.04em;}
+  .post h3{margin:6px 0 8px;font-size:17px;}
+  .post p{margin:0;color:#9aa0c0;font-size:14px;}
+
+    footer{border-top:1px solid var(--line);padding:40px 0 30px;color:var(--text-soft);font-size:14px;}
+    .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:24px;}
+    .foot-grid h4{color:var(--text);font-size:14px;margin:0 0 12px;}
+    .foot-grid a{display:block;padding:4px 0;}
+    .foot-grid a:hover{color:var(--brand);}
+    .copy{margin-top:30px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;}
+    @media(max-width:720px){.nav-links{display:none;}.foot-grid{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner">
+    <a class="logo" href="/"><span class="dot">✦</span> Glint AI</a>
+    <nav class="nav-links">
+      <a href="/tools/">Tools</a>
+      <a href="/resources/">Resources</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/extension/">Extension</a>
+    </nav>
+    <a class="btn btn-ghost btn-sm" id="loginBtn" href="#">Log in</a>
+    <a class="btn btn-primary btn-sm" id="getProBtn" href="/#pricing">Get Pro</a>
+  </div></header>
+
+  <section><div class="wrap">
+    <div class="sec-head">
+      <h2>Guides &amp; playbooks</h2>
+      <p>SEO-optimized articles that bring search traffic and feed the funnel.</p>
+    </div>
+    <div class="blog-grid">        <a class="post" href="blog/humanize-ai-text.html"><div class="thumb"><img src="blog/assets/thumb-humanize.png" alt="Cyberpunk illustration for the AI humanizer guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>How to Humanize AI Text So Detectors Don't Flag It</h3><p>Strip the AI smell and restore natural rhythm without losing speed.</p></div></a>
+        <a class="post" href="blog/ai-content-detector-guide.html"><div class="thumb"><img src="blog/assets/thumb-detect.png" alt="Cyberpunk illustration for the AI detector guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>How Accurate Are AI Detectors, Really?</h3><p>A plain-English breakdown of what detector scores actually mean.</p></div></a>
+        <a class="post" href="blog/paraphrase-without-losing-meaning.html"><div class="thumb"><img src="blog/assets/thumb-para.png" alt="Cyberpunk illustration for the paraphrasing guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>How to Paraphrase Without Losing Meaning</h3><p>Four levels of rewriting so you keep the idea and find your voice.</p></div></a>
+        <a class="post" href="blog/summarize-pdf-guide.html"><div class="thumb"><img src="blog/assets/thumb-pdf.png" alt="Cyberpunk illustration for the PDF summarizer guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Productivity</div><h3>How to Summarize a PDF in Minutes</h3><p>Extract the signal without uploading your file to a server.</p></div></a>
+        <a class="post" href="blog/grammar-checker-guide.html"><div class="thumb"><img src="blog/assets/thumb-grammar.png" alt="Cyberpunk illustration for the grammar checker guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>Grammar Checking That Catches the Mistakes That Matter</h3><p>Homophones, doubles, AI-sounding phrases — a fast sanity check.</p></div></a>
+        <a class="post" href="blog/write-professional-bio-guide.html"><div class="thumb"><img src="blog/assets/thumb-bio.png" alt="Cyberpunk illustration for the professional bio guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Career</div><h3>How to Write a Professional Bio That Gets You Noticed</h3><p>LinkedIn summary, Twitter bio, and one-line resume pitch templates.</p></div></a>
+        <a class="post" href="blog/remove-background-image-guide.html"><div class="thumb"><img src="blog/assets/thumb-bg.png" alt="Cyberpunk illustration for the background remover guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Design</div><h3>Remove Background from Image in One Click</h3><p>No upload needed — the model runs entirely in your browser.</p></div></a>
+        <a class="post" href="blog/how-to-summarize-long-articles.html"><div class="thumb"><img src="blog/assets/thumb-summarize.png" alt="Cyberpunk illustration for the article summarizer guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Productivity</div><h3>How to Summarize Long Articles Without Losing the Meaning</h3><p>A repeatable 5-step workflow using extractive + abstractive techniques.</p></div></a>
+        <a class="post" href="blog/reading-ease-score-landing-page.html"><div class="thumb"><img src="blog/assets/thumb-reading.png" alt="Cyberpunk illustration for the reading ease score guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Copywriting</div><h3>What Reading Ease Score Your Landing Page Actually Needs</h3><p>Benchmark Flesch scores by page type and fix weak copy fast.</p></div></a>
+        <a class="post" href="blog/generate-api-keys-safely.html"><div class="thumb"><img src="blog/assets/thumb-api-keys.png" alt="Cyberpunk illustration for generating API keys safely" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Security</div><h3>Generating API Keys Safely as a Solo Founder</h3><p>Local generation, vaulting, scoping, and rotation best practices.</p></div></a>
+        <a class="post" href="blog/markdown-to-html-workflow.html"><div class="thumb"><img src="blog/assets/thumb-markdown.png" alt="Cyberpunk illustration for the Markdown to HTML workflow" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Workflow</div><h3>Markdown to HTML: The Fastest Workflow for Creators</h3><p>Write once in plain text, publish anywhere — convert at the end.</p></div></a>
+        <a class="post" href="blog/why-marketers-need-a-json-formatter.html"><div class="thumb"><img src="blog/assets/thumb-json.png" alt="Cyberpunk illustration for the JSON formatter guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Tools</div><h3>Why Every Marketer Needs a JSON Formatter</h3><p>Debug APIs, build configs, and prep bulk uploads without a dev.</p></div></a>
+        <a class="post" href="blog/youtube-title-generator-guide.html"><div class="thumb"><img src="blog/assets/thumb-youtube.png" alt="Cyberpunk illustration for the YouTube title guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Content</div><h3>How to Write YouTube Titles That Actually Get Clicks</h3><p>A repeatable framework for titles and hooks that earn the click.</p></div></a>
+        <a class="post" href="blog/hashtag-generator-guide.html"><div class="thumb"><img src="blog/assets/thumb-hashtag.png" alt="Cyberpunk illustration for the hashtag strategy guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Social</div><h3>The Hashtag Strategy That Grows Reach in 2026</h3><p>Group tags by platform and stop drowning captions in spam.</p></div></a>
+        <a class="post" href="blog/serp-preview-meta-tags.html"><div class="thumb"><img src="blog/assets/thumb-serp.png" alt="Cyberpunk illustration for the SERP meta tags guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">SEO</div><h3>SERP Preview: Write Meta Titles & Descriptions That Rank</h3><p>See your snippet before publishing and stay in the safe length zone.</p></div></a>
+        <a class="post" href="blog/word-character-counter.html"><div class="thumb"><img src="blog/assets/thumb-word-count.png" alt="Cyberpunk illustration for the word counter guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>Why a Word Counter Is the Most Underrated Writing Tool</h3><p>Counts, reading time, and platform limits in one place.</p></div></a>
+        <a class="post" href="blog/meta-description-ctr-guide.html"><div class="thumb"><img src="blog/assets/thumb-meta-ctr.png" alt="Cyberpunk illustration for the meta description CTR guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">SEO</div><h3>How to Write Meta Descriptions That Actually Boost CTR</h3><p>Templates, power words, and a preview workflow to turn snippets into clicks.</p></div></a>
+        <a class="post" href="blog/best-free-ai-tools-bloggers-2026.html"><div class="thumb"><img src="blog/assets/thumb-best-free-ai-tools-bloggers-2026.png" alt="Cyberpunk illustration for the free AI tools for bloggers guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Content Strategy</div><h3>Best Free AI Tools for Bloggers in 2026</h3><p>A zero-signup stack for writing, SEO, images, and productivity.</p></div></a>
+        <a class="post" href="blog/free-ai-tools-students-2026.html"><div class="thumb"><img src="blog/assets/thumb-free-ai-tools-students-2026.png" alt="Cyberpunk illustration for the free AI tools for students guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Education</div><h3>Free AI Tools for Students in 2026 (No Account Needed)</h3><p>Essay, research, and grammar help that stays on the right side of academic integrity.</p></div></a>
+        <a class="post" href="blog/ai-prompt-engineering-guide.html"><div class="thumb"><img src="blog/assets/thumb-ai-prompt-engineering-guide.png" alt="Cyberpunk illustration for the prompt engineering guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">AI Skills</div><h3>AI Prompt Engineering: Write Prompts That Actually Work</h3><p>The four-part skeleton that turns vague prompts into consistent output.</p></div></a>
+        <a class="post" href="blog/ai-essay-writer-guide.html"><div class="thumb"><img src="blog/assets/thumb-ai-essay-writer-guide.png" alt="Cyberpunk illustration for the AI essay writer guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>AI Essay Writer Guide 2026: Draft, Structure and Polish Faster</h3><p>Use AI to research, outline, and polish essays without losing your voice — free tools inside.</p></div></a>
+        <a class="post" href="blog/ai-story-generator-guide.html"><div class="thumb"><img src="blog/assets/thumb-ai-story-generator-guide.png" alt="Cyberpunk illustration for the AI story generator guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Creative Writing</div><h3>AI Story Generator Guide 2026: Beat the Blank Page</h3><p>Spark plots, build characters, and outline chapters with a workflow built for momentum.</p></div></a>
+        <a class="post" href="blog/ai-cover-letter-resume-guide.html"><div class="thumb"><img src="blog/assets/thumb-ai-cover-letter-resume-guide.png" alt="Cyberpunk illustration for the cover letter guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Career</div><h3>AI Cover Letter and Resume Builder Guide 2026</h3><p>Tailor every application fast and ATS-friendly with free tools and a clear workflow.</p></div></a>
+        <a class="post" href="blog/strong-password-generator-guide.html"><div class="thumb"><img src="blog/assets/thumb-strong-password-generator-guide.png" alt="Cyberpunk illustration for the password generator guide" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Security</div><h3>Strong Password Generator Guide 2026</h3><p>Build unbreakable, unique passwords and manage the ones you cannot remember.</p></div></a>
+        <a class="post" href="blog/free-grammar-checker-no-signup.html"><div class="thumb"><img src="blog/assets/thumb-free-grammar-checker-no-signup.png" alt="Cyberpunk illustration of a free grammar checker, neon, dark background" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>Free Grammar Checker No Sign Up: Fix Text in Seconds</h3><p>A free grammar checker with no sign up is the fastest way to clean up your writing without trading your email for a...</p></div></a>
+        <a class="post" href="blog/private-ai-detector.html"><div class="thumb"><img src="blog/assets/thumb-private-ai-detector.png" alt="Cyberpunk illustration of a private ai detector, neon, dark background" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>Private AI Detector: Check Text in Your Browser Free</h3><p>A private AI detector tells you whether text reads as AI-generated without sending your draft to a server or forcing...</p></div></a>
+        <a class="post" href="blog/paraphrase-without-plagiarizing.html"><div class="thumb"><img src="blog/assets/thumb-paraphrase-without-plagiarizing.png" alt="Cyberpunk illustration of paraphrasing without plagiarizing, neon, dark background" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>Paraphrase Without Plagiarizing: A Safe Method to Use</h3><p>Paraphrasing without plagiarizing means restating a source idea in your own words and giving credit.</p></div></a>
+        <a class="post" href="blog/write-resume-with-ai.html"><div class="thumb"><img src="blog/assets/thumb-write-resume-with-ai.png" alt="Cyberpunk illustration of writing a resume with ai, neon, dark background" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>Write a Resume With AI: ATS Friendly in Minutes Free</h3><p>Write a resume with AI to get a structured first draft in minutes instead of staring at a blank page.</p></div></a>
+        <a class="post" href="blog/improve-reading-ease-score.html"><div class="thumb"><img src="blog/assets/thumb-improve-reading-ease-score.png" alt="Cyberpunk illustration of improving reading ease score, neon, dark background" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>Improve Reading Ease Score: 7 Ways to Write Clear Text</h3><p>Improve reading ease score to help readers understand you faster.</p></div></a>
+        <a class="post" href="blog/grammarly-alternative-free.html"><div class="thumb"><img src="blog/assets/thumb-grammarly-alternative-free.png" alt="Cyberpunk illustration of free Grammarly alternatives, neon, dark background" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>10 Free Grammarly Alternatives That Actually Work in 2026</h3><p>Grammarly's free plan hides the fixes you need behind a paid wall.</p></div></a>
+        <a class="post" href="blog/quillbot-alternative-free.html"><div class="thumb"><img src="blog/assets/thumb-quillbot-alternative-free.png" alt="Cyberpunk illustration of free QuillBot alternatives, neon, dark background" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Writing</div><h3>7 Free QuillBot Alternatives That Beat the 125-Word Limit</h3><p>QuillBot's free plan stops you at 125 words and one mode.</p></div></a>
+        <a class="post" href="blog/best-free-json-formatter.html"><div class="thumb"><img src="blog/assets/thumb-best-free-json-formatter.png" alt="Cyberpunk illustration of a free JSON formatter, neon, dark background" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Tools</div><h3>9 Best Free JSON Formatters Online: Privacy & Speed Tested</h3><p>A free JSON formatter turns a wall of unreadable text into clean, valid data in seconds.</p></div></a>
+        <a class="post" href="blog/best-free-serp-preview-tool.html"><div class="thumb"><img src="blog/assets/thumb-best-free-serp-preview-tool.png" alt="Cyberpunk illustration of a free SERP preview tool, neon, dark background" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Tools</div><h3>8 Best Free Google SERP Simulators to Preview Snippets 2026</h3><p>A free SERP preview tool shows exactly how your title and meta description render in Google before you publish.</p></div></a>
+        <a class="post" href="blog/best-free-markdown-to-html-converter.html"><div class="thumb"><img src="blog/assets/thumb-best-free-markdown-to-html-converter.png" alt="Cyberpunk illustration of a free Markdown to HTML converter, neon, dark background" loading="lazy" width="480" height="297"></div><div class="body"><div class="cat">Tools</div><h3>8 Best Free Markdown to HTML Converters (Tested in 2026)</h3><p>A free Markdown to HTML converter turns your plain-text draft into clean, publishable HTML in seconds.</p></div></a></div>
+  </div></section>
+
+  <footer><div class="wrap">
+    <div class="foot-grid">
+      <div><a class="logo" href="/"><span class="dot">✦</span> Glint AI</a><p style="margin:10px 0 0;">The everyday AI toolkit for creators &amp; marketers. Built to be an asset you own.</p></div>
+      <div><h4>Tools</h4><a href="/tools/">All 16 tools</a><a href="/tools/ai-humanizer.html">AI Humanizer</a><a href="/tools/ai-text-summarizer.html">Text Summarizer</a><a href="/tools/grammar-checker.html">Grammar Checker</a><a href="/tools/background-remover.html">Background Remover</a></div>
+      <div><h4>Resources</h4><a href="/blog/">Blog &amp; guides</a><a href="/resources/">Free templates</a><a href="/ai-tools/">Tool reviews</a><a href="/extension/">Chrome extension</a></div>
+      <div><h4>Company</h4><a href="/#pricing">Pricing</a><a href="/#features">Why Glint</a><a href="/#faq">FAQ</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
+    </div>
+    <div class="copy">© 2026 Glint AI. Payments via PayPal · Accounts via Supabase.</div>
+  </div></footer>
+  <script src="/vendor/supabase.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js'"></script>
+  <script src="/supabase-auth.js"></script>
+  <script defer src="/analytics.js"></script>
+  <script src="/usage.js"></script>
+  <script src="/ads.js"></script>
+</body>
+</html>

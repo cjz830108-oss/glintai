@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glint AI — All 16 Free AI Tools for Creators & Marketers</title>
+  <meta name="description" content="Glint AI is a growing toolbox of free AI-powered utilities for creators and marketers: text summarizer, readability analyzer, Markdown converter, JSON formatter, and password generator. No signup required for free tools." />
+  <meta name="keywords" content="AI tools, text summarizer, readability checker, markdown to html, json formatter, password generator, free ai tools, content tools" />
+  <meta name="author" content="Glint AI" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://glintai.tools/tools/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Glint AI — All 16 Free AI Tools" />
+  <meta property="og:description" content="A growing toolbox of free, fast AI-powered utilities. Summarize text, check readability, convert Markdown, format JSON, generate passwords." />
+  <meta property="og:url" content="https://glintai.tools/" />
+  <meta property="og:site_name" content="Glint AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Glint AI — All 16 Free AI Tools" />
+  <meta name="twitter:description" content="Free AI-powered tools for creators and marketers." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Glint AI",
+    "url": "https://glintai.tools/",
+    "description": "Free AI-powered tools for creators, marketers and solo founders.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://glintai.tools/#tools",
+      "query-input": "required name=tool"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Glint AI",
+    "url": "https://glintai.tools/",
+    "logo": "https://glintai.tools/icon.svg",
+    "sameAs": ["https://www.youtube.com/@glintai", "https://www.tiktok.com/@glintai"]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #07070d;
+      --bg-soft: #0d0d18;
+      --bg-card: rgba(18,18,32,0.72);
+      --text: #e8e8f5;
+      --text-soft: #9aa0c0;
+      --line: rgba(120,120,200,0.20);
+      --brand: #00f0ff;
+      --brand-2: #ff2e97;
+      --brand-soft: rgba(0,240,255,0.10);
+      --ok: #39ff14;
+      --warn: #ffb000;
+      --shadow: 0 0 30px rgba(0,240,255,0.15);
+      --radius: 16px;
+      --maxw: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+    h1, h2, h3 { line-height: 1.2; letter-spacing: -0.02em; }
+    .muted { color: var(--text-soft); }
+
+    /* Nav */
+    header.nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; }
+    .logo .dot { width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); display: grid; place-items: center; color: #fff; font-size: 16px; }
+    .nav-links { display: flex; gap: 26px; font-size: 15px; color: var(--text-soft); }
+    .nav-links a:hover { color: var(--brand); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 20px; border-radius: 999px; font-weight: 700; font-size: 15px;
+      cursor: pointer; border: 1px solid transparent; transition: .15s; white-space: nowrap;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff; box-shadow: var(--shadow); }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-ghost { background: var(--bg-soft); color: var(--text); border-color: var(--line); }
+    .btn-ghost:hover { border-color: var(--brand); color: var(--brand); }
+    .btn-sm { padding: 8px 16px; font-size: 14px; }
+
+    /* Hero */
+    .hero { padding: 70px 0 40px; text-align: center; background: radial-gradient(1200px 400px at 50% -120px, var(--brand-soft), transparent); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: var(--brand-soft); color: var(--brand); font-size: 13px; font-weight: 700; margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(34px, 5vw, 58px); margin: 0 0 16px; }
+    .hero h1 .grad { background: linear-gradient(135deg, var(--brand), var(--brand-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero p { font-size: 19px; color: var(--text-soft); max-width: 640px; margin: 0 auto 28px; }
+    .hero-cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .trust { margin-top: 26px; font-size: 13px; color: var(--text-soft); display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .trust b { color: var(--text); }
+
+    /* Section */
+    section { padding: 60px 0; }
+    .sec-head { text-align: center; max-width: 680px; margin: 0 auto 40px; }
+    .sec-head h2 { font-size: clamp(26px, 3.5vw, 38px); margin: 0 0 10px; }
+    .sec-head p { color: var(--text-soft); font-size: 17px; margin: 0; }
+
+    /* Tools tabs */
+    .tabs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px; }
+    .tab { padding: 10px 18px; border-radius: 999px; border: 1px solid var(--line); background: #fff; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--text-soft); transition: .15s; }
+    .tab:hover { border-color: var(--brand); color: var(--brand); }
+    .tab.active { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff; border-color: transparent; }
+    .panel { display: none; }
+    .panel.active { display: block; animation: fade .25s ease; }
+    @keyframes fade { from { opacity: 0; transform: translateY(6px);} to { opacity:1; transform:none; } }
+
+    .tool-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 26px; }
+    .tool-card h3 { margin: 0 0 4px; font-size: 22px; display: flex; align-items: center; gap: 10px; }
+    .tool-card .sub { color: var(--text-soft); font-size: 14px; margin-bottom: 18px; }
+    textarea, input[type="text"], input[type="number"], select {
+      width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 15px; font-family: inherit; background: #fff; color: var(--text); resize: vertical;
+    }
+    textarea:focus, input:focus, select:focus { outline: 2px solid var(--brand-soft); border-color: var(--brand); }
+    label { font-size: 14px; font-weight: 600; display: block; margin: 14px 0 6px; }
+    .row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .row > * { flex: 1; min-width: 140px; }
+    .out { margin-top: 16px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px; padding: 14px; font-size: 14px; white-space: pre-wrap; min-height: 60px; }
+    .out.html { white-space: normal; }
+    .mini { font-size: 13px; padding: 8px 14px; }
+    .hint { font-size: 12.5px; color: var(--text-soft); margin-top: 8px; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-top: 16px; }
+    .stat { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px; padding: 14px; text-align: center; }
+    .stat b { display: block; font-size: 26px; color: var(--brand); }
+    .stat span { font-size: 12.5px; color: var(--text-soft); }
+
+    /* Features */
+    .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+    .feat { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+    .feat .ic { width: 42px; height: 42px; border-radius: 11px; background: var(--brand-soft); color: var(--brand); display: grid; place-items: center; font-size: 20px; margin-bottom: 14px; }
+    .feat h3 { margin: 0 0 6px; font-size: 18px; }
+    .feat p { margin: 0; color: var(--text-soft); font-size: 14.5px; }
+
+    /* Pricing */
+    .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; align-items: stretch; }
+    .plan { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; }
+    .plan.featured { border-color: var(--brand); box-shadow: 0 14px 40px rgba(79,70,229,.18); position: relative; }
+    .plan.featured .tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff; font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 999px; }
+    .plan h3 { margin: 0; font-size: 20px; }
+    .plan .price { font-size: 38px; font-weight: 800; margin: 12px 0; }
+    .plan .price small { font-size: 14px; font-weight: 500; color: var(--text-soft); }
+    .plan ul { list-style: none; padding: 0; margin: 0 0 22px; flex: 1; }
+    .plan li { padding: 7px 0 7px 26px; position: relative; font-size: 14.5px; color: var(--text-soft); }
+    .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--ok); font-weight: 800; }
+    .plan .btn { width: 100%; }
+    .pp-box { margin-top: 14px; min-height: 40px; }
+
+    /* Blog */
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+    .post { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: .15s; }
+    .post:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .post .thumb { height: 130px; background: linear-gradient(135deg, var(--brand-soft), #f3e9ff); overflow: hidden; display: grid; place-items: center; font-size: 30px; }
+    .post .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .post .body { padding: 18px; }
+    .post .cat { font-size: 12px; font-weight: 700; color: var(--brand); text-transform: uppercase; letter-spacing: .04em; }
+    .post h3 { margin: 6px 0 8px; font-size: 17px; }
+    .post p { margin: 0; color: var(--text-soft); font-size: 14px; }
+
+    /* FAQ */
+    .faq { max-width: 760px; margin: 0 auto; }
+    .qa { border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; }
+    .qa h3 { margin: 0; font-size: 16px; }
+    .qa p { margin: 8px 0 0; color: var(--text-soft); font-size: 14.5px; }
+
+    /* Newsletter */
+    .news { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff; border-radius: 22px; padding: 44px; text-align: center; }
+    .news h2 { margin: 0 0 8px; color: #fff; }
+    .news p { margin: 0 0 22px; opacity: .9; }
+    .news form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto; }
+    .news input { flex: 1; min-width: 220px; border: none; }
+    .news .btn { background: #fff; color: var(--brand); }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--line); padding: 40px 0 30px; color: var(--text-soft); font-size: 14px; }
+    .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 24px; }
+    .foot-grid h4 { color: var(--text); font-size: 14px; margin: 0 0 12px; }
+    .foot-grid a { display: block; padding: 4px 0; }
+    .foot-grid a:hover { color: var(--brand); }
+    .copy { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 13px; }
+
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+      section { padding: 44px 0; }
+    }
+  .nav-links a.active{color:var(--brand);text-shadow:0 0 12px rgba(0,240,255,.6)}
+  /* === cyberpunk override === */
+  body{
+    background:#07070d;
+    background-image:
+      radial-gradient(1200px 600px at 50% -300px, rgba(0,240,255,.12), transparent),
+      radial-gradient(900px 500px at 100% 0, rgba(255,46,151,.08), transparent),
+      linear-gradient(rgba(0,240,255,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,240,255,.045) 1px, transparent 1px);
+    background-size:auto,auto,44px 44px,44px 44px;
+    background-attachment:fixed;
+  }
+  header.nav{background:rgba(7,7,13,.8);box-shadow:0 0 24px rgba(0,240,255,.08)}
+  .logo .dot{box-shadow:0 0 16px rgba(0,240,255,.5);color:#02121a}
+  .btn-primary{color:#02121a;box-shadow:0 0 22px rgba(0,240,255,.45)}
+  .btn-primary:hover{box-shadow:0 0 30px rgba(255,46,151,.5)}
+  .btn-ghost:hover{box-shadow:0 0 16px rgba(0,240,255,.3)}
+  .nav-links a:hover{text-shadow:0 0 12px rgba(0,240,255,.6)}
+  .hero h1 .grad{text-shadow:0 0 30px rgba(0,240,255,.25)}
+  .tab:hover{box-shadow:0 0 14px rgba(0,240,255,.25)}
+  .tab.active{box-shadow:0 0 20px rgba(0,240,255,.4)}
+  .tool-card,.feat,.plan,.post,.qa{background:rgba(18,18,32,.72);backdrop-filter:blur(6px);border:1px solid var(--line)}
+  .post{border:1px solid var(--line)}
+  .feat .ic{border:1px solid rgba(0,240,255,.25)}
+  .plan.featured{box-shadow:0 0 40px rgba(0,240,255,.22)}
+  .plan.featured .tag{color:#02121a}
+  .plan li::before{text-shadow:0 0 10px rgba(57,255,20,.5)}
+  .post .thumb{background:linear-gradient(135deg, rgba(0,240,255,.18), rgba(255,46,151,.18))}
+  .stat b{text-shadow:0 0 12px rgba(0,240,255,.4)}
+  .stat{background:var(--bg-soft)}
+  .news{background:linear-gradient(135deg, rgba(0,240,255,.15), rgba(255,46,151,.15));border:1px solid rgba(0,240,255,.3);box-shadow:0 0 40px rgba(0,240,255,.18);color:var(--text)}
+  .news h2{color:var(--text)}
+  .news .btn{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#02121a}
+  .news input{background:rgba(7,7,13,.6);color:var(--text);border:1px solid var(--line)}
+  .copy code{background:var(--bg-soft);color:var(--brand)}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="#top"><span class="dot">✦</span> Glint AI</a>
+            <nav class="nav-links">
+        <a href="/tools/" class="active">Tools</a>
+        <a href="/resources/">Resources</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/blog/">Blog</a>
+        <a href="/extension/">Extension</a>
+      </nav>
+      <a class="btn btn-ghost btn-sm" id="loginBtn" href="#">Log in</a>
+      <a class="btn btn-primary btn-sm" id="getProBtn" href="#pricing">Get Pro</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+<a id="top"></a>
+  <section class="hero">
+    <div class="wrap">
+      <span class="badge">✦ 16 FREE AI TOOLS · NO SIGNUP</span>
+      <h1>Every <span class="grad">AI tool</span> you need,<br/>in one workspace</h1>
+      <p>Use any tool instantly in your browser. Summarize, humanize, format, generate — free, private, and fast.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#tools">Open the toolkit →</a>
+        <a class="btn btn-ghost" href="/#pricing">See Pro plan</a>
+      </div>
+    </div>
+  </section>
+  <!-- TOOLS -->
+  <section id="tools">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Free AI tools</h2>
+        <p>Pick a tool, use it instantly — the most-searched picks are front and center. Everything runs in your browser, your text never leaves the page.</p>
+      </div>
+
+      <div id="glint-usage-banner"></div>
+
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-tab="human">🤖 AI Humanizer</button>
+        <button class="tab" data-tab="detect">🔍 AI Detector</button>
+        <button class="tab" data-tab="para">🔄 Paraphraser</button>
+        <button class="tab" data-tab="pdf">📄 PDF Summarizer</button>
+        <button class="tab" data-tab="grammar">✍️ Grammar Check</button>
+        <button class="tab" data-tab="bio">🪪 Bio Generator</button>
+        <button class="tab" data-tab="bg">🧹 BG Remover</button>
+        <button class="tab" data-tab="sum">📝 Summarizer</button>
+        <button class="tab" data-tab="read">📊 Readability</button>
+        <button class="tab" data-tab="md">⇄ Markdown</button>
+        <button class="tab" data-tab="json">{} JSON</button>
+        <button class="tab" data-tab="pw">🔐 Password</button>
+        <button class="tab" data-tab="yt">🎬 YouTube Titles</button>
+        <button class="tab" data-tab="hash">#️⃣ Hashtags</button>
+        <button class="tab" data-tab="serp">🔎 SERP Preview</button>
+        <button class="tab" data-tab="wc">🔢 Word Counter</button>
+      </div>
+
+      <!-- AI Humanizer -->
+      <div class="panel active" id="human">
+        <div class="tool-card">
+          <h3>🤖 AI Humanizer</h3>
+          <div class="sub">Make AI-written text read more naturally. Run a free local light-edit, or copy a proven prompt to finish the job in ChatGPT / Claude. <em>Zero cost, no upload.</em></div>
+          <textarea id="humIn" rows="8" placeholder="Paste AI-generated text here…"></textarea>
+          <div class="row" style="flex:0 0 auto;margin-top:10px;">
+            <button class="btn btn-primary mini" onclick="humanizeLocal()">Light humanize</button>
+            <button class="btn btn-ghost mini" onclick="copyHumanPrompt()">Copy ChatGPT prompt</button>
+            <button class="btn btn-ghost mini" onclick="copyOut('humOut')">Copy</button>
+          </div>
+          <div class="out" id="humOut" style="white-space:pre-wrap;">Your humanized text appears here.</div>
+        </div>
+      </div>
+
+      <!-- AI Detector -->
+      <div class="panel" id="detect">
+        <div class="tool-card">
+          <h3>🔍 AI Content Detector</h3>
+          <div class="sub">A free, instant heuristic check for AI-likely text. Scores burstiness, phrasing, and vocabulary — runs 100% in your browser. <em>Experimental, not a substitute for paid detectors.</em></div>
+          <textarea id="detIn" rows="8" placeholder="Paste text to scan…"></textarea>
+          <div class="row" style="flex:0 0 auto;margin-top:10px;">
+            <button class="btn btn-primary mini" onclick="detectAi()">Scan</button>
+          </div>
+          <div class="out" id="detOut" style="white-space:normal;">Score appears here.</div>
+        </div>
+      </div>
+
+      <!-- Paraphraser -->
+      <div class="panel" id="para">
+        <div class="tool-card">
+          <h3>🔄 Paraphraser</h3>
+          <div class="sub">Reword sentences with a built-in synonym engine. Pick a style and rephrase instantly — no API, no upload.</div>
+          <textarea id="paraIn" rows="8" placeholder="Paste a paragraph to rephrase…"></textarea>
+          <div class="row" style="flex:0 0 auto;margin-top:10px;">
+            <select id="paraMode" style="padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);">
+              <option value="standard">Standard</option>
+              <option value="fluent">Fluent</option>
+              <option value="formal">Formal</option>
+              <option value="simple">Simple</option>
+            </select>
+            <button class="btn btn-primary mini" onclick="paraphrase()">Paraphrase</button>
+            <button class="btn btn-ghost mini" onclick="copyOut('paraOut')">Copy</button>
+          </div>
+          <div class="out" id="paraOut" style="white-space:pre-wrap;">Reworded text appears here.</div>
+        </div>
+      </div>
+
+      <!-- PDF Summarizer -->
+      <div class="panel" id="pdf">
+        <div class="tool-card">
+          <h3>📄 PDF Summarizer</h3>
+          <div class="sub">Drop a PDF and get an extractive summary — text is read in your browser, never uploaded. <em>Free mode runs locally; Pro unlocks GPT-level summaries.</em></div>
+          <input id="pdfFile" type="file" accept="application/pdf" style="margin-top:6px;color:var(--text);" />
+          <div class="row" style="flex:0 0 auto;margin-top:10px;">
+            <div>
+              <label for="pdfRatio">Summary length</label>
+              <input type="range" id="pdfRatio" min="10" max="60" value="30" style="width:100%">
+              <span class="hint" id="pdfRatioLbl">~30% of original</span>
+            </div>
+            <button class="btn btn-primary mini" onclick="summarizePdf()">Summarize PDF</button>
+          </div>
+          <div class="hint" id="pdfHint">Choose a PDF file to begin.</div>
+          <div class="out" id="pdfOut" style="white-space:pre-wrap;">Your PDF summary appears here.</div>
+        </div>
+      </div>
+
+      <!-- Grammar Checker -->
+      <div class="panel" id="grammar">
+        <div class="tool-card">
+          <h3>✍️ Grammar Checker</h3>
+          <div class="sub">Catch common mistakes — homophone confusion, doubled words, double spaces, sentence-start caps — and copy a prompt to fix the rest in ChatGPT. <em>Runs locally, no upload.</em></div>
+          <textarea id="gramIn" rows="8" placeholder="Paste your text here to check…"></textarea>
+          <div class="row" style="flex:0 0 auto;margin-top:10px;">
+            <button class="btn btn-primary mini" onclick="checkGrammar()">Check grammar</button>
+            <button class="btn btn-ghost mini" onclick="copyGramPrompt()">Copy ChatGPT prompt</button>
+            <button class="btn btn-ghost mini" onclick="copyOut('gramOut')">Copy</button>
+          </div>
+          <div class="out" id="gramOut" style="white-space:pre-wrap;">Issues (if any) appear here.</div>
+        </div>
+      </div>
+
+      <!-- Bio Generator -->
+      <div class="panel" id="bio">
+        <div class="tool-card">
+          <h3>🪪 Bio &amp; Resume Generator</h3>
+          <div class="sub">Turn a few facts into a LinkedIn summary, a Twitter / X bio, and a one-line resume pitch. <em>Templates only — instant, no AI calls.</em></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">
+            <input id="bioName" type="text" placeholder="Your name" />
+            <input id="bioRole" type="text" placeholder="Current role / title" />
+            <input id="bioYr" type="text" placeholder="Years of experience (e.g. 5)" />
+            <input id="bioSkills" type="text" placeholder="Top skills (comma separated)" />
+          </div>
+          <input id="bioGoal" type="text" placeholder="Goal (e.g. land a senior PM role)" style="margin-top:8px;width:100%;box-sizing:border-box;" />
+          <div class="row" style="flex:0 0 auto;margin-top:10px;">
+            <button class="btn btn-primary mini" onclick="generateBio()">Generate bios</button>
+            <button class="btn btn-ghost mini" onclick="copyOut('bioOut')">Copy</button>
+          </div>
+          <div class="out" id="bioOut" style="white-space:pre-wrap;">Your generated bios appear here.</div>
+        </div>
+      </div>
+
+      <!-- Background Remover -->
+      <div class="panel" id="bg">
+        <div class="tool-card">
+          <h3>🧹 Background Remover</h3>
+          <div class="sub">Strip backgrounds from images right in your browser using an on-device AI model. <em>Nothing is uploaded — the model runs locally via WASM.</em></div>
+          <input id="bgFile" type="file" accept="image/*" style="margin-top:6px;color:var(--text);" />
+          <div class="row" style="flex:0 0 auto;margin-top:10px;">
+            <button class="btn btn-primary mini" onclick="removeBg()">Remove background</button>
+            <a class="btn btn-ghost mini" id="bgDl" style="display:none;" download="no-bg.png">Download PNG</a>
+          </div>
+          <div class="hint" id="bgHint">Pick an image to start.</div>
+          <div id="bgOut" style="margin-top:10px;"></div>
+        </div>
+      </div>
+
+      <!-- Summarizer -->
+      <div class="panel" id="sum">
+        <div class="tool-card">
+          <h3>📝 AI Text Summarizer</h3>
+          <div class="sub">Extractive summary using sentence-frequency scoring. <em>Free mode runs locally — Pro unlocks GPT-level abstractive summaries.</em></div>
+          <textarea id="sumIn" rows="8" placeholder="Paste your article, transcript, or notes here…"></textarea>
+          <div class="row">
+            <div>
+              <label for="sumRatio">Summary length</label>
+              <input type="range" id="sumRatio" min="10" max="60" value="30" style="width:100%">
+              <span class="hint" id="sumRatioLbl">~30% of original</span>
+            </div>
+            <div style="flex:0 0 auto; align-self:flex-end;">
+              <button class="btn btn-primary mini" onclick="runSummarize()">Summarize</button>
+            </div>
+          </div>
+          <div class="out" id="sumOut">Your summary will appear here.</div>
+        </div>
+      </div>
+
+      <!-- Readability -->
+      <div class="panel" id="read">
+        <div class="tool-card">
+          <h3>📊 Word & Readability Analyzer</h3>
+          <div class="sub">Live counts and a Flesch-style reading-ease estimate. Great for SEO and email copy.</div>
+          <textarea id="readIn" rows="8" placeholder="Type or paste your copy here…" oninput="runRead()"></textarea>
+          <div class="stats" id="readStats">
+            <div class="stat"><b id="sWords">0</b><span>Words</span></div>
+            <div class="stat"><b id="sChars">0</b><span>Characters</span></div>
+            <div class="stat"><b id="sSent">0</b><span>Sentences</span></div>
+            <div class="stat"><b id="sRead">0s</b><span>Read time</span></div>
+            <div class="stat"><b id="sScore">–</b><span>Reading ease</span></div>
+          </div>
+          <div class="hint" id="readHint">Start typing to see live stats.</div>
+        </div>
+      </div>
+
+      <!-- Markdown -->
+      <div class="panel" id="md">
+        <div class="tool-card">
+          <h3>⇄ Markdown ↔ HTML</h3>
+          <div class="sub">Convert Markdown to clean HTML, or strip HTML back to Markdown.</div>
+          <label for="mdIn">Markdown input</label>
+          <textarea id="mdIn" rows="7" placeholder="# Heading&#10;&#10;Write **bold** and *italic*, lists, links…"></textarea>
+          <div class="row" style="flex:0 0 auto;">
+            <button class="btn btn-primary mini" onclick="mdToHtml()">Markdown → HTML</button>
+            <button class="btn btn-ghost mini" onclick="htmlToMd()">HTML → Markdown</button>
+            <button class="btn btn-ghost mini" onclick="copyOut('mdOut')">Copy</button>
+          </div>
+          <label for="mdOut">Output</label>
+          <div class="out" id="mdOut">Output appears here.</div>
+        </div>
+      </div>
+
+      <!-- JSON -->
+      <div class="panel" id="json">
+        <div class="tool-card">
+          <h3>{} JSON Formatter & Validator</h3>
+          <div class="sub">Pretty-print, minify, and validate JSON instantly.</div>
+          <textarea id="jsonIn" rows="8" placeholder='{"name":"Glint","tools":["summarize","format"]}'></textarea>
+          <div class="row" style="flex:0 0 auto;">
+            <button class="btn btn-primary mini" onclick="jsonFmt()">Format</button>
+            <button class="btn btn-ghost mini" onclick="jsonMin()">Minify</button>
+            <button class="btn btn-ghost mini" onclick="copyOut('jsonOut')">Copy</button>
+          </div>
+          <div class="out" id="jsonOut">Result appears here.</div>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="panel" id="pw">
+        <div class="tool-card">
+          <h3>🔐 Password & Key Generator</h3>
+          <div class="sub">Strong random passwords and API keys, generated locally.</div>
+          <div class="row">
+            <div>
+              <label for="pwLen">Length: <span id="pwLenLbl">16</span></label>
+              <input type="range" id="pwLen" min="6" max="64" value="16" oninput="document.getElementById('pwLenLbl').textContent=this.value" style="width:100%">
+            </div>
+          </div>
+          <div class="row">
+            <label style="flex:0 0 auto;"><input type="checkbox" id="pwUpper" checked style="width:auto;margin-right:6px;"> A-Z</label>
+            <label style="flex:0 0 auto;"><input type="checkbox" id="pwLower" checked style="width:auto;margin-right:6px;"> a-z</label>
+            <label style="flex:0 0 auto;"><input type="checkbox" id="pwNum" checked style="width:auto;margin-right:6px;"> 0-9</label>
+            <label style="flex:0 0 auto;"><input type="checkbox" id="pwSym" style="width:auto;margin-right:6px;"> !@#$</label>
+          </div>
+          <div class="row" style="flex:0 0 auto; margin-top:10px;">
+            <button class="btn btn-primary mini" onclick="genPw()">Generate</button>
+            <button class="btn btn-ghost mini" onclick="copyOut('pwOut')">Copy</button>
+          </div>
+          <div class="out" id="pwOut" style="font-family:monospace;font-size:16px;">Click Generate.</div>
+        </div>
+      </div>
+
+      <!-- YouTube Title & Hook Generator -->
+      <div class="panel" id="yt">
+        <div class="tool-card">
+          <h3>🎬 YouTube Title & Hook Generator</h3>
+          <div class="sub">Drop a topic and keywords; get scroll-stopping titles and opening hooks. Runs locally — Pro adds AI tone tuning.</div>
+          <textarea id="ytTopic" rows="4" placeholder="e.g. how to start a faceless YouTube channel"></textarea>
+          <input id="ytKw" type="text" placeholder="Optional keywords (comma separated)" style="width:100%;margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:10px;">
+          <div class="row" style="flex:0 0 auto;margin-top:10px;">
+            <button class="btn btn-primary mini" onclick="genYt()">Generate</button>
+            <button class="btn btn-ghost mini" onclick="copyOut('ytOut')">Copy</button>
+          </div>
+          <div class="out" id="ytOut" style="white-space:pre-wrap;">Titles and hooks appear here.</div>
+        </div>
+      </div>
+
+      <!-- Hashtag Generator -->
+      <div class="panel" id="hash">
+        <div class="tool-card">
+          <h3>#️⃣ Hashtag Generator</h3>
+          <div class="sub">Enter a niche or topic; get grouped hashtags for Instagram, TikTok, YouTube, and X. No account needed.</div>
+          <input id="hashTopic" type="text" placeholder="e.g. travel vlog, skincare, productivity" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;">
+          <div class="row" style="flex:0 0 auto;margin-top:10px;">
+            <button class="btn btn-primary mini" onclick="genHash()">Generate</button>
+            <button class="btn btn-ghost mini" onclick="copyOut('hashOut')">Copy</button>
+          </div>
+          <div class="out" id="hashOut" style="white-space:pre-wrap;">Hashtags appear here.</div>
+        </div>
+      </div>
+
+      <!-- SERP / Meta Preview -->
+      <div class="panel" id="serp">
+        <div class="tool-card">
+          <h3>🔎 SERP & Meta Preview</h3>
+          <div class="sub">See how your page looks in Google and whether title/description lengths are in the safe zone.</div>
+          <input id="serpTitle" type="text" placeholder="Page title (≤ 60 chars ideal)" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;">
+          <input id="serpUrl" type="text" placeholder="https://yoursite.com/page" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;">
+          <textarea id="serpDesc" rows="3" placeholder="Meta description (≤ 155 chars ideal)"></textarea>
+          <div class="row" style="flex:0 0 auto;margin-top:10px;"><button class="btn btn-primary mini" onclick="serpPreview()">Preview</button></div>
+          <div class="out" id="serpOut" style="white-space:normal;background:#fff;color:#202124;border:1px solid #dfe1e5;border-radius:8px;">
+            <div style="color:#202124;font-size:13px;margin-bottom:2px;" id="serpUrlPrev">yoursite.com › page</div>
+            <div style="color:#1a0dab;font-size:20px;line-height:1.3;" id="serpTitlePrev">Page title preview</div>
+            <div style="color:#4d5156;font-size:14px;line-height:1.4;" id="serpDescPrev">Meta description preview text appears here.</div>
+            <div class="hint" id="serpHint" style="margin-top:8px;color:#70757a;">Tip: keep titles under 60 and descriptions under 155 characters.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Word & Character Counter -->
+      <div class="panel" id="wc">
+        <div class="tool-card">
+          <h3>🔢 Word & Character Counter</h3>
+          <div class="sub">Live counts with platform limits for X, Instagram, YouTube, and meta tags.</div>
+          <textarea id="wcIn" rows="8" placeholder="Type or paste your text here…" oninput="wcCount()"></textarea>
+          <div class="stats" id="wcStats">
+            <div class="stat"><b id="wcWords">0</b><span>Words</span></div>
+            <div class="stat"><b id="wcChars">0</b><span>Characters</span></div>
+            <div class="stat"><b id="wcCharsNo">0</b><span>No spaces</span></div>
+            <div class="stat"><b id="wcSent">0</b><span>Sentences</span></div>
+            <div class="stat"><b id="wcPara">0</b><span>Paragraphs</span></div>
+            <div class="stat"><b id="wcRead">0m</b><span>Read time</span></div>
+          </div>
+          <div class="hint" id="wcHint">Start typing to see live counts.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Simple, honest pricing</h2>
+        <p>Start free forever. Upgrade when you need AI power and the resource library.</p>
+      </div>
+      <div class="price-grid">
+        <div class="plan">
+          <h3>Free</h3>
+          <div class="price">$0<small> / forever</small></div>
+          <ul>
+            <li>All 16 free tools</li>
+            <li>Unlimited local use</li>
+            <li>No account needed</li>
+            <li>Community support</li>
+          </ul>
+          <a class="btn btn-ghost" href="#tools">Use free tools</a>
+        </div>
+        <div class="plan featured">
+          <span class="tag">Most popular</span>
+          <h3>Pro</h3>
+          <div class="price">$9<small> / month</small></div>
+          <ul>
+            <li>GPT-level abstractive summaries</li>
+            <li>Prompt & template library</li>
+            <li>Chrome extension access</li>
+            <li>Batch / API usage</li>
+            <li>Priority support</li>
+          </ul>
+          <a class="btn btn-primary" id="buyPro" href="#" data-plan="pro">Start Pro</a>
+          <div id="pp-pro" class="pp-box"></div>
+        </div>
+        <div class="plan">
+          <h3>Team</h3>
+          <div class="price">$29<small> / month</small></div>
+          <ul>
+            <li>Everything in Pro</li>
+            <li>5 seats included</li>
+            <li>Shared workspace</li>
+            <li>White-label export</li>
+          </ul>
+          <a class="btn btn-ghost" id="buyTeam" href="#" data-plan="team">Contact sales</a>
+          <div id="pp-team" class="pp-box"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+<footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a class="logo" href="/"><span class="dot">✦</span> Glint AI</a>
+          <p style="margin:0;">The everyday AI toolkit for creators &amp; marketers. Built to be an asset you own.</p>
+        </div>
+        <div><h4>Tools</h4><a href="/tools/">All 16 tools</a><a href="/tools/ai-humanizer.html">AI Humanizer</a><a href="/tools/ai-text-summarizer.html">Text Summarizer</a><a href="/tools/grammar-checker.html">Grammar Checker</a><a href="/tools/background-remover.html">Background Remover</a><a href="/tools/serp-preview.html">SERP Preview</a></div>
+        <div><h4>Resources</h4><a href="/blog/">Blog &amp; guides</a><a href="/resources/">Free templates</a><a href="/ai-tools/">Tool reviews</a><a href="/extension/">Chrome extension</a></div>
+        <div><h4>Company</h4><a href="/#pricing">Pricing</a><a href="/#features">Why Glint</a><a href="/#faq">FAQ</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
+      </div>
+      <div class="copy">© 2026 Glint AI. Payments via PayPal · Accounts via Supabase — configure in <code>supabase-auth.js</code> (see SETUP.md) to go live.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Tabs
+    document.getElementById('tabs').addEventListener('click', e => {
+      const t = e.target.closest('.tab'); if (!t) return;
+      document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById(t.dataset.tab).classList.add('active');
+    });
+
+    // --- Summarizer (extractive) ---
+    function runSummarize() {
+      const txt = document.getElementById('sumIn').value.trim();
+      const out = document.getElementById('sumOut');
+      if (!txt) { out.textContent = 'Paste some text first.'; return; }
+      const ratio = +document.getElementById('sumRatio').value / 100;
+      document.getElementById('sumRatioLbl').textContent = '~' + Math.round(ratio*100) + '% of original';
+      const sentences = txt.replace(/\s+/g,' ').match(/[^.!?]+[.!?]+/g) || [txt];
+      if (sentences.length < 2) { out.textContent = txt; return; }
+      const words = txt.toLowerCase().match(/\b[a-z0-9']+\b/g) || [];
+      const freq = {}; words.forEach(w => freq[w] = (freq[w]||0)+1);
+      const scored = sentences.map(s => {
+        const sw = (s.toLowerCase().match(/\b[a-z0-9']+\b/g) || []);
+        const score = sw.reduce((a,w)=>a+(freq[w]||0),0) / (sw.length||1);
+        return { s, score };
+      });
+      const n = Math.max(1, Math.round(sentences.length * ratio));
+      scored.sort((a,b)=>b.score-a.score);
+      const top = scored.slice(0,n).sort((a,b)=> sentences.indexOf(a.s) - sentences.indexOf(b.s)).map(x=>x.s.trim());
+      out.textContent = top.join(' ');
+    }
+
+    // --- Readability ---
+    function runRead() {
+      const txt = document.getElementById('readIn').value;
+      const words = (txt.match(/\b[^\s]+\b/g) || []).length;
+      const chars = txt.length;
+      const sents = (txt.match(/[.!?]+/g) || []).length || (words?1:0);
+      const syll = (txt.toLowerCase().match(/[aeiouy]+/g) || []).length || 1;
+      const wps = sents ? words/sents : 0;
+      const spw = words ? syll/words : 0;
+      // Flesch Reading Ease (English-ish heuristic)
+      const score = words && sents ? Math.max(0, Math.min(100, 206.835 - 1.015*wps - 84.6*spw)) : 0;
+      document.getElementById('sWords').textContent = words;
+      document.getElementById('sChars').textContent = chars;
+      document.getElementById('sSent').textContent = sents;
+      document.getElementById('sRead').textContent = (words/200).toFixed(1) + ' min';
+      document.getElementById('sScore').textContent = words ? Math.round(score) : '–';
+      let lbl = 'Very easy';
+      if (score < 30) lbl = 'Difficult / academic'; else if (score < 50) lbl = 'Fairly difficult'; else if (score < 70) lbl = 'Standard'; else if (score < 90) lbl = 'Easy';
+      document.getElementById('readHint').textContent = words ? ('Reading ease: ' + lbl + ' (higher = easier).') : 'Start typing to see live stats.';
+    }
+
+    // --- Markdown -> HTML (basic) ---
+    function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+    function mdToHtml() {
+      let md = document.getElementById('mdIn').value;
+      let h = escapeHtml(md);
+      h = h.replace(/^###### (.*)$/gm,'<h6>$1</h6>')
+           .replace(/^##### (.*)$/gm,'<h5>$1</h5>')
+           .replace(/^#### (.*)$/gm,'<h4>$1</h4>')
+           .replace(/^### (.*)$/gm,'<h3>$1</h3>')
+           .replace(/^## (.*)$/gm,'<h2>$1</h2>')
+           .replace(/^# (.*)$/gm,'<h1>$1</h1>')
+           .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+           .replace(/\*(.+?)\*/g,'<em>$1</em>')
+           .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>')
+           .replace(/^\s*[-*] (.+)$/gm,'<li>$1</li>');
+      h = h.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+      document.getElementById('mdOut').innerHTML = h || 'Output appears here.';
+      document.getElementById('mdOut').classList.add('html');
+    }
+    function htmlToMd() {
+      let h = document.getElementById('mdIn').value;
+      let md = h.replace(/<h1>(.*?)<\/h1>/g,'# $1\n')
+               .replace(/<h2>(.*?)<\/h2>/g,'## $1\n')
+               .replace(/<h3>(.*?)<\/h3>/g,'### $1\n')
+               .replace(/<strong>(.*?)<\/strong>/g,'**$1**')
+               .replace(/<em>(.*?)<\/em>/g,'*$1*')
+               .replace(/<a href="(.*?)">(.*?)<\/a>/g,'[$2]($1)')
+               .replace(/<li>(.*?)<\/li>/g,'- $1\n')
+               .replace(/<[^>]+>/g,'');
+      document.getElementById('mdOut').textContent = md.trim() || 'Output appears here.';
+      document.getElementById('mdOut').classList.remove('html');
+    }
+
+    // --- JSON ---
+    function jsonFmt() {
+      const out = document.getElementById('jsonOut');
+      try { out.textContent = JSON.stringify(JSON.parse(document.getElementById('jsonIn').value), null, 2); out.style.color='var(--text)'; }
+      catch(e){ out.style.color='var(--warn)'; out.textContent = 'Invalid JSON: ' + e.message; }
+    }
+    function jsonMin() {
+      const out = document.getElementById('jsonOut');
+      try { out.textContent = JSON.stringify(JSON.parse(document.getElementById('jsonIn').value)); out.style.color='var(--text)'; }
+      catch(e){ out.style.color='var(--warn)'; out.textContent = 'Invalid JSON: ' + e.message; }
+    }
+
+    // --- Password ---
+    function genPw() {
+      const len = +document.getElementById('pwLen').value;
+      const sets = [];
+      if (document.getElementById('pwUpper').checked) sets.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+      if (document.getElementById('pwLower').checked) sets.push('abcdefghijklmnopqrstuvwxyz');
+      if (document.getElementById('pwNum').checked) sets.push('0123456789');
+      if (document.getElementById('pwSym').checked) sets.push('!@#$%^&*()-_=+[]{};:,.?');
+      if (!sets.length) { document.getElementById('pwOut').textContent = 'Select at least one option.'; return; }
+      const all = sets.join('');
+      let pw = '';
+      // guarantee at least one from each selected set
+      sets.forEach(s => pw += s[Math.floor(Math.random()*s.length)]);
+      for (let i = pw.length; i < len; i++) pw += all[Math.floor(Math.random()*all.length)];
+      pw = pw.split('').sort(()=>Math.random()-0.5).join('');
+      document.getElementById('pwOut').textContent = pw;
+    }
+
+    // --- YouTube Title & Hook Generator ---
+    function genYt() {
+      const topicRaw = (document.getElementById('ytTopic').value || '').trim();
+      const topic = topicRaw || 'your topic';
+      const kw = (document.getElementById('ytKw').value || '').split(',').map(s=>s.trim()).filter(Boolean);
+      const t = topic.replace(/^(how to|how do i|ways to|tips for)\s+/i,'').replace(/\.$/,'');
+      const T = t.charAt(0).toUpperCase()+t.slice(1);
+      const titles = [
+        `How to ${t} (Step by Step)`,
+        `${T}: 7 Tips That Actually Work`,
+        `I Tried ${t} for 30 Days — Here's What Happened`,
+        `The ${T} Mistake Everyone Makes`,
+        `${T} Explained in 5 Minutes`,
+        `Stop Doing ${t} Wrong — Do This Instead`,
+        `Beginner's Guide to ${t} (2026)`,
+        `${T} | The Only Tutorial You Need`
+      ];
+      if (kw.length) titles.push(`${T} — ${kw[0]} Edition`, `Best ${kw[0]} for ${t}`);
+      const hooks = [
+        `Imagine if you could ${t} without the usual headache.`,
+        `Most people get ${t} wrong — here's the fix.`,
+        `I wish I knew this about ${t} sooner.`,
+        `If you only watch one video about ${t}, make it this one.`,
+        `You don't need fancy tools to ${t}. Here's proof.`
+      ];
+      document.getElementById('ytOut').textContent = 'Titles:\n• ' + titles.join('\n• ') + '\n\nHooks:\n• ' + hooks.join('\n• ');
+    }
+
+    // --- Hashtag Generator ---
+    function genHash() {
+      const topicRaw = (document.getElementById('hashTopic').value || '').trim() || 'yourniche';
+      const base = topicRaw.toLowerCase().replace(/[^a-z0-9]+/g,'');
+      const mods = ['tips','daily','life','2026','hacks','guide','community','love','gram','tok','creator','growth','reels','shorts'];
+      const tags = new Set();
+      tags.add('#'+base);
+      mods.forEach(m => tags.add('#'+base+m));
+      tags.add('#'+base+'tips'); tags.add('#'+base+'daily');
+      const arr = [...tags].slice(0,24);
+      const ig = arr.slice(0,15).join(' ');
+      const tt = arr.slice(0,12).join(' ');
+      const yt = arr.slice(0,8).join(' ');
+      const x  = arr.slice(0,6).join(' ');
+      document.getElementById('hashOut').textContent =
+        'Instagram:\n' + ig + '\n\nTikTok:\n' + tt + '\n\nYouTube:\n' + yt + '\n\nX / Twitter:\n' + x;
+    }
+
+    // --- SERP / Meta Preview ---
+    function serpPreview() {
+      const title = document.getElementById('serpTitle').value || 'Page title preview';
+      const url = document.getElementById('serpUrl').value || 'yoursite.com/page';
+      const desc = document.getElementById('serpDesc').value || 'Meta description preview text appears here.';
+      document.getElementById('serpTitlePrev').textContent = title;
+      document.getElementById('serpDescPrev').textContent = desc;
+      const clean = url.replace(/^https?:\/\//,'').replace(/\/$/,'');
+      document.getElementById('serpUrlPrev').textContent = clean.includes('/') ? clean : clean + ' › page';
+      const hints = [];
+      hints.push('Title ' + title.length + ' chars ' + (title.length<=60?'✓':'✗ >60'));
+      hints.push('Desc ' + desc.length + ' chars ' + (desc.length<=155?'✓':'✗ >155'));
+      document.getElementById('serpHint').textContent = hints.join('   ');
+    }
+
+    // --- Word & Character Counter ---
+    function wcCount() {
+      const txt = document.getElementById('wcIn').value;
+      const words = (txt.match(/\b[^\s]+\b/g) || []).length;
+      const chars = txt.length;
+      const charsNo = txt.replace(/\s/g,'').length;
+      const sents = (txt.match(/[.!?]+/g) || []).length || (words?1:0);
+      const paras = txt.split(/\n\s*\n/).filter(p=>p.trim()).length || (words?1:0);
+      document.getElementById('wcWords').textContent = words;
+      document.getElementById('wcChars').textContent = chars;
+      document.getElementById('wcCharsNo').textContent = charsNo;
+      document.getElementById('wcSent').textContent = sents;
+      document.getElementById('wcPara').textContent = paras;
+      document.getElementById('wcRead').textContent = (words/200).toFixed(1)+'m';
+      const over = [];
+      if (chars>280) over.push('X >280');
+      if (chars>2200) over.push('IG >2200');
+      if (chars>5000) over.push('YT >5000');
+      document.getElementById('wcHint').textContent = words
+        ? ('Read time ~'+(words/200).toFixed(1)+' min. ' + (over.length ? over.join('; ')+'.' : 'Within X/IG/YT limits.'))
+        : 'Start typing to see live counts.';
+    }
+
+    // --- AI Humanizer (local light-edit + prompt template) ---
+    const AI_PHRASES = {
+      "in today's world":"these days","it is important to note that":"note that",
+      "furthermore":"also","moreover":"plus","delve":"look","leverage":"use",
+      "utilize":"use","robust":"solid","a myriad of":"many","in order to":"to",
+      "underscore":"show","showcase":"show","foster":"build","crucial":"key",
+      "pivotal":"key","navigate":"handle","landscape":"field","realm":"area",
+      "underscored":"shown","embark":"start","unlock":"open","elevate":"raise",
+      "tailored":"custom","seamless":"smooth","cutting-edge":"modern","holistic":"full",
+      "game-changer":"big win","testament to":"proof of","it's worth noting":"note that",
+      "plays a vital role":"matters","at the end of the day":"in the end"
+    };
+    function humanizeLocal() {
+      const el = document.getElementById('humIn');
+      let t = el.value.trim();
+      const out = document.getElementById('humOut');
+      if (!t) { out.textContent = 'Paste some text first.'; return; }
+      for (const [k,v] of Object.entries(AI_PHRASES)) {
+        const re = new RegExp('\\b'+k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','gi');
+        t = t.replace(re, v);
+      }
+      // split some long sentences at connectors for a more human rhythm
+      t = t.replace(/([,;])\s+(And|But|Yet|So|Now|Then|Later|Also|Plus)\b/g, '. $2');
+      out.textContent = t.trim();
+    }
+    function copyHumanPrompt() {
+      const t = document.getElementById('humIn').value.trim();
+      if (!t) { document.getElementById('humOut').textContent = 'Paste some text first.'; return; }
+      const prompt = "Rewrite the following text so it reads like natural, human writing. Vary sentence length, cut filler words (e.g. 'delve', 'leverage', 'it is important to note'), add a little imperfection, and keep the exact meaning. Do not add new facts.\n\nTEXT:\n" + t;
+      navigator.clipboard.writeText(prompt).then(()=>{ const o=document.getElementById('humOut'); const prev=o.textContent; o.textContent='✓ Prompt copied — paste into ChatGPT / Claude.'; setTimeout(()=>o.textContent=prev,1200); });
+    }
+
+    // --- AI Detector (heuristic) ---
+    const AI_TELLS = ["furthermore","moreover","delve","leverage","utilize","robust","myriad","underscore","pivotal","navigate","landscape","realm","seamless","holistic","cutting-edge","tailored","crucial","in today's world","it is important to note","plays a vital role","at the end of the day","game-changer","testament to"];
+    function detectAi() {
+      const txt = document.getElementById('detIn').value.trim();
+      const out = document.getElementById('detOut');
+      if (!txt) { out.textContent = 'Paste some text to scan.'; return; }
+      const words = txt.match(/\b[a-z0-9']+\b/gi) || [];
+      const sents = txt.split(/[.!?]+\s*/).filter(s=>s.trim().length);
+      const n = words.length || 1;
+      const avgLen = words.reduce((a,w)=>a+w.length,0)/n;
+      const sentLens = sents.map(s=>(s.match(/\b[a-z0-9']+\b/gi)||[]).length);
+      const mean = sentLens.reduce((a,b)=>a+b,0)/(sentLens.length||1);
+      const variance = sentLens.reduce((a,b)=>a+Math.pow(b-mean,2),0)/(sentLens.length||1);
+      const burst = Math.sqrt(variance); // higher = more human
+      const uniq = new Set(words.map(w=>w.toLowerCase())).size;
+      const ttr = uniq/n; // type-token ratio
+      const tells = AI_TELLS.filter(p=>new RegExp('\\b'+p.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i').test(txt)).length;
+      const tellDensity = tells / (sents.length||1);
+      const pronouns = (txt.match(/\b(I|we|you|my|our|your)\b/gi)||[]).length / n;
+      let score = 0;
+      score += tellDensity>0.4 ? 35 : tellDensity*90;        // AI-tell phrases
+      score += burst<4 ? 25 : (burst<8 ? 12 : 0);            // low burstiness => AI-typical
+      score += avgLen>5.6 ? 12 : 0;                          // long words
+      score += ttr<0.45 ? 15 : (ttr<0.55 ? 7 : 0);           // low vocab diversity
+      score += pronouns<0.02 ? 12 : 0;                       // no personal voice
+      score = Math.max(0, Math.min(100, Math.round(score)));
+      const verdict = score>=70 ? 'Likely AI-written' : score>=40 ? 'Uncertain / mixed' : score>=20 ? 'Likely human' : 'Looks human';
+      out.innerHTML = `<div style="font-size:34px;font-weight:800;margin-bottom:6px;">${score}<span style="font-size:16px;font-weight:500;">/100 AI-likelihood</span></div>`
+        + `<div style="margin-bottom:10px;font-weight:600;">${verdict}</div>`
+        + `<div class="hint">Burstiness (sentence-length variation): ${burst.toFixed(1)} — ${burst<4?'low (AI-typical)':'healthy'}</div>`
+        + `<div class="hint">Avg word length: ${avgLen.toFixed(2)} chars</div>`
+        + `<div class="hint">Vocab diversity (TTR): ${(ttr*100).toFixed(1)}%</div>`
+        + `<div class="hint">AI-tell phrases found: ${tells}</div>`
+        + `<div class="hint" style="margin-top:8px;">Heuristic only — use a paid detector for decisions that matter.</div>`;
+    }
+
+    // --- Paraphraser (local synonym engine) ---
+    const SYN = { "good":["great","solid","nice","decent"],"bad":["poor","weak","rough"],"big":["large","huge","major"],"small":["tiny","little","minor"],"fast":["quick","rapid","speedy"],"slow":["sluggish","gradual"],"easy":["simple","straightforward"],"hard":["tough","difficult"],"important":["key","vital","major"],"use":["use","apply","employ"],"make":["make","build","create"],"get":["get","obtain","gain"],"show":["show","reveal","display"],"help":["help","assist","aid"],"think":["think","believe","reckon"],"very":["very","really","quite"],"many":["many","numerous","lots of"],"thing":["thing","item","matter"],"people":["people","folks","users"],"need":["need","require","want"],"find":["find","discover","locate"],"change":["change","alter","tweak"],"improve":["improve","boost","enhance"],"reduce":["reduce","cut","lower"],"increase":["increase","raise","grow"],"create":["create","build","craft"],"start":["start","begin","kick off"],"end":["end","finish","wrap up"],"idea":["idea","concept","notion"],"problem":["problem","issue","snag"],"solution":["solution","fix","answer"],"result":["result","outcome","effect"],"reason":["reason","cause","why"],"example":["example","case","instance"],"difference":["difference","gap","contrast"],"benefit":["benefit","plus","perk"],"risk":["risk","hazard","downside"],"way":["way","method","approach"],"time":["time","moment","while"],"work":["work","function","operate"],"money":["money","cash","budget"],"business":["business","brand","company"],"customer":["customer","client","buyer"],"content":["content","copy","material"],"video":["video","clip","footage"],"post":["post","update","publish"],"grow":["grow","scale","expand"],"learn":["learn","pick up","grasp"],"build":["build","make","set up"],"write":["write","draft","pen"],"read":["read","scan","go through"],"watch":["watch","view","check"],"happy":["happy","glad","pleased"],"free":["free","no-cost","gratis"] };
+    function paraphrase() {
+      let t = document.getElementById('paraIn').value.trim();
+      const out = document.getElementById('paraOut');
+      const mode = document.getElementById('paraMode').value;
+      if (!t) { out.textContent = 'Paste a paragraph first.'; return; }
+      const swapRate = mode==='simple' ? 0.55 : mode==='formal' ? 0.4 : 0.32;
+      t = t.replace(/\b([A-Za-z][a-z]+)\b/g, (w) => {
+        const low = w.toLowerCase();
+        if (SYN[low] && Math.random() < swapRate) {
+          const opts = SYN[low];
+          let pick = opts[Math.floor(Math.random()*opts.length)];
+          if (/^[A-Z]/.test(w)) pick = pick.charAt(0).toUpperCase()+pick.slice(1);
+          return pick;
+        }
+        return w;
+      });
+      if (mode==='simple') {
+        t = t.replace(/\b(do not|does not|did not)\b/gi,"don't").replace(/\b(cannot)\b/gi,"can't");
+        t = t.replace(/([,;])\s+(and|but|so|now|then|also)\b/gi,'. $2');
+      }
+      out.textContent = t.trim();
+    }
+
+    // --- PDF Summarizer (client-side pdf.js + extractive) ---
+    let _pdfReady = false;
+    async function ensurePdf() {
+      if (window.pdfjsLib) return true;
+      return await new Promise((res) => {
+        const s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+        s.onload = () => {
+          try { window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; } catch(e){}
+          _pdfReady = true; res(true);
+        };
+        s.onerror = () => res(false);
+        document.head.appendChild(s);
+      });
+    }
+    async function summarizePdf() {
+      const file = document.getElementById('pdfFile').files[0];
+      const out = document.getElementById('pdfOut');
+      const hint = document.getElementById('pdfHint');
+      if (!file) { hint.textContent = 'Choose a PDF file first.'; return; }
+      hint.textContent = 'Loading PDF engine…';
+      const ok = await ensurePdf();
+      if (!ok) { hint.textContent = 'Could not load the PDF engine (offline?). Paste text into the Summarizer tool instead.'; return; }
+      hint.textContent = 'Extracting text…';
+      try {
+        const buf = await file.arrayBuffer();
+        const pdf = await window.pdfjsLib.getDocument({ data: buf }).promise;
+        let text = '';
+        for (let p = 1; p <= pdf.numPages; p++) {
+          const page = await pdf.getPage(p);
+          const tc = await page.getTextContent();
+          text += tc.items.map(i => i.str).join(' ') + ' ';
+        }
+        text = text.replace(/\s+/g,' ').trim();
+        if (!text) { hint.textContent = 'No extractable text found (scanned PDF?).'; return; }
+        const ratio = +document.getElementById('pdfRatio').value/100;
+        document.getElementById('pdfRatioLbl').textContent = '~'+Math.round(ratio*100)+'% of original';
+        const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+        const words = text.toLowerCase().match(/\b[a-z0-9']+\b/g) || [];
+        const freq = {}; words.forEach(w => freq[w]=(freq[w]||0)+1);
+        const scored = sentences.map(s => {
+          const sw = s.toLowerCase().match(/\b[a-z0-9']+\b/g) || [];
+          return { s, score: sw.reduce((a,w)=>a+(freq[w]||0),0)/(sw.length||1) };
+        });
+        const nt = Math.max(1, Math.round(sentences.length*ratio));
+        scored.sort((a,b)=>b.score-a.score);
+        const top = scored.slice(0,nt).sort((a,b)=>sentences.indexOf(a.s)-sentences.indexOf(b.s)).map(x=>x.s.trim());
+        out.textContent = top.join(' ');
+        hint.textContent = `✓ ${pdf.numPages} page(s), ${words.length} words → ${top.length}-sentence summary.`;
+      } catch(e) {
+        hint.textContent = 'Failed to read PDF: ' + e.message;
+      }
+    }
+
+    function copyOut(id) {
+      const el = document.getElementById(id);
+      const txt = el.innerText || el.textContent;
+      if (!txt || txt === 'Output appears here.' || txt === 'Click Generate.') return;
+      navigator.clipboard.writeText(txt).then(()=>{ const o=el.textContent; el.textContent='✓ Copied!'; setTimeout(()=>el.textContent=o,900); });
+    }
+
+    function subscribe(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      localStorage.setItem('glint_sub', email);
+      document.getElementById('subMsg').textContent = '✓ Subscribed (' + email + '). Wire this to your ESP next.';
+      document.getElementById('email').value = '';
+    }
+
+    runRead();
+  </script>
+  <script src="/p2-tools.js"></script>
+
+  <!-- ============ AUTH MODAL (PayPal + Supabase scaffold) ============ -->
+  <div id="authModal" style="display:none;position:fixed;inset:0;background:rgba(10,10,30,.5);z-index:100;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#fff;border-radius:18px;max-width:380px;width:100%;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+        <h3 style="margin:0;font-size:20px;">Glint AI account</h3>
+        <button onclick="closeModal()" style="border:none;background:none;font-size:22px;cursor:pointer;color:#5b5b6b;">×</button>
+      </div>
+      <form id="authForm" style="display:flex;flex-direction:column;gap:12px;">
+        <input type="email" id="authEmail" placeholder="you@email.com" required style="padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:15px;font-family:inherit;" />
+        <input type="password" id="authPass" placeholder="Password (or use magic link)" style="padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:15px;font-family:inherit;" />
+        <button type="submit" class="btn btn-primary" id="authSubmit">Log in</button>
+        <button type="button" class="btn btn-ghost" onclick="magicLink(event)">Email me a magic link</button>
+        <button type="button" class="btn btn-ghost" id="toggleAuth" onclick="toggleMode()">Need an account? Sign up</button>
+      </form>
+      <p id="authMsg" style="margin:14px 0 0;font-size:13.5px;color:#5b5b6b;min-height:18px;"></p>
+    </div>
+  </div>
+
+  <script src="/vendor/supabase.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js'"></script>
+  <script src="/supabase-auth.js"></script>
+  <script defer src="/analytics.js"></script>
+  <script src="/usage.js"></script>
+  <script src="/ads.js"></script>
+</body>
+</html>

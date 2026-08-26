@@ -70,5 +70,28 @@
     </div>
   </footer>
   <script src="/assets/tools.js"></script>
+  <script src="/vendor/supabase.min.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js'"></script>
+  <script src="/supabase-auth.js"></script>
+  <!-- AUTH MODAL (reused from index.html) -->
+  <div id="authModal" style="display:none;position:fixed;inset:0;background:rgba(10,10,30,.5);z-index:100;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:#fff;border-radius:18px;max-width:380px;width:100%;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+        <h3 style="margin:0;font-size:20px;color:#14142a;">Glint AI account</h3>
+        <button onclick="closeModal()" style="border:none;background:none;font-size:22px;cursor:pointer;color:#5b5b6b;">×</button>
+      </div>
+      <form id="authForm" style="display:flex;flex-direction:column;gap:12px;">
+        <input type="email" id="authEmail" placeholder="you@email.com" required style="padding:12px 14px;border:1px solid #d8d8e8;border-radius:12px;font-size:15px;font-family:inherit;" />
+        <input type="password" id="authPass" placeholder="Password (or use magic link)" style="padding:12px 14px;border:1px solid #d8d8e8;border-radius:12px;font-size:15px;font-family:inherit;" />
+        <button type="submit" class="btn btn-primary" id="authSubmit">Log in</button>
+        <button type="button" class="btn btn-ghost google-btn" onclick="googleLogin()">Continue with Google</button>
+        <button type="button" class="btn btn-ghost" onclick="magicLink(event)">Email me a magic link</button>
+        <button type="button" class="btn btn-ghost" id="toggleAuth" onclick="toggleMode()">Need an account? Sign up</button>
+      </form>
+      <p id="authMsg" style="margin:14px 0 0;font-size:13.5px;color:#5b5b6b;min-height:18px;"></p>
+    </div>
+  </div>
+  <script defer src="/analytics.js"></script>
+  <script src="/usage.js"></script>
+  <script src="/ads.js"></script>
 </body>
 </html>

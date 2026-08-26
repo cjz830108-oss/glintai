@@ -65,3 +65,61 @@ create policy profiles_update_own on public.profiles
 
 -- ⚠️ PayPal webhook 用的是 SERVICE_ROLE key，会【绕过 RLS】，
 --    所以 webhook 写表不需要额外策略，上面两条只管前端读。
+
+-- ---------------------------------------------------------------------------
+-- 4) 用量 / 订阅周期字段（升级用，幂等添加，可重复执行）
+-- ---------------------------------------------------------------------------
+-- 免费档用量优先在客户端 localStorage 计数 + 月度重置；
+-- Pro 由 webhook 把 plan 置为 'pro' + 写入 subscription_end 来解锁无限。
+-- 这些字段由前端/服务端在每次 AI 调用后累加，月度到期时归零：
+--   if profiles.period_start < now() - interval '1 month' then
+--     ai_credits_used := 0; period_start := now(); end if;
+do $$
+begin
+  if not exists (select 1 from information_schema.columns where table_name='profiles' and column_name='ai_credits_used') then
+    alter table public.profiles add column ai_credits_used  int  not null default 0;
+  end if;
+  if not exists (select 1 from information_schema.columns where table_name='profiles' and column_name='ai_credits_limit') then
+    alter table public.profiles add column ai_credits_limit int  not null default 50;   -- 免费档月度额度
+  end if;
+  if not exists (select 1 from information_schema.columns where table_name='profiles' and column_name='pdf_pages_used') then
+    alter table public.profiles add column pdf_pages_used   int  not null default 0;
+  end if;
+  if not exists (select 1 from information_schema.columns where table_name='profiles' and column_name='pdf_pages_limit') then
+    alter table public.profiles add column pdf_pages_limit  int  not null default 20;
+  end if;
+  if not exists (select 1 from information_schema.columns where table_name='profiles' and column_name='exports_used') then
+    alter table public.profiles add column exports_used     int  not null default 0;
+  end if;
+  if not exists (select 1 from information_schema.columns where table_name='profiles' and column_name='period_start') then
+    alter table public.profiles add column period_start     timestamptz not null default now();
+  end if;
+  if not exists (select 1 from information_schema.columns where table_name='profiles' and column_name='subscription_period') then
+    alter table public.profiles add column subscription_period text;   -- 'monthly' | 'yearly' | null
+  end if;
+  if not exists (select 1 from information_schema.columns where table_name='profiles' and column_name='subscription_end') then
+    alter table public.profiles add column subscription_end timestamptz;  -- 到期日（续费/降级判断）
+  end if;
+  if not exists (select 1 from information_schema.columns where table_name='profiles' and column_name='google_id') then
+    alter table public.profiles add column google_id        text;
+  end if;
+  if not exists (select 1 from information_schema.columns where table_name='profiles' and column_name='last_seen') then
+    alter table public.profiles add column last_seen        timestamptz;
+  end if;
+end $$;
+
+-- 注册时顺便初始化用量字段（沿用 handle_new_user）
+create or replace function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  insert into public.profiles (id, email, ai_credits_used, ai_credits_limit, pdf_pages_used, pdf_pages_limit, exports_used, period_start)
+  values (new.id, new.email, 0, 50, 0, 20, 0, now())
+  on conflict (id) do nothing;
+  return new;
+end;
+$$;
+

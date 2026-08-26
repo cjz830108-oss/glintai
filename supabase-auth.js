@@ -113,6 +113,17 @@ async function magicLink(e) {
 }
 window.magicLink = magicLink;
 
+/* ---- Google OAuth login ---- */
+async function googleLogin() {
+  if (!client) { alert('Supabase not configured yet — see SETUP.md.'); return; }
+  const { error } = await client.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: location.origin + '/dashboard/' }
+  });
+  if (error) { console.error(error); alert('Google login failed: ' + error.message); }
+}
+window.googleLogin = googleLogin;
+
 /* ---- Email + password login / signup ---- */
 document.getElementById('authForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();
