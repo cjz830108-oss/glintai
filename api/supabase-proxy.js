@@ -4,7 +4,7 @@
 export const config = { api: { bodyParser: false } };
 
 // 优先读环境变量 SUPABASE_URL（Vercel 里配置，便于不改代码换项目）；缺省回退到写死的 host
-const SB_URL = (process.env.SUPABASE_URL || 'https://czqupmfabeliihtligdy.supabase.co').replace(/\/+$/, '');
+const SB_URL = (process.env.SUPABASE_URL || 'https://czqupmfabelihtligdy.supabase.co').replace(/\/+$/, '');
 // 只转发这些请求头，避免 accept-encoding / content-length / host 等干扰 fetch
 const ALLOW_HEADERS = [
   'authorization', 'apikey', 'content-type', 'accept',
