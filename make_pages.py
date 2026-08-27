@@ -72,7 +72,7 @@ FOOTER = """    <div class="foot-grid">
       </div>
       <div><h4>Tools</h4><a href="/tools/">All 16 tools</a><a href="/tools/ai-humanizer.html">AI Humanizer</a><a href="/tools/ai-text-summarizer.html">Text Summarizer</a><a href="/tools/grammar-checker.html">Grammar Checker</a><a href="/tools/background-remover.html">Background Remover</a></div>
       <div><h4>Resources</h4><a href="/blog/">Blog &amp; guides</a><a href="/resources/">Free templates</a><a href="/ai-tools/">Tool reviews</a><a href="/extension/">Chrome extension</a></div>
-      <div><h4>Company</h4><a href="/#pricing">Pricing</a><a href="/#features">Why Glint</a><a href="/#faq">FAQ</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
+      <div><h4>Company</h4><a href="/#pricing">Pricing</a><a href="/#features">Why Glint</a><a href="/#faq">FAQ</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/about/">About</a></div>
     </div>
     <div class="copy">© 2026 Glint AI. Payments via PayPal · Accounts via Supabase.</div>"""
 
@@ -130,6 +130,10 @@ def page(title, h1, badge, body, active, canonical, extra_head="", with_auth=Fal
 
   <footer><div class="wrap">__FOOTER__</div></footer>
 __MODAL__
+  <script defer src="/analytics.js"></script>
+  <script src="/usage.js"></script>
+  <script src="/ads.js"></script>
+  <script src="/geo.js"></script>
 </body>
 </html>
 """.replace("__TITLE__", title).replace("__DESC__", title).replace("__CANON__", canonical) \
@@ -239,6 +243,17 @@ NF_BODY = """<p style="text-align:center;">The page you're looking for doesn't e
   <a class="btn btn-ghost" href="/tools/">Browse tools</a>
 </div>"""
 
+ABOUT_BODY = """<div class="card" style="max-width:820px;margin:0 auto;">
+  <h3>What is Glint AI?</h3>
+  <p>Glint AI is the everyday AI toolkit for creators and marketers: 16 free, privacy-first, browser-based AI tools to write better, create faster, and grow smarter. Free tools run in your browser and need no signup.</p>
+  <h3>Why we built it</h3>
+  <p>Most "free" AI tools upload your text to a server, gate core features behind a login, or bury you in tracking cookies. We took the opposite stance — privacy-first by default, no signup walls, and a clean fast interface.</p>
+  <h3>How we make money</h3>
+  <p>Four transparent channels: Pro subscriptions (PayPal), affiliate recommendations on our AI Tool Reviews page, clearly-labeled ads, and a future Chrome extension. We never sell your data.</p>
+  <h3>Who writes our content</h3>
+  <p>The Glint AI Editorial Team — writers, developers, and marketers who test every tool hands-on. Find our work in the <a href="/blog/">Blog &amp; guides</a>.</p>
+</div>"""
+
 pages = [
     ("extension", "extension/index.html", "Glint AI — Chrome Extension (Coming Soon)",
      "<h1>Chrome Extension</h1>", "🧩 COMING SOON", EXT_BODY, "ext",
@@ -261,6 +276,9 @@ pages = [
     ("404", "404.html", "Glint AI — Page not found",
      "<h1>404</h1>", "", NF_BODY, "",
      "https://glintai.tools/", True, "noindex"),
+    ("about", "about/index.html", "Glint AI — About",
+     "<h1>About Glint AI</h1>", "✦ BUILT TO BE AN ASSET YOU OWN", ABOUT_BODY, "about",
+     "https://glintai.tools/about/", True, ""),
 ]
 
 for key, path, title, h1, badge, body, active, canon, *rest in pages:

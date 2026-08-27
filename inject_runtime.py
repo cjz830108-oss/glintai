@@ -37,6 +37,7 @@ AUTH_SCRIPT = '  <script src="/supabase-auth.js"></script>\n'
 ANALYTICS_SCRIPT = '  <script defer src="/analytics.js"></script>\n'
 USAGE_SCRIPT = '  <script src="/usage.js"></script>\n'
 ADS_SCRIPT = '  <script src="/ads.js"></script>\n'
+GEO_SCRIPT = '  <script src="/geo.js"></script>\n'
 
 # ordered (marker, snippet) — appended in this order before </body>
 TOOL_ITEMS = [
@@ -46,11 +47,13 @@ TOOL_ITEMS = [
     ('/analytics.js', ANALYTICS_SCRIPT),
     ('/usage.js', USAGE_SCRIPT),
     ('/ads.js', ADS_SCRIPT),
+    ('/geo.js', GEO_SCRIPT),
 ]
 CONTENT_ITEMS = [
     ('/analytics.js', ANALYTICS_SCRIPT),
     ('/usage.js', USAGE_SCRIPT),
     ('/ads.js', ADS_SCRIPT),
+    ('/geo.js', GEO_SCRIPT),
 ]
 
 tool_files = ['index.html', 'tools/index.html'] + sorted(glob.glob(os.path.join(ROOT, 'tools', '*.html')))

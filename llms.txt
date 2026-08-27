@@ -1,0 +1,44 @@
+# Glint AI
+
+> Glint AI is the everyday AI toolkit for creators and marketers: 16 free, privacy-first, browser-based AI tools to write better, create faster, and grow smarter. Free tools need no signup; Pro ($9.99/mo or $79/yr) unlocks higher usage. The site is built to be an asset you own — no tracking cookies, no server-side processing of your text.
+
+## Tools
+- [AI Text Summarizer](https://glintai.tools/tools/ai-text-summarizer.html): Summarize long articles and docs in your browser, with no upload.
+- [Word & Readability Analyzer](https://glintai.tools/tools/word-readability-analyzer.html): Check reading ease, grade level, and word counts.
+- [Markdown to HTML](https://glintai.tools/tools/markdown-to.html): Convert Markdown to clean HTML instantly.
+- [JSON Formatter](https://glintai.tools/tools/json-formatter.html): Pretty-print and validate JSON client-side, with no server.
+- [Password & Key Generator](https://glintai.tools/tools/password-generator.html): Generate strong passwords and API keys locally.
+- [YouTube Title & Hook Generator](https://glintai.tools/tools/youtube-title-generator.html): Brainstorm click-worthy titles and hooks.
+- [Hashtag Generator](https://glintai.tools/tools/hashtag-generator.html): Build platform-ready hashtag sets.
+- [SERP & Meta Preview](https://glintai.tools/tools/serp-preview.html): Preview how titles and meta appear in search results.
+- [Word & Character Counter](https://glintai.tools/tools/word-counter.html): Count words, characters, and reading time.
+- [AI Humanizer](https://glintai.tools/tools/ai-humanizer.html): Light, local edits that make AI drafts read more naturally.
+- [AI Content Detector](https://glintai.tools/tools/ai-content-detector.html): Estimate how likely text looks AI-generated.
+- [Paraphraser](https://glintai.tools/tools/paraphraser.html): Reword text while keeping the meaning.
+- [PDF Summarizer](https://glintai.tools/tools/pdf-summarizer.html): Summarize PDFs in the browser.
+- [Grammar Checker](https://glintai.tools/tools/grammar-checker.html): Catch grammar and clarity issues.
+- [Bio & Resume Generator](https://glintai.tools/tools/bio-resume-generator.html): Draft bios and resume bullets.
+- [Background Remover](https://glintai.tools/tools/background-remover.html): Remove image backgrounds locally.
+
+## Blog & Guides
+- [9 Best Free JSON Formatters](https://glintai.tools/blog/best-free-json-formatter.html): Privacy and speed tested.
+- [Best Free Markdown to HTML Converter](https://glintai.tools/blog/best-free-markdown-to-html-converter.html): How to convert cleanly.
+- [Best Free SERP Preview Tool](https://glintai.tools/blog/best-free-serp-preview-tool.html): Preview search snippets.
+- [Free Grammar Checker, No Signup](https://glintai.tools/blog/free-grammar-checker-no-signup.html): Private, browser-based grammar help.
+- [Private AI Detector](https://glintai.tools/blog/private-ai-detector.html): Check AI text without uploading.
+- [Paraphrase Without Plagiarizing](https://glintai.tools/blog/paraphrase-without-plagiarizing.html): Reword responsibly.
+- [Write a Resume with AI](https://glintai.tools/blog/write-resume-with-ai.html): Step-by-step.
+- [Improve Reading Ease Score](https://glintai.tools/blog/improve-reading-ease-score.html): Practical fixes.
+- [Grammarly Alternative, Free](https://glintai.tools/blog/grammarly-alternative-free.html): Why a lightweight tool wins.
+- [QuillBot Alternative, Free](https://glintai.tools/blog/quillbot-alternative-free.html): Paraphrasing without the paywall.
+- [How to Summarize Long Articles](https://glintai.tools/blog/how-to-summarize-long-articles.html): A repeatable workflow.
+- [Humanize AI Text](https://glintai.tools/blog/humanize-ai-text.html): Make AI writing sound natural.
+
+## Resources
+- [All Tools](https://glintai.tools/tools/): The full free toolkit.
+- [Blog](https://glintai.tools/blog/): Guides and comparisons.
+- [Resources](https://glintai.tools/resources/): Templates and playbooks.
+- [AI Tool Reviews](https://glintai.tools/ai-tools/): Hand-picked affiliate recommendations.
+- [Chrome Extension](https://glintai.tools/extension/): Coming soon, join the waitlist.
+- [About Glint AI](https://glintai.tools/about/): Who we are and our privacy stance.
+- [Pricing](https://glintai.tools/#pricing): Free, Pro, and Team plans.
