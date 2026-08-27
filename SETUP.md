@@ -123,7 +123,7 @@ Push the folder to Vercel/Netlify (drag-drop or git). The static site + the
    - 材料：经营者身份证、经营场所证明。时间 1–3 天，官费基本为 0。
 2. **银行**：开个体户结算户或对公户，用于绑定 PayPal 收款提现。
 3. **PayPal 中国 Business**：用营业执照注册，完成商家认证，在 *Developers → My Apps & Credentials* 拿到 `PAYPAL_CLIENT_ID` / `PAYPAL_CLIENT_SECRET`。
-4. **订阅计划**：收付款 → 定期付款 建 Pro $9.99/月、Team $29/月，从生成的 SDK 代码复制 `client-id` 与两个 `plan_id`，填进 `supabase-auth.js` 的 `PAYPAL_CLIENT_ID` / `PAYPAL_PLANS`。
+4. **订阅计划**：收付款 → 定期付款 建 Pro $9/月、Team $29/月，从生成的 SDK 代码复制 `client-id` 与两个 `plan_id`，填进 `supabase-auth.js` 的 `PAYPAL_CLIENT_ID` / `PAYPAL_PLANS`。
 5. **部署**：填 `api/paypal-webhook.js` 的环境变量（见第 3 步），sandbox 先测一笔再切 live。
 6. **提现 / 结汇**：PayPal 提国内银行每笔约 $35 + 中间行费；银行会要求做"跨境服务贸易收入"申报（备服务合同/发票，可自制）。量大可走 PingPong / 万里汇等跨境收款平台（需公司主体，费率更低）。
 7. **税务**：个体户按"经营所得"申报，找代账约 2000 元/年；小规模纳税人月销售额 ≤10 万免征增值税，年应纳税所得额 ≤300 万企业所得税实际 5%。

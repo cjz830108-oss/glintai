@@ -160,7 +160,7 @@
         '<p>Your free plan includes <b>' + used + ' ' + kindLabel + ' uses this month</b>. ' +
         'Upgrade to Pro for unlimited AI tools, GPT-level summaries, and the prompt library.</p>' +
         '<div class="gp-actions">' +
-          '<a class="btn btn-primary" href="/#pricing">Upgrade to Pro — $9.99/mo</a>' +
+          '<a class="btn btn-primary" href="/#pricing">Upgrade to Pro — $9/mo</a>' +
           '<button class="btn btn-ghost" type="button" onclick="window.GlintUsage.authOrGo()">Log in / Sign up free</button>' +
         '</div>' +
         '<p class="gp-fine">Cancel anytime. No credit card needed to start.</p>' +
