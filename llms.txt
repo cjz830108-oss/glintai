@@ -5,7 +5,7 @@
 ## Tools
 - [AI Text Summarizer](https://glintai.tools/tools/ai-text-summarizer.html): Summarize long articles and docs in your browser, with no upload.
 - [Word & Readability Analyzer](https://glintai.tools/tools/word-readability-analyzer.html): Check reading ease, grade level, and word counts.
-- [Markdown to HTML](https://glintai.tools/tools/markdown-to.html): Convert Markdown to clean HTML instantly.
+- [Markdown to HTML](https://glintai.tools/tools/markdown-to-html.html): Convert Markdown to clean HTML instantly.
 - [JSON Formatter](https://glintai.tools/tools/json-formatter.html): Pretty-print and validate JSON client-side, with no server.
 - [Password & Key Generator](https://glintai.tools/tools/password-generator.html): Generate strong passwords and API keys locally.
 - [YouTube Title & Hook Generator](https://glintai.tools/tools/youtube-title-generator.html): Brainstorm click-worthy titles and hooks.
@@ -34,6 +34,12 @@
 - [How to Summarize Long Articles](https://glintai.tools/blog/how-to-summarize-long-articles.html): A repeatable workflow.
 - [Humanize AI Text](https://glintai.tools/blog/humanize-ai-text.html): Make AI writing sound natural.
 
+## Comparisons & Lists
+- [Best Free AI Writing Tools for Marketers](https://glintai.tools/blog/best-ai-writing-tools-marketers-2026.html): The free stack for marketing writing.
+- [ChatGPT vs Claude vs Gemini](https://glintai.tools/blog/chatgpt-vs-claude-vs-gemini-writing.html): Which model to write with.
+- [Free vs Pro AI Tools](https://glintai.tools/blog/free-vs-pro-ai-tools.html): When upgrading pays off.
+- [AI Content Detector Comparison](https://glintai.tools/blog/ai-content-detector-comparison.html): Which detector is most accurate.
+- [10 AI Tools for Content Creators](https://glintai.tools/blog/ai-tools-content-creator-starter-list.html): The complete starter list.
 ## Resources
 - [All Tools](https://glintai.tools/tools/): The full free toolkit.
 - [Blog](https://glintai.tools/blog/): Guides and comparisons.
