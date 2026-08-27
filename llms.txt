@@ -21,25 +21,81 @@
 - [Background Remover](https://glintai.tools/tools/background-remover.html): Remove image backgrounds locally.
 
 ## Blog & Guides
-- [9 Best Free JSON Formatters](https://glintai.tools/blog/best-free-json-formatter.html): Privacy and speed tested.
-- [Best Free Markdown to HTML Converter](https://glintai.tools/blog/best-free-markdown-to-html-converter.html): How to convert cleanly.
-- [Best Free SERP Preview Tool](https://glintai.tools/blog/best-free-serp-preview-tool.html): Preview search snippets.
-- [Free Grammar Checker, No Signup](https://glintai.tools/blog/free-grammar-checker-no-signup.html): Private, browser-based grammar help.
-- [Private AI Detector](https://glintai.tools/blog/private-ai-detector.html): Check AI text without uploading.
-- [Paraphrase Without Plagiarizing](https://glintai.tools/blog/paraphrase-without-plagiarizing.html): Reword responsibly.
-- [Write a Resume with AI](https://glintai.tools/blog/write-resume-with-ai.html): Step-by-step.
-- [Improve Reading Ease Score](https://glintai.tools/blog/improve-reading-ease-score.html): Practical fixes.
-- [Grammarly Alternative, Free](https://glintai.tools/blog/grammarly-alternative-free.html): Why a lightweight tool wins.
-- [QuillBot Alternative, Free](https://glintai.tools/blog/quillbot-alternative-free.html): Paraphrasing without the paywall.
-- [How to Summarize Long Articles](https://glintai.tools/blog/how-to-summarize-long-articles.html): A repeatable workflow.
-- [Humanize AI Text](https://glintai.tools/blog/humanize-ai-text.html): Make AI writing sound natural.
+### AI Skills
+- [AI Prompt Engineering: Write Prompts That Actually Work (2026)](https://glintai.tools/blog/ai-prompt-engineering-guide.html): A practical prompt engineering guide for 2026: structure, roles, constraints, and examples that turn vague prompts into consistent, high-quality AI output.
 
-## Comparisons & Lists
-- [Best Free AI Writing Tools for Marketers](https://glintai.tools/blog/best-ai-writing-tools-marketers-2026.html): The free stack for marketing writing.
-- [ChatGPT vs Claude vs Gemini](https://glintai.tools/blog/chatgpt-vs-claude-vs-gemini-writing.html): Which model to write with.
-- [Free vs Pro AI Tools](https://glintai.tools/blog/free-vs-pro-ai-tools.html): When upgrading pays off.
-- [AI Content Detector Comparison](https://glintai.tools/blog/ai-content-detector-comparison.html): Which detector is most accurate.
-- [10 AI Tools for Content Creators](https://glintai.tools/blog/ai-tools-content-creator-starter-list.html): The complete starter list.
+### Career
+- [AI Cover Letter and Resume Builder Guide 2026: Land More Interviews](https://glintai.tools/blog/ai-cover-letter-resume-guide.html): Write a tailored cover letter and sharpen your resume with AI — fast, free, and ATS-friendly. A step-by-step workflow with free tools.
+- [How to Write a Professional Bio That Gets You Noticed](https://glintai.tools/blog/write-professional-bio-guide.html): A bio is not a resume. Learn a simple formula for LinkedIn summaries, Twitter bios, and one-line resume pitches that make people remember you.
+
+### Content
+- [How to Write YouTube Titles That Actually Get Clicks](https://glintai.tools/blog/youtube-title-generator-guide.html): A practical framework for writing YouTube titles and hooks that earn the click — title formulas, A/B testing, CTR benchmarks, and a free browser tool to generate ideas fast.
+
+### Content Strategy
+- [Best Free AI Tools for Bloggers in 2026 (Zero-Signup Stack)](https://glintai.tools/blog/best-free-ai-tools-bloggers-2026.html): A practical, zero-cost AI toolkit for bloggers in 2026: writing, SEO, images, and productivity tools you can use without accounts or subscriptions.
+
+### Copywriting
+- [What Reading Ease Score Your Landing Page Actually Needs](https://glintai.tools/blog/reading-ease-score-landing-page.html): Benchmark Flesch reading ease scores by page type, and learn how to fix copy that's too hard to read — with a free in-browser readability checker.
+
+### Creative Writing
+- [AI Story Generator Guide 2026: Beat the Blank Page and Build Worlds](https://glintai.tools/blog/ai-story-generator-guide.html): Use an AI story generator to spark plots, design characters, and outline chapters. A hands-on workflow for fiction writers who want momentum — not a replacement.
+
+### Design
+- [Remove Background from Image in One Click (No Upload Needed)](https://glintai.tools/blog/remove-background-image-guide.html): Clean product shots, thumbnails, and profile pictures without Photoshop. Learn how to remove a background in your browser, with no file upload.
+
+### Education
+- [Free AI Tools for Students in 2026 (No Account Needed)](https://glintai.tools/blog/free-ai-tools-students-2026.html): The best free AI tools students can use in 2026 for essays, research, paraphrasing, and grammar — no paid plans, no accounts required to start.
+
+### Productivity
+- [10 AI Tools Every Content Creator Needs (The Complete Starter List)](https://glintai.tools/blog/ai-tools-content-creator-starter-list.html): You don't need 50 subscriptions. The 10 AI tools that cover research, writing, design, and distribution for most creators — all starting free.
+- [Best AI Resume Builder Tools in 2026](https://glintai.tools/blog/best-ai-resume-builder-tools-2026.html): AI resume builders compared: Rezi, Kickresume, Teal, Resume.io, and free local drafting with Glint AI.
+- [Best Free PDF Summarizer Tools in 2026](https://glintai.tools/blog/best-free-pdf-summarizer-tools-2026.html): Summarize PDFs without uploading to a server. We compare free local options vs cloud tools on privacy and accuracy.
+- [Free vs Pro AI Tools: When Should You Actually Upgrade?](https://glintai.tools/blog/free-vs-pro-ai-tools.html): Free AI tools are shockingly capable now. A clear framework for when upgrading to Pro actually pays off — and when it's just wasted money.
+- [How to Summarize Long Articles Without Losing the Meaning](https://glintai.tools/blog/how-to-summarize-long-articles.html): A practical, repeatable workflow to summarize long articles, research papers, and transcripts without dropping key points — using extractive and abstractive techniques, a reusable template, and a free browser tool.
+- [How to Summarize a PDF in Minutes (Without Reading Every Page)](https://glintai.tools/blog/summarize-pdf-guide.html): Long PDFs slow down research. Learn how to summarize a PDF in your browser, without uploading files to a server, and extract the signal fast.
+
+### SEO
+- [How to Write Meta Descriptions That Actually Boost CTR](https://glintai.tools/blog/meta-description-ctr-guide.html): A meta description is the ad copy of organic search. Learn the anatomy of a high-CTR description, reusable templates, and how to test it with a free SERP preview tool.
+- [SERP Preview: Write Meta Titles & Descriptions That Rank](https://glintai.tools/blog/serp-preview-meta-tags.html): See your Google snippet before you publish. Learn meta title and description best practices, safe length limits, and how a free SERP preview tool keeps you out of the truncation trap.
+
+### Security
+- [Generating API Keys Safely as a Solo Founder](https://glintai.tools/blog/generate-api-keys-safely.html): A practical security checklist for solo founders: how to generate, store, rotate, and scope API keys without a security team — using free local tooling.
+- [Strong Password Generator Guide 2026: Build Unbreakable Passwords](https://glintai.tools/blog/strong-password-generator-guide.html): Why you need a strong password generator, how long and random is enough, and how to manage keys safely with free tools.
+
+### Social
+- [The Hashtag Strategy That Grows Reach in 2026](https://glintai.tools/blog/hashtag-generator-guide.html): Stop pasting 30 random hashtags. Learn how to build platform-specific hashtag sets that actually grow reach, plus a free browser tool that generates them for you.
+
+### Tools
+- [9 Best Free JSON Formatters Online: Privacy & Speed Tested](https://glintai.tools/blog/best-free-json-formatter.html): We tested 9 free JSON formatters for speed, privacy, and error detection to find the best client-side, no-signup tool for safe API and config file debugging
+- [8 Best Free Markdown to HTML Converters (Tested in 2026)](https://glintai.tools/blog/best-free-markdown-to-html-converter.html): We tested 8 free converters on live preview, GFM tables, and code blocks plus the no-signup, browser-only option that beats them all for clean HTML in 2026
+- [8 Best Free Google SERP Simulators to Preview Snippets 2026](https://glintai.tools/blog/best-free-serp-preview-tool.html): We tested 8 free SERP simulators on pixel accuracy, mobile preview, and CTR score to preview how your title tags and meta descriptions appear in Google in 2026
+- [Why Every Marketer Needs a JSON Formatter](https://glintai.tools/blog/why-marketers-need-a-json-formatter.html): JSON isn't just for developers. Marketers touch it daily in APIs, ad platforms, and analytics — here's why a formatter saves hours and prevents costly errors.
+
+### Workflow
+- [Markdown to HTML: The Fastest Workflow for Creators](https://glintai.tools/blog/markdown-to-html-workflow.html): Why creators should write in Markdown and convert to HTML at the end — plus a free, private in-browser converter you can use today.
+
+### Writing
+- [AI Content Detector Comparison: Which One Is Most Accurate?](https://glintai.tools/blog/ai-content-detector-comparison.html): Every detector claims 99% accuracy. How the leading AI detectors work, what they miss, and how to use them honestly.
+- [How Accurate Are AI Detectors, Really? A Plain-English Breakdown](https://glintai.tools/blog/ai-content-detector-guide.html): AI detectors promise to catch machine-written text, but their accuracy is more mixed than the marketing suggests. Here's how they work and when to trust them.
+- [AI Essay Writer Guide 2026: Draft, Structure and Polish Faster](https://glintai.tools/blog/ai-essay-writer-guide.html): A practical guide to using an AI essay writer for research, outlining, drafting, and polishing — without losing your voice. Free tools and a step-by-step workflow.
+- [Best AI Grammar Checker in 2026 (Free and Paid Compared)](https://glintai.tools/blog/best-ai-grammar-checker-2026.html): Grammarly, ProWritingAid, LanguageTool, and free browser-based checkers — compared on accuracy, privacy, and price.
+- [Best AI Humanizer Tools in 2026 (Tested for Natural Output)](https://glintai.tools/blog/best-ai-humanizer-tools-2026.html): We ran the leading AI humanizers on the same paragraph. Which actually make AI text sound human — and which just shuffle words.
+- [Best AI Paraphrasing Tools in 2026 (QuillBot and Beyond)](https://glintai.tools/blog/best-ai-paraphrasing-tools-2026.html): Paraphrasing tools compared on accuracy, tone control, and privacy — QuillBot, Spinbot, Paraphraser.io, and free local alternatives.
+- [Best Free AI Writing Tools for Marketers in 2026](https://glintai.tools/blog/best-ai-writing-tools-marketers-2026.html): The free AI writing tools that handle the repetitive 80% of marketing writing — brainstorming, drafting, editing, and repurposing — so you can focus on strategy.
+- [ChatGPT vs Claude vs Gemini: Which Should You Write With?](https://glintai.tools/blog/chatgpt-vs-claude-vs-gemini-writing.html): Three frontier models, three writing personalities. How ChatGPT, Claude, and Gemini compare for everyday marketing and content work — and when to reach for each.
+- [Free Grammar Checker No Sign Up: Fix Text in Seconds](https://glintai.tools/blog/free-grammar-checker-no-signup.html): Use a free grammar checker with no sign up to catch grammar and spelling errors in your browser. No account, no uploads. Paste, fix, and done in seconds.
+- [Grammar Checking That Actually Catches the Mistakes That Matter](https://glintai.tools/blog/grammar-checker-guide.html): Most grammar mistakes cost trust before they cost clicks. Learn how to catch the errors readers actually notice with a fast, free checker.
+- [10 Free Grammarly Alternatives That Actually Work in 2026](https://glintai.tools/blog/grammarly-alternative-free.html): We tested 10 free Grammarly alternatives for accuracy, languages, and privacy. Find no-signup, multilingual, and client-side picks to fit your writing in 2026
+- [How to Humanize AI Text So Detectors Don't Flag It](https://glintai.tools/blog/humanize-ai-text.html): AI-generated text often follows predictable patterns. Learn how to humanize AI content, remove the &quot;AI smell,&quot; and keep your natural voice without losing speed.
+- [Improve Reading Ease Score: 7 Ways to Write Clear Text](https://glintai.tools/blog/improve-reading-ease-score.html): Improve reading ease score with concrete fixes: shorter sentences, simpler words, active voice, and less filler. Glint AI&#x27;s free analyzer shows your score.
+- [How to Paraphrase Without Losing Meaning (or Your Voice)](https://glintai.tools/blog/paraphrase-without-losing-meaning.html): Paraphrasing is more than swapping words. Learn how to rewrite sentences in your own voice while keeping the original meaning intact.
+- [Paraphrase Without Plagiarizing: A Safe Method to Use](https://glintai.tools/blog/paraphrase-without-plagiarizing.html): Learn to paraphrase without plagiarizing by restating the idea in your own words and citing it. Glint AI&#x27;s free paraphraser rewords text safely, no sign up.
+- [Private AI Detector: Check Text in Your Browser Free](https://glintai.tools/blog/private-ai-detector.html): A private AI detector checks text that reads as AI written without uploading it to a server. Glint AI runs in your browser, your draft stays on your device.
+- [7 Free QuillBot Alternatives That Beat the 125-Word Limit](https://glintai.tools/blog/quillbot-alternative-free.html): We tested 7 free QuillBot alternatives for limits, modes, and privacy to find unlimited, no-signup paraphrasers that beat the 125-word cap for your 2026 drafts
+- [Why a Word Counter Is the Most Underrated Writing Tool](https://glintai.tools/blog/word-character-counter.html): A word counter does more than count words. Learn how live counts, reading time, and platform character limits make it the quiet backbone of better writing and SEO.
+- [Write a Resume With AI: ATS Friendly in Minutes Free](https://glintai.tools/blog/write-resume-with-ai.html): Write a resume with AI to get a structured first draft in minutes, then humanize the voice and proof it for you. Glint AI&#x27;s free generator needs no sign up.
+
+
 ## Resources
 - [All Tools](https://glintai.tools/tools/): The full free toolkit.
 - [Blog](https://glintai.tools/blog/): Guides and comparisons.
