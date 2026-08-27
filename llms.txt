@@ -1,6 +1,6 @@
 # Glint AI
 
-> Glint AI is the everyday AI toolkit for creators and marketers: 16 free, privacy-first, browser-based AI tools to write better, create faster, and grow smarter. Free tools need no signup; Pro ($9.99/mo or $79/yr) unlocks higher usage. The site is built to be an asset you own — no tracking cookies, no server-side processing of your text.
+> Glint AI is the everyday AI toolkit for creators and marketers: 16 free, privacy-first, browser-based AI tools to write better, create faster, and grow smarter. Free tools need no signup; Pro ($9.99/mo) unlocks higher usage. The site is built to be an asset you own — no tracking cookies, no server-side processing of your text.
 
 ## Tools
 - [AI Text Summarizer](https://glintai.tools/tools/ai-text-summarizer.html): Summarize long articles and docs in your browser, with no upload.
