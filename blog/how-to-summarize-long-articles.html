@@ -119,6 +119,18 @@ footer{border-top:1px solid var(--line);color:var(--muted)}
   border:1px solid rgba(0,240,255,.35);
   box-shadow:0 0 28px rgba(0,240,255,.25);
 }
+
+/* GEO-CSS */
+.geo-takeaways{margin:24px 0;padding:18px 20px;border:1px solid rgba(0,240,255,.35);border-left:4px solid var(--brand);border-radius:14px;background:rgba(0,240,255,.06);box-shadow:0 0 24px rgba(0,240,255,.10)}
+.geo-takeaways h3{margin:0 0 10px;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand)}
+.geo-takeaways ul{margin:0;padding-left:20px}
+.geo-takeaways li{margin:7px 0;color:var(--text);font-size:15px;line-height:1.6}
+.geo-takeaways li b{color:var(--brand)}
+.geo-sources{margin:34px 0 0;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}
+.geo-sources h2{margin:0 0 12px;font-size:20px;color:var(--text)}
+.geo-sources ul{margin:0;padding-left:20px}
+.geo-sources li{margin:9px 0;color:var(--muted);font-size:14.5px;line-height:1.65}
+.geo-sources a{color:var(--brand);font-weight:600}
 </style>
 </head>
 <body>
@@ -135,6 +147,17 @@ footer{border-top:1px solid var(--line);color:var(--muted)}
 
 <img class="hero-img" src="assets/summarize.png" alt="Cyberpunk illustration of a holographic document being compressed into a summary chip" />
 
+<!-- GEO-TAKEAWAYS -->
+<aside class="geo-takeaways" aria-label="Key takeaways">
+  <h3>Key takeaways</h3>
+  <ul>
+    <li>Most summaries lose the point because they copy sentences instead of capturing the claim and evidence.</li>
+    <li>Two techniques that work: extractive pulls key sentences, abstractive restates in your own words.</li>
+    <li>A repeatable five-step workflow: skim, identify the thesis, map evidence, draft, compress.</li>
+    <li>Match the method to content type: transcripts need timestamps, PDFs need section headers.</li>
+    <li>Do it free in your browser with the Glint Text and PDF Summarizers, with no upload.</li>
+  </ul>
+</aside>
 <div class="content">
 <h2>Why most summaries lose the point</h2>
 <p>A summary fails when it optimizes for <em>length</em> instead of <em>signal</em>. Cutting 70% of the words doesn't help if you delete the one sentence that changes your decision. Good summarization has two jobs: keep the load-bearing claims, and preserve the logical order so a reader can still follow the argument. Most people do the first badly and skip the second entirely.</p>
@@ -235,6 +258,17 @@ Culture, not policy, drove most of the effect."</code></pre>
 </div>
 </div>
 
+
+<!-- GEO-SOURCES -->
+<section class="geo-sources" aria-label="Sources and further reading">
+  <h2>Sources &amp; further reading</h2>
+  <ul>
+    <li><a href="/tools/ai-text-summarizer.html" target="_blank" rel="noopener noreferrer">Glint AI Text Summarizer</a> &mdash; Free, in-browser.</li>
+    <li><a href="/blog/summarize-pdf-guide.html" target="_blank" rel="noopener noreferrer">Summarize a PDF</a> &mdash; Long document workflow.</li>
+    <li><a href="/tools/pdf-summarizer.html" target="_blank" rel="noopener noreferrer">Glint AI PDF Summarizer</a> &mdash; Browser-only.</li>
+    <li><a href="/blog/paraphrase-without-losing-meaning.html" target="_blank" rel="noopener noreferrer">Paraphrase without losing meaning</a> &mdash; Restate accurately.</li>
+  </ul>
+</section>
 
 <div class="author-bio" style="margin:30px 0;padding:18px 20px;border:1px solid #2a2a44;border-radius:14px;background:rgba(18,18,32,.45);">
 <h3 style="margin:0 0 6px;font-size:16px;color:#e8e8f5;">About the author</h3>

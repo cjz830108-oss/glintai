@@ -112,6 +112,18 @@ footer{border-top:1px solid var(--line);color:var(--muted)}
   border:1px solid rgba(0,240,255,.35);
   box-shadow:0 0 28px rgba(0,240,255,.25);
 }
+
+/* GEO-CSS */
+.geo-takeaways{margin:24px 0;padding:18px 20px;border:1px solid rgba(0,240,255,.35);border-left:4px solid var(--brand);border-radius:14px;background:rgba(0,240,255,.06);box-shadow:0 0 24px rgba(0,240,255,.10)}
+.geo-takeaways h3{margin:0 0 10px;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand)}
+.geo-takeaways ul{margin:0;padding-left:20px}
+.geo-takeaways li{margin:7px 0;color:var(--text);font-size:15px;line-height:1.6}
+.geo-takeaways li b{color:var(--brand)}
+.geo-sources{margin:34px 0 0;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}
+.geo-sources h2{margin:0 0 12px;font-size:20px;color:var(--text)}
+.geo-sources ul{margin:0;padding-left:20px}
+.geo-sources li{margin:9px 0;color:var(--muted);font-size:14.5px;line-height:1.65}
+.geo-sources a{color:var(--brand);font-weight:600}
 </style>
 </head>
 <body>
@@ -128,6 +140,17 @@ footer{border-top:1px solid var(--line);color:var(--muted)}
 
 <img class="hero-img" src="assets/detect.png" alt="Cyberpunk illustration of a magnifying glass scanning a digital document for AI-written text" />
 
+<!-- GEO-TAKEAWAYS -->
+<aside class="geo-takeaways" aria-label="Key takeaways">
+  <h3>Key takeaways</h3>
+  <ul>
+    <li>AI detectors estimate how machine-like text reads using statistical signals like perplexity and burstiness; they measure likelihood, not proof of authorship.</li>
+    <li>False positives happen with short, formulaic, or non-native writing; false negatives happen with carefully edited AI text.</li>
+    <li>Use a detector to self-check your own drafts, not to accuse others, because accuracy is far from perfect.</li>
+    <li>The Glint AI Content Detector runs in your browser and needs no signup, so your draft never leaves your machine.</li>
+    <li>If a detector flags your text, revise for varied rhythm and specific detail rather than hunting for a bypass.</li>
+  </ul>
+</aside>
 <div class="content">
 <h2>How AI detectors work</h2>
 <p>Most detectors are classifiers trained on large collections of human and AI text. They look for statistical patterns: how predictable the next word is (<b>perplexity</b>), how much sentence length varies (<b>burstiness</b>), and the frequency of certain phrases and structures. Some tools also check for watermarks or token patterns specific to a model.</p>
@@ -176,6 +199,18 @@ footer{border-top:1px solid var(--line);color:var(--muted)}
 <p><b>How accurate are AI detectors?</b> Accuracy varies widely. Some tools reach 90% in ideal conditions, but false positives and false negatives are common in real-world use.</p><p><b>Can AI detectors be wrong?</b> Yes. Non-native speakers, technical writers, and edited AI text can all produce misleading detector scores.</p><p><b>What do AI detector scores mean?</b> They show how statistically similar the text is to known AI examples. They do not prove authorship.</p><p><b>How can I avoid being flagged by AI detectors?</b> Vary sentence length, use plain words, add specific examples, and edit the text with a human reader in mind.</p><p><b>Is there a free AI detector?</b> Yes. Glint AI's <a href="/#tools">AI Detector</a> runs locally in your browser with no upload or account required.</p>
 </div>
 
+
+<!-- GEO-SOURCES -->
+<section class="geo-sources" aria-label="Sources and further reading">
+  <h2>Sources &amp; further reading</h2>
+  <ul>
+    <li><a href="https://developers.google.com/search/docs/appearance/ai-generated-content" target="_blank" rel="noopener noreferrer">Google: AI-generated content</a> &mdash; Disclosure expectations for AI-assisted writing.</li>
+    <li><a href="/tools/ai-content-detector.html" target="_blank" rel="noopener noreferrer">Glint AI Content Detector</a> &mdash; Private, in-browser detection.</li>
+    <li><a href="/tools/ai-humanizer.html" target="_blank" rel="noopener noreferrer">Glint AI Humanizer</a> &mdash; Make writing sound natural.</li>
+    <li><a href="/blog/private-ai-detector.html" target="_blank" rel="noopener noreferrer">Private AI detector guide</a> &mdash; Understand how detection works.</li>
+    <li><a href="https://www.eff.org/issues/privacy" target="_blank" rel="noopener noreferrer">EFF: Privacy</a> &mdash; Why client-side processing protects you.</li>
+  </ul>
+</section>
 
 <div class="author-bio" style="margin:30px 0;padding:18px 20px;border:1px solid #2a2a44;border-radius:14px;background:rgba(18,18,32,.45);">
 <h3 style="margin:0 0 6px;font-size:16px;color:#e8e8f5;">About the author</h3>

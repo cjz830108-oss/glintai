@@ -108,6 +108,18 @@ footer{border-top:1px solid var(--line);color:var(--muted)}
   border:1px solid rgba(0,240,255,.35);
   box-shadow:0 0 28px rgba(0,240,255,.25);
 }
+
+/* GEO-CSS */
+.geo-takeaways{margin:24px 0;padding:18px 20px;border:1px solid rgba(0,240,255,.35);border-left:4px solid var(--brand);border-radius:14px;background:rgba(0,240,255,.06);box-shadow:0 0 24px rgba(0,240,255,.10)}
+.geo-takeaways h3{margin:0 0 10px;font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand)}
+.geo-takeaways ul{margin:0;padding-left:20px}
+.geo-takeaways li{margin:7px 0;color:var(--text);font-size:15px;line-height:1.6}
+.geo-takeaways li b{color:var(--brand)}
+.geo-sources{margin:34px 0 0;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}
+.geo-sources h2{margin:0 0 12px;font-size:20px;color:var(--text)}
+.geo-sources ul{margin:0;padding-left:20px}
+.geo-sources li{margin:9px 0;color:var(--muted);font-size:14.5px;line-height:1.65}
+.geo-sources a{color:var(--brand);font-weight:600}
 </style>
 </head>
 <body>
@@ -124,6 +136,17 @@ footer{border-top:1px solid var(--line);color:var(--muted)}
 
 <img class="hero-img" src="assets/api-keys.png" alt="Cyberpunk security scene with a glowing padlock and floating encrypted API key tokens" />
 
+<!-- GEO-TAKEAWAYS -->
+<aside class="geo-takeaways" aria-label="Key takeaways">
+  <h3>Key takeaways</h3>
+  <ul>
+    <li>The one mistake behind 90% of leaks: pasting secrets into chat windows and docs where they spread.</li>
+    <li>A leaked key can mean stolen compute, drained budgets, and exposed user data, so rotate fast.</li>
+    <li>Use a .gitignore safety net and env vars so keys never land in your source or git history.</li>
+    <li>Scope every key to the minimum, rotate on a schedule, and separate dev from production.</li>
+    <li>Keep a simple key inventory and a two-minute routine so solo founders stay safe without a security team.</li>
+  </ul>
+</aside>
 <div class="content">
 <h2>The one mistake that causes 90% of leaks</h2>
 <p>Keys get committed to a public Git repo. A bot scrapes it within minutes and your bill is $4,000 by morning. Everything below exists to make that impossible.</p>
@@ -224,6 +247,17 @@ MAILGUN_KEY        | prod | rotates 2026-12-15 | used by: transactional</code></
 </div>
 </div>
 
+
+<!-- GEO-SOURCES -->
+<section class="geo-sources" aria-label="Sources and further reading">
+  <h2>Sources &amp; further reading</h2>
+  <ul>
+    <li><a href="https://owasp.org/www-community/controls/Secrets_Management_Cheat_Sheet" target="_blank" rel="noopener noreferrer">OWASP: Secrets management</a> &mdash; Store, don't scatter.</li>
+    <li><a href="https://docs.github.com/en/code-security/secret-scanning" target="_blank" rel="noopener noreferrer">GitHub: Secret scanning</a> &mdash; Catch leaks in git.</li>
+    <li><a href="/tools/password-generator.html" target="_blank" rel="noopener noreferrer">Glint AI Password Generator</a> &mdash; Strong random secrets.</li>
+    <li><a href="/blog/why-marketers-need-a-json-formatter.html" target="_blank" rel="noopener noreferrer">Why marketers need a JSON formatter</a> &mdash; API hygiene in practice.</li>
+  </ul>
+</section>
 
 <div class="author-bio" style="margin:30px 0;padding:18px 20px;border:1px solid #2a2a44;border-radius:14px;background:rgba(18,18,32,.45);">
 <h3 style="margin:0 0 6px;font-size:16px;color:#e8e8f5;">About the author</h3>
