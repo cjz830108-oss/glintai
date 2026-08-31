@@ -1,33 +1,35 @@
-# SEO 内容批次 3 — 完成总结
+# Glint AI — SEO 审计修复轮（2026-08-27）
 
-## 本次交付
-继续推进 8 月 26 日批次的 5 篇英文 SEO 博客，完成 hero 图、站点地图、首页博客区整合，并把 8 月 13 日批次的 5 篇旧文也补进了首页索引。
+## 做了什么
+基于重启的 SEO 内容审计团队（技术 SEO / 关键词 / 内链三项）结论，执行了 ROI 最高、风险最低的可脚本化修复，并本地提交 `f5e7c37`。
 
-| 博客 slug | 目标工具页 | 字数 | SEO 审计分 |
-|---|---|---|---|
-| grammarly-alternative-free | /tools/grammar-checker.html | ~2,059 | 95/100 |
-| quillbot-alternative-free | /tools/paraphraser.html | ~2,047 | 95/100 |
-| best-free-json-formatter | /tools/json-formatter.html | ~2,103 | 95/100 |
-| best-free-serp-preview-tool | /tools/serp-preview.html | ~2,019 | 95/100 |
-| best-free-markdown-to-html-converter | /tools/markdown-to-html.html | ~2,152 | 95/100 |
+## 审计评分
+- 技术 SEO：**88/100**（致命项已自愈；剩余中低危）
+- 内链：**68/100**（博客互链强，工具→博客弱，存在单向孤儿对比页）
+- 关键词：12 选题 ROI 排序，首批 8 篇待写
 
-## 关键动作
-1. **生成配图**：用 ImageGen 顺序生成 5 张赛博朋克 hero PNG（1536×1024），Pillow 裁剪底部 80px 水印后统一放大到 1920×1080；原图备份于 `blog/assets/original/`。
-2. **缩略图**：为这 5 篇新文 + 8 月 13 日 5 篇旧文共 10 篇文章生成 480×297 首页缩略图 `thumb-*.png`。
-3. **站点地图**：`sitemap.xml` 从 46 条 URL 扩展到 51 条，包含 5 篇新博客。
-4. **首页索引**：`index.html` 博客区从 24 篇扩展到 34 篇，覆盖全站所有博客。
-5. **本地提交**：把上述变更打包为一次 commit，叠在之前的 `cc99163`（修复重复 FAQ）和 `82ec5df`（链接规范化 + Supabase keepalive）之上。
+## 已落地修复（66 文件，幂等脚本 `fix_seo_audit.py`）
+| 项 | 内容 | 范围 |
+|---|---|---|
+| **P1** | `blog/index.html` 相对 `blog/…` 链接 → 绝对 `/blog/…`（防 404） | 83 处→0 残留 |
+| **M4** | 工具页 `href="/index.html"` → `href="/"` | 16 页 ×3 |
+| **M1/M2a/L1** | 博客注入 `og:url` + `og:image`/`twitter:image` + Article `image` | 49/49 篇 |
+| **Group B (P1)** | 支柱博客 → 对比/孤儿页入链（消除孤儿页） | 26 页 |
+| **Group A (P2)** | 工具页 Related guides → 主题博客入链 | 16 页 |
 
-## 生成/修改文件
-- 新增：`blog/*.html` ×5、`blog/assets/*.png` ×5、`blog/assets/thumb-*.png` ×10、`blog/assets/original/*.png` ×5
-- 修改：`sitemap.xml`、`index.html`
-- 已存在未改动：`drafts/*-spec.json` ×5、`reports/seo-report-*.md` ×5、`reports/seo-audit-2026-08-26.md`
+新增：`blog/assets/og-default.png`（1200×630 赛博品牌 OG 卡，无图 15 篇兜底）、`fix_seo_audit.py`（可重跑）。
 
-## 验证结果
-- sitemap 51 条 URL，对应本地文件全部存在。
-- 5 篇新博客：canonical 1 个、JSON-LD 2 块、FAQ JSON-LD 5 问、hero 图引用与文件均存在。
-- 首页 34 个 thumb 引用全部存在，无 `/index.html#` 锚点。
+## 验证（全部通过）
+- `validate_links`：**1660 内链，0 死链**
+- 全站 JSON-LD：0 解析错误
+- 49/49 博客 `og:url` / `og:image` / Article `image` 齐备
 
-## 待办
-- 需要大哥提供一个短期 fine-grained PAT（仅 `cjz830108-oss/glintai`、Contents: Read and write、短过期）才能把本地 commits push 到 GitHub，触发 Vercel 自动部署。
-- 部署后记得在 Google Search Console 重新提交 sitemap 并观察收录。
+## 当前状态 / 卡点
+- ✅ 本地提交 `f5e7c37`（基于 `ba1f7b0`）
+- ⛔ **未 push**：本沙箱当前对 github.com 出网返回 000，`git push` 超时。remote 已还原干净（PAT 无残留）。Vercel 自动部署依赖 GitHub push，故本次修复**尚未上线**。
+- 待网络恢复或用户本机推送后触发 Vercel 部署。
+
+## 下一步
+1. **推送上线**：网络恢复后 `git push origin main` → Vercel 部署。
+2. **Phase 2 内容**：写首批 8 篇关键词文（free ai rewriter / ai headline generator / free ai tools for developers / teachers / ai meta description generator / youtube description-script generator / does google detect ai content / free ai seo tools for beginners）。
+3. **收钱侧（用户后台）**：删 Vercel `SKIP_VERIFY`、核对 PayPal webhook URL 用 `glintai.tools`、真测一笔 $9。
