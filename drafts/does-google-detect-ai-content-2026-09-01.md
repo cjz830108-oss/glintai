@@ -95,20 +95,22 @@ For a blog or marketing page, disclosure is often optional. If AI contributed ma
 
 ## 5 Myths About AI Content and Rankings
 
+Most of the fear around AI content comes from a handful of claims repeated often enough to feel true. Here is each one, what Google's policies actually say, and why the myth keeps circulating.
+
 ### "Google Automatically Demotes AI Text"
-False. Helpful AI-assisted content is treated on its merits. A clearly written, accurate explainer ranks on quality, not on whether a model helped draft it.
+False. Helpful AI-assisted content is judged on its merits, not its authorship. A clearly written, accurate explainer ranks on quality, not on whether a model helped draft it. The confusion comes from watching low-quality AI pages get filtered — but the cause was the low quality, not the tool that produced it. A human-written thin page gets filtered for the same reason.
 
 ### "You Must Pass an AI Detector to Rank"
-False. Google does not gate rankings on a detector score.
+False. Google has never said rankings depend on clearing any detector. Third-party "AI score" tools estimate who wrote the text; they do not judge whether it helps the reader. Optimizing your writing for a detector score is optimizing for the wrong signal entirely.
 
 ### "Humanizing Guarantees Rankings"
-False. Humanizing improves readability; it does not by itself win rankings. Useful, original content does. A smoothed but empty page still fails; a rough but genuinely helpful page still ranks. Humanizing is polish, not a pass.
+False. Humanizing improves readability; it does not by itself win rankings. Useful, original content is what earns the spot. A smoothed but empty page still fails; a rough but genuinely helpful page still ranks. Humanizing is polish, not a pass — and readers notice filler faster than any algorithm does.
 
 ### "More AI Content Equals More Traffic"
-False. Volume without value triggers the spam policies that hurt you.
+False. Volume without value triggers the spam policies that hurt you. A thousand thin, paraphrased pages about the same keyword dilute your site and invite a quality review. One strong, original article outperforms a warehouse of near-duplicates that say the same thing slightly differently.
 
 ### "Detection Scores Are Evidence"
-False. Scores are estimates with known false positives. Treat them as weak signals only.
+False. Scores are estimates with known false positives. Treat them as weak signals only — never as proof of authorship or misconduct. A "92% AI" reading on fluent human writing says more about the detector's training assumptions than about the person who wrote it.
 
 ## Staying Ready as the Rules Evolve
 
@@ -116,9 +118,21 @@ Policies shift, but the underlying principle has stayed steady for years: reward
 
 The practical move is to keep human judgment in the loop. A person who reads, checks, and stands behind the work will outlast any single algorithm change. AI is a tool you use; the accountability stays with you.
 
+### A Quarterly Self-Check
+You do not need to monitor SEO news daily. Once a quarter, ask four questions of your published pages:
+
+1. **Originality:** Does this page add something a reader cannot get from the top three results already? If not, update it with your own data, examples, or a clearer explanation.
+2. **Accuracy:** Are the facts, links, and claims still true? Outdated pages quietly lose trust and rankings alike.
+3. **Editing:** Would a human expert still stand behind every sentence? If a section reads like raw model output, rewrite it in a real voice.
+4. **Usefulness:** Does the page satisfy the query, or just target the keyword? Delete or merge anything that exists only to capture a term.
+
+This cadence keeps you safe through any update without turning your week into a panic every time a "Google changed everything" headline appears.
+
 ## A Real Example: Two Pages, Same Topic
 
-Imagine two pages about "how to start a vegetable garden." Page A is written by a person but is a thin list copied from a competitor, with no original detail. Page B is drafted with AI, then expanded with the author's own failed attempts, local climate notes, and a photo of their actual raised bed. Google's systems are far more likely to reward Page B. The authorship method is irrelevant; the helpfulness is not.
+Imagine two pages about "how to start a vegetable garden." Page A is written entirely by a person but is a thin list copied from a competitor: "pick a sunny spot, buy seeds, water daily." It is technically human-authored and technically accurate, yet adds nothing a reader could not get from a thousand other posts. Page B is drafted with AI, then expanded with the author's own failed attempts (the year the squash rotted from poor drainage), local climate notes (short growing season, last frost around May 20), and a photo of their actual raised bed. Google's systems are far more likely to reward Page B. The authorship method is irrelevant; the helpfulness is not.
+
+Now evaluate the same two pages for spam signals. Page A, despite being human-written, shows the classic signs of scaled content abuse: no original detail, no real expertise, nothing for a reader to act on. Page B shows exactly what the helpful-content principles reward: first-hand experience, specific constraints, and a result the reader can replicate. A human reviewer and an algorithmic system would both land on Page B — not because of who held the pen, but because of what the page delivers.
 
 This is why the productive question is never "did a machine write this?" but "does this help the reader more than what already exists?" If the answer is yes, the tool behind the words stops mattering.
 

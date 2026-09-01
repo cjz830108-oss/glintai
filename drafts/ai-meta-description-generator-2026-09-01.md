@@ -57,7 +57,7 @@ A person searching "free JSON formatter" wants speed and no signup, not a philos
 Duplicate descriptions across pages look lazy to users and get rewritten by Google. Generate per page, never copy-paste the same block sitewide.
 
 ### Does It Earn the Click Without Clickbait?
-A honest benefit beats a false promise. "Free, no signup, private" is a real reason to click; "You won't believe this trick" is not.
+A honest benefit beats a false promise. "Free, no signup, private" is a real reason to click; "You won't believe this trick" is not. The test is simple: would you click it yourself, or scroll past your own listing? If the honest answer is scroll, the description is doing the page a disservice.
 
 ### Does It Survive Truncation?
 Read the description as it will actually appear. If the key phrase lands past the pixel cutoff, move it to the front. The fastest way is to [preview your snippet before you publish](/tools/serp-preview.html) and watch where it breaks.
@@ -97,7 +97,7 @@ Google fills the snippet from your page when you omit a description. Writing you
 
 Generators tend to fall into predictable patterns, and learning to read them saves time. A typical weak output is the "feature list": "Our tool does X, Y, and Z. Try it now." It names functions but not the reader's payoff. A stronger output leads with the outcome: "Cut your editing time in half with one click."
 
-Another common pattern is the question hook: "Struggling to write descriptions?" It can work, but overuse reads as a template. The best outputs combine a specific benefit, a differentiator (free, no signup, private), and a short action. When you see a generator default to vague praise ("the best," "amazing"), rewrite the opener yourself — that is exactly the kind of phrasing that gets truncated or ignored.
+Another common pattern is the question hook: "Struggling to write descriptions?" It can work, but overuse reads as a template. The best outputs combine a specific benefit, a differentiator (free, no signup, private), and a short action. A third pattern worth spotting is the "keyword cram": the model stuffs your target phrase three times because it assumes density helps. It does not — and it reads as spam. One natural mention of "free meta description generator" plus a clear benefit beats a paragraph that repeats the term. Trim the repeats; keep the meaning. When you see a generator default to vague praise ("the best," "amazing"), rewrite the opener yourself — that is exactly the kind of phrasing that gets truncated or ignored.
 
 ## Example: Rewriting a Weak Snippet
 
@@ -107,9 +107,30 @@ A better pass: "Format, validate, and beautify JSON in your browser. Free, no si
 
 Now preview it. If "nothing uploaded" falls past the desktop cutoff, move it forward: "Free browser JSON formatter — no signup, nothing uploaded. Format and validate in one click." The meaning survives; the truncation does not. This loop — generate, preview, trim — is the difference between a snippet that converts and one that gets rewritten by Google.
 
+Here is a second example for a SaaS landing page. The generator's first try might be: "We are a leading provider of AI-powered solutions for modern teams. Contact us today." It names the company's self-image, not the reader's problem. A sharper version: "Turn support tickets into docs automatically. Free plan, no card. Set up in 10 minutes." At roughly 90 characters it leads with the outcome and removes friction. Preview it, and the phrase "no card" survives the cutoff — exactly the reassurance a hesitant clicker needs. A third pass might move the benefit forward for mobile: "Auto-turn tickets into docs — free, no card, 10-minute setup." Same promise, trimmed for the smaller screen.
+
+## What to Do When Google Rewrites Your Snippet
+
+Sometimes you write a clean description and Google still shows its own text. That is normal, not a failure. Google rewrites snippets when it believes the page content answers the query better than your hand-written line, or when your description does not match what the searcher actually typed.
+
+If your snippet keeps getting replaced, check three things: (1) does your description reflect the page's current content, or is it a leftover from an old version? (2) does the page text contain a clearer, query-matching sentence Google can pull instead? (3) did you fall into one of the mistakes above — duplication, stuffing, or a promise the page does not keep? Fixing those usually restores your control. When the rewrite is genuinely click-worthy, you can also leave it — Google's version is sometimes the better fit for that exact query, and chasing it is not worth the risk of a worse variant.
+
 ## When to Regenerate vs Leave It Alone
 
-Do not chase a new description every week. Regenerate when the page changes meaning, when your preview shows truncation you missed, or when click-through on that result drops noticeably. Leave it alone when it already earns the click and matches intent — constant tinkering just creates risk of a worse variant. Stability signals a page that knows what it is.
+Do not chase a new description every week. Constant tinkering just creates risk of a worse variant, and stability signals a page that knows what it is. Use this split:
+
+**Regenerate when:**
+- The page's meaning changed (new feature, new pricing, merged topic).
+- Your preview shows truncation you missed on desktop or mobile.
+- Click-through on that specific result drops noticeably for two weeks straight.
+- A competitor now out-snippets you on the same query.
+
+**Leave it alone when:**
+- It already earns the click and matches search intent.
+- The only reason to change is boredom — yours, not the reader's.
+- A preview confirms it renders fully and reads naturally.
+
+A good habit: review descriptions quarterly, not daily. Set a calendar reminder, preview the top twenty results, and only touch the ones that fail the preview or the CTR test. Everything else is fine as it is.
 
 ## Frequently Asked Questions
 

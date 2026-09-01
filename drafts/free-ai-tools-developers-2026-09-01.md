@@ -41,7 +41,7 @@ Tools like Codeium and Cursor add inline completions and a chat panel inside you
 Cline and Sourcegraph Cody help you trace a bug across a repo or suggest a refactor. Cline can act autonomously on a branch; Cody shines at semantic code search. Both have free tiers but need signup. For a gnarly null-pointer trail across twelve files, Cody's "where is this symbol used" search beats grep by understanding meaning, not just strings — a genuine time saver on a large codebase.
 
 ### Where Free Tiers Hit Their Limits
-Expect rate limits, smaller context windows, and capped monthly calls on the free plans. For occasional use they are plenty. For a team processing thousands of requests a day, the limits bite.
+Expect rate limits, smaller context windows, and capped monthly calls on the free plans. For occasional use they are plenty. For a team processing thousands of requests a day, the limits bite. The practical pattern is to keep the no-signup browser tools as your daily baseline and reserve the account-based assistants for the occasional heavy lift — that way a rate limit never blocks the chores you do every day.
 
 ## Category 2 — Formatting and Validation
 
@@ -62,7 +62,7 @@ Even with local tools, never paste secrets into any web form as a habit. Format 
 Changelogs, READMEs, and internal docs often start as Markdown. A [Markdown to HTML converter](/tools/markdown-to-html.html) turns them into clean, styled HTML you can drop into a docs site — no signup, no upload, no account to manage. For a tested roundup, see the [best free Markdown converters](/blog/best-free-markdown-to-html-converter.html) breakdown. When you tag a release, write the notes once in Markdown and convert them in the browser, so the draft never touches a cloud service.
 
 ### Keeping Documentation in Sync
-The tool helps, but the discipline is yours: regenerate the HTML whenever the Markdown changes, and keep one source of truth. AI can draft the prose; you own the accuracy.
+The tool helps, but the discipline is yours: regenerate the HTML whenever the Markdown changes, and keep one source of truth. A common failure is a docs page that silently drifts from its source — the converter ran once and nobody touched it since. AI can draft the prose; you own the accuracy and the update cadence, so set a reminder to regenerate before each release.
 
 ## Category 4 — Secrets, Keys and Credentials
 
@@ -83,17 +83,26 @@ The single habit that stops most incidents: generate secrets on demand and paste
 Local means the model or the processing happens on your hardware or in your browser tab, not a vendor's cloud. Ollama and Continue are the poster children: download a model, run it offline, and your code never leaves the laptop. On a flight or inside a locked-down corporate network, that difference is the difference between "working" and "blocked."
 
 ### Trade-offs: Speed, Model Quality, Setup
-Local is private but heavier. You trade some model quality and speed for control. A small quantized model is fine for autocomplete and formatting; you'd reach for a cloud model for open-ended reasoning.
+Local is private but heavier. You trade some model quality and speed for control, and you pay upfront in setup time — downloading a model and wiring it into your editor takes an afternoon the first time. A small quantized model is fine for autocomplete and formatting; you'd reach for a cloud model for open-ended reasoning. The right move is to keep a local baseline always available and only spin up a cloud tool when the task clearly needs it.
 
 ## How to Build Your Free Stack in 20 Minutes
 
-- **Solo dev:** Ollama for reasoning + Glint's browser tools (JSON, Markdown, password) for daily chores. Zero accounts, zero uploads.
-- **Student:** Codeium for autocomplete + Glint formatter for assignments. Free, no card, nothing leaves the laptop.
-- **Team:** Continue (self-hosted) for code help + a shared secrets manager + Glint generators for ad-hoc tasks. Keep proprietary code out of cloud tools, and standardize on local formatters so nobody pastes secrets into a random web app.
+You do not need a procurement request to assemble this. Here is a concrete, time-boxed version.
+
+- **Minutes 0–5 (solo dev):** Install Ollama, pull a small model (a 7B–14B quantized model is plenty for autocomplete-style help), and bookmark Glint's browser tools — [JSON formatter](/tools/json-formatter.html), [Markdown to HTML](/tools/markdown-to-html.html), and [password generator](/tools/password-generator.html). Zero accounts, zero uploads. By minute five you have local reasoning plus three daily-chore tools.
+- **Minutes 5–12 (student):** Turn on Codeium's free autocomplete in your editor and keep the Glint formatter open in a tab for assignments. Free, no card, nothing leaves the laptop. The formatter is also a quiet way to learn what valid JSON and clean HTML actually look like.
+- **Minutes 12–20 (team):** Stand up Continue in self-hosted mode for shared code help, point everyone at one secrets manager, and standardize on the browser generators for ad-hoc tasks. The key policy: proprietary code stays out of cloud tools, and nobody pastes secrets into a random web app — local formatters make that the easy default, not the heroic one.
 
 ## When to Pay vs Stay Free
 
 The free, no-signup tools cover most daily chores. Pay when you hit a wall they cannot solve: you need team-wide analytics, bulk generation across thousands of pages, or a model with deeper reasoning than a local one provides. Until then, the free stack is not a compromise — it is often the safer and faster choice.
+
+Use this quick checklist before reaching for a paid plan:
+
+1. **Volume:** Are you generating for one project or ten thousand pages a day? Below a few hundred requests a day, free tiers are usually enough.
+2. **Data sensitivity:** Does the input contain customer data, source code, or credentials? If yes, prefer local tools even if the cloud one is "better."
+3. **Reasoning depth:** Is the task boilerplate, or open-ended architecture thinking? Local small models handle the first; cloud models still win the second.
+4. **Shared state:** Do you need a team history, shared prompts, or audit logs? That is the moment a managed account earns its cost.
 
 A good rule: start free and private, and only add a paid cloud tool when a specific task justifies the account and the data risk. Most developers discover that moment arrives far less often than the marketing suggests.
 
@@ -102,6 +111,19 @@ A good rule: start free and private, and only add a paid cloud tool when a speci
 Here is how the no-signup stack fits a real afternoon. A staging webhook returns a malformed JSON payload, so you paste it into the [free JSON formatter](/tools/json-formatter.html), spot the missing comma on line 14, and move on — without sending customer data to a cloud. You then update the changelog: write it in Markdown, convert it with the [Markdown to HTML converter](/tools/markdown-to-html.html), and drop the result into the docs site. Before committing a new deploy script, you generate a fresh token with the [strong password generator](/tools/password-generator.html) and paste it only into your secrets manager.
 
 None of those steps required an account, an upload, or a waiting room. That is the point: the private stack removes friction without trading away control of your code or credentials.
+
+## Common Mistakes When Going Free
+
+The free stack is generous, but a few habits turn "free" into "fragile."
+
+### Treating a Free Tier as Unlimited
+It is not. Codeium, Cursor, and Cody all cap calls or context on free plans. Build the local tools — Ollama, Continue, and Glint's browser utilities — as your always-on baseline, and reach for cloud tools only for the tasks they genuinely earn.
+
+### Pasting Secrets "Just Once"
+The breach almost always starts with a one-time paste "for a second." Generate secrets straight into your manager, never into a chat or a web form. A browser-based generator makes the safe path the easy one.
+
+### Forgetting the Discipline
+Tools do not keep docs in sync — you do. Regenerate the HTML whenever the Markdown changes, and keep one source of truth. AI drafts the prose; you own the accuracy and the update cadence.
 
 ## Frequently Asked Questions
 

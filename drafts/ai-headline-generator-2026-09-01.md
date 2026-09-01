@@ -116,19 +116,19 @@ For a roundup of dedicated tools, the [best YouTube title generators](/blog/best
 ## 5 Headline Mistakes That Kill Your CTR
 
 ### Vague Promises
-"Some thoughts on productivity" tells the reader nothing. Specific beats clever every time. "What I changed after a year of remote work" promises a concrete lesson and a person behind it.
+"Some thoughts on productivity" tells the reader nothing. Specific beats clever every time. "What I changed after a year of remote work" promises a concrete lesson and a person behind it. Try this instead: name the outcome and the timeframe. "3 habits that cut my remote-work burnout in a month" is specific enough that a tired reader knows exactly what they'll get.
 
 ### Keyword Stuffing
-"Best blog headline generator tool free blog titles" reads like spam to humans and algorithms alike. One natural keyword is enough.
+"Best blog headline generator tool free blog titles" reads like spam to humans and algorithms alike. One natural keyword is enough. A cleaner version keeps the reader in mind: "Free blog title generator that actually sounds human" — the keyword is there, but the sentence still sounds like a person wrote it, not a machine stuffing a tag.
 
 ### Overusing Superlatives
-If everything is "ultimate" and "game-changing," nothing is. Reserve superlatives for when you mean them.
+If everything is "ultimate" and "game-changing," nothing is. Reserve superlatives for when you mean them. A steady, plain title often out-clicks a screaming one, because readers have learned to tune out hype. Save "ultimate" for the one post on your site that genuinely earns it.
 
 ### Ignoring Search Intent
-A person searching "headline formulas" wants a list, not a philosophy essay. Match the format to the query.
+A person searching "headline formulas" wants a list, not a philosophy essay. Match the format to the query. If the search is a how-to, lead with "How to…"; if it's a comparison, lead with the two options; if it's a number, lead with the digit. The title is the first promise that your content has to keep.
 
 ### Never Testing
-The cheapest experiment in publishing is trying two titles. Even a mental A/B test ("which would I click?") beats publishing the first thing you think of.
+The cheapest experiment in publishing is trying two titles. Even a mental A/B test ("which would I click?") beats publishing the first thing you think of. Better still, keep a simple spreadsheet of the titles you've shipped next to their open and click rates — after a dozen posts you'll see your own patterns, and the next headline writes itself faster.
 
 ## Try Glint's Free Headline Generator (No Signup)
 
