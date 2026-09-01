@@ -101,6 +101,11 @@
 - [Write a Resume With AI: ATS Friendly in Minutes Free](https://glintai.tools/blog/write-resume-with-ai.html): Write a resume with AI to get a structured first draft in minutes, then humanize the voice and proof it for you. Glint AI&#x27;s free generator needs no sign up.
 
 
+- [AI Headline Generator: Titles That Get Clicks](https://glintai.tools/blog/ai-headline-generator.html): Generate blog, YouTube and email headlines with a free AI headline generator. No signup, runs privately in your browser, with CTR-tested formulas you can check before publishing.
+- [12 Free AI Tools for Developers (No Signup)](https://glintai.tools/blog/free-ai-tools-developers.html): Twelve free AI tools developers actually use in 2026, covering coding assistants, JSON formatting, Markdown conversion and API key safety. No signup, nothing uploaded.
+- [10 Free AI Tools for Teachers (Privacy-First)](https://glintai.tools/blog/free-ai-tools-teachers.html): Ten free AI tools for planning lessons, giving writing feedback and checking student work, chosen for privacy-first handling with no account and no student data uploaded.
+- [AI Meta Description Generator + Snippet Testing](https://glintai.tools/blog/ai-meta-description-generator.html): Generate meta descriptions that earn clicks, keep them inside the 150-160 character range, and preview the result in a SERP simulator before you ship the page.
+- [Can Google Detect AI Content in 2026?](https://glintai.tools/blog/does-google-detect-ai-content.html): Google does not ban AI content, but scaled and unhelpful pages get hit. What the spam policies really target, how detection actually works, and a safe 2026 workflow.
 ## Resources
 - [All Tools](https://glintai.tools/tools/): The full free toolkit.
 - [Blog](https://glintai.tools/blog/): Guides and comparisons.
