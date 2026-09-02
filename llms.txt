@@ -114,6 +114,9 @@
 - [Free AI Tools for Social Media Managers](https://glintai.tools/blog/ai-tools-for-social-media-managers-2026.html): A free, no-signup toolkit for social media managers covering hashtags, video titles, captions, grammar, background removal and bios — handle the repetitive parts and keep client accounts private.
 - [Free AI Writing Tools for Non-Native English](https://glintai.tools/blog/ai-writing-tools-non-native-english.html): A private, no-signup AI toolkit for non-native English writers to fix grammar, hit word limits, sound natural, and check their own work confidently, without a subscription or stored drafts.
 - [Private AI Detector (No Upload)](https://glintai.tools/blog/free-ai-content-detector-no-upload.html): A no-upload AI content detector that checks your text in the browser so nothing leaves your device — learn how it works, when to use it, and what the score really means.
+- [Free AI Rewriter (No Signup)](https://glintai.tools/blog/free-ai-rewriter-no-signup.html): A free AI rewriter that rewords text for clarity, tone, or originality without losing meaning — no signup, browser-private, no upload.
+- [YouTube Description Generator](https://glintai.tools/blog/youtube-description-generator.html): A free YouTube description generator that drafts hooks, timestamps, links, and SEO fields — no signup, browser-private, with a snippet preview.
+- [Free AI SEO Tools for Beginners](https://glintai.tools/blog/free-ai-seo-tools-for-beginners.html): A free, no-signup SEO toolkit for beginners — SERP preview, meta tags, content checks, and keyword-friendly writing, all browser-private.
 ## Resources
 - [All Tools](https://glintai.tools/tools/): The full free toolkit.
 - [Blog](https://glintai.tools/blog/): Guides and comparisons.
