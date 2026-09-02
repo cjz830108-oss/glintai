@@ -125,6 +125,14 @@
 - [Free AI Tools for Podcasters](https://glintai.tools/blog/ai-tools-for-podcasters-2026.html): Free, no-signup AI tools for podcasters — titles, show notes, chapter timestamps, guest bios, and transcript-to-blog.
 - [Best Free Word Counter Tools 2026](https://glintai.tools/blog/best-free-word-counter-tools-2026.html): The best free word counter tools in 2026, tested on real drafts — counts, reading time, keyword density, and character limits, with a privacy-first browser pick.
 - [Best Free Password Generator Tools 2026](https://glintai.tools/blog/best-free-password-generator-tools-2026.html): The best free password generator tools in 2026, ranked by client-side generation — strong passwords and API keys created in the browser.
+- [How to Convert CSV to JSON](https://glintai.tools/blog/how-to-convert-csv-to-json.html): How to convert CSV to JSON free and in your browser - no upload, no signup. Learn the method, what to check, and how to avoid data leaks.
+- [How to Check Password Strength](https://glintai.tools/blog/how-to-check-password-strength.html): How to check password strength and build unbreakable passwords free in your browser - no upload, no signup. What entropy means and the safe way to test.
+- [How to Count Words in a PDF](https://glintai.tools/blog/how-to-count-words-in-a-pdf.html): How to count words in a PDF without copy-pasting, privately in your browser - no upload, no signup. Why paste counts lie and the free method.
+- [How to Write YouTube Tags](https://glintai.tools/blog/how-to-write-youtube-tags.html): How to write YouTube tags that actually help ranking - free tag ideas, no signup. The tag structure that reinforces your title and beats misspellings.
+- [How to Write Alt Text for Images](https://glintai.tools/blog/how-to-create-alt-text-for-images.html): How to write alt text for images for accessibility and SEO - free guide, no signup. The shape, what to include, and what to skip.
+- [How to Summarize a Research Paper](https://glintai.tools/blog/how-to-summarize-a-research-paper.html): How to summarize a research paper without losing the method - free, private, no signup. The structure that makes results trustworthy.
+- [How to Write Product Descriptions with AI](https://glintai.tools/blog/how-to-write-product-descriptions-with-ai.html): How to write product descriptions with AI without sounding robotic - free, no signup. The 80/20 workflow that scales your catalog without flattening it.
+- [How to Write a Twitter/X Bio](https://glintai.tools/blog/how-to-make-a-twitter-bio.html): How to write a Twitter/X bio that gets the right followers - free bio ideas, no signup. The shape and the edits that matter.
 ## Resources
 - [All Tools](https://glintai.tools/tools/): The full free toolkit.
 - [Blog](https://glintai.tools/blog/): Guides and comparisons.
