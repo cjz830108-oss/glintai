@@ -117,6 +117,14 @@
 - [Free AI Rewriter (No Signup)](https://glintai.tools/blog/free-ai-rewriter-no-signup.html): A free AI rewriter that rewords text for clarity, tone, or originality without losing meaning — no signup, browser-private, no upload.
 - [YouTube Description Generator](https://glintai.tools/blog/youtube-description-generator.html): A free YouTube description generator that drafts hooks, timestamps, links, and SEO fields — no signup, browser-private, with a snippet preview.
 - [Free AI SEO Tools for Beginners](https://glintai.tools/blog/free-ai-seo-tools-for-beginners.html): A free, no-signup SEO toolkit for beginners — SERP preview, meta tags, content checks, and keyword-friendly writing, all browser-private.
+- [Free AI Tools for Consultants](https://glintai.tools/blog/ai-tools-for-consultants-2026.html): Free, no-signup AI tools for consultants — summarize, rewrite, and proofread in the browser so client material never leaves the device.
+- [Free AI Tools for Ecommerce](https://glintai.tools/blog/ai-tools-for-ecommerce-2026.html): Free, no-signup AI tools for ecommerce — product copy, background removal, JSON formatting, hashtags, and SERP previews.
+- [Free AI Tools for Lawyers](https://glintai.tools/blog/ai-tools-for-lawyers-2026.html): Free, no-signup AI tools for lawyers and paralegals — summarize, rewrite, and proofread in the browser without risking privilege.
+- [Free AI Tools for Real Estate](https://glintai.tools/blog/ai-tools-for-real-estate-2026.html): Free, no-signup AI tools for real estate agents — listing copy, background removal, bio generation, and local SEO previews.
+- [Free AI Tools for Nonprofits](https://glintai.tools/blog/ai-tools-for-nonprofits-2026.html): Free, no-signup AI tools for nonprofits — grant proposals, donor emails, impact reports, and social posts.
+- [Free AI Tools for Podcasters](https://glintai.tools/blog/ai-tools-for-podcasters-2026.html): Free, no-signup AI tools for podcasters — titles, show notes, chapter timestamps, guest bios, and transcript-to-blog.
+- [Best Free Word Counter Tools 2026](https://glintai.tools/blog/best-free-word-counter-tools-2026.html): The best free word counter tools in 2026, tested on real drafts — counts, reading time, keyword density, and character limits, with a privacy-first browser pick.
+- [Best Free Password Generator Tools 2026](https://glintai.tools/blog/best-free-password-generator-tools-2026.html): The best free password generator tools in 2026, ranked by client-side generation — strong passwords and API keys created in the browser.
 ## Resources
 - [All Tools](https://glintai.tools/tools/): The full free toolkit.
 - [Blog](https://glintai.tools/blog/): Guides and comparisons.
