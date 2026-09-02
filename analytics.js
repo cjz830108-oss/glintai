@@ -15,7 +15,7 @@
 (function () {
   'use strict';
 
-  var DOMAIN = (typeof window.GLINT_PLAUSIBLE_DOMAIN !== 'undefined') ? window.GLINT_PLAUSIBLE_DOMAIN : null;
+  var DOMAIN = (typeof window.GLINT_PLAUSIBLE_DOMAIN !== 'undefined') ? window.GLINT_PLAUSIBLE_DOMAIN : 'glintai.tools';
 
   function load() {
     if (!DOMAIN) return;
