@@ -132,6 +132,16 @@ input[type="checkbox"] { width: auto; accent-color: var(--brand); }
 .related a { color: var(--brand); border-bottom: 1px dashed rgba(0,240,255,0.3); }
 .related a:hover { color: #fff; }
 
+/* Deep-dive prose block (thickened tool pages) */
+.deep { margin-top: 44px; }
+.deep h2 { font-size: 26px; margin: 0 0 16px; }
+.deep h3 { font-size: 18px; color: var(--brand); margin: 22px 0 10px; }
+.deep p { color: var(--text-soft); margin: 0 0 14px; max-width: 70ch; }
+.deep ul { padding-left: 22px; margin: 0 0 14px; }
+.deep li { margin: 10px 0; color: var(--text-soft); }
+.deep li::marker { color: var(--brand); font-weight: 700; }
+.deep strong { color: var(--text); }
+
 /* Footer */
 .foot { border-top: 1px solid var(--line); margin-top: 60px; padding: 36px 0; background: var(--bg-soft); }
 .foot .logo { font-size: 17px; }
