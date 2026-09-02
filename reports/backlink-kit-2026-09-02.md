@@ -262,9 +262,41 @@ Then: stop chasing directories. By week 5 the durable lever is publishing and th
 
 ---
 
-## 6. Verified submission URLs
+## 6. Verified submission URLs (checked 2026-09-03)
 
-<!-- VERIFIED_URLS_SECTION -->
+"Verified" = page loaded and its purpose was confirmed by fetch. "Standard" = the canonical URL, long-stable but not re-fetched this session. "Paid" = costs money. Confirm lead times on the site before relying on a date.
+
+| Channel | Submission URL | Status | Notes |
+|---------|----------------|--------|-------|
+| Product Hunt | https://www.producthunt.com/posts/new | Verified (login) | Launch 12:01 AM PT; maker comment within 5 min. |
+| Hacker News (Show HN) | https://news.ycombinator.com/submit | Standard | Post from an aged account; technical angle, not marketing. |
+| Indie Hackers | https://www.indiehackers.com/products/new | Standard | Also write the launch post (copy in launch-copy md §2). |
+| BetaList | https://betalist.com/startups/submit | Standard | Free tier exists; multi-week lead time. |
+| Fazier | https://fazier.com/submit | Standard | Daily launch board; free. |
+| Uneed | https://www.uneed.best/signup | Verified | DR ~75 backlink; 3 free product slots, then Pro. |
+| MicroLaunch | https://microlaunch.net/ | Unverified | SSL error (526) at check time — retry before use. |
+| Peerlist | https://peerlist.io/ (launch via profile) | Verified | Build a profile, then launch a project. |
+| TAAFT | https://theresanaiforthat.com/submit/ | Verified (Paid $49) | Permanent listing + 2.5M newsletter; one-time fee. |
+| Futurepedia | https://futurepedia.io/submit-tool | Verified | Free tool submission (footer "Submit a Tool"). |
+| AlternativeTo | https://alternativeto.net/ (use "Add alternative" per incumbent) | Verified | Highest-value directory; 2-3 tools/week, genuine only. |
+| Dev.to | https://dev.to/new | Verified (login) | Republish 1 post with a canonical tag. |
+| Hashnode | https://hashnode.com/ | Standard | Same republish play; set canonical. |
+| GitHub | https://github.com/new (org profile + repo) | Standard | Do-follow profile link; open-source one real tool. |
+| SaaSHub | https://www.saashub.com/ | Standard | Alternative listings; overlaps AlternativeTo. |
+| Slant | https://slant.co/ | Standard | Add a topic/option; slower cadence. |
+
+### Top 8 by effort-to-value
+
+1. **alternative.to** (do-follow, ranks for "X alternative", free) — start here.
+2. **Product Hunt** (authority + referral spike, free) — one big day.
+3. **Indie Hackers product profile** (do-follow, durable, free).
+4. **GitHub org + one real repo** (do-follow, permanent, free).
+5. **Futurepedia** (free, AI-traffic, do-follow-ish).
+6. **Uneed** (DR75 backlink, free tier) — easy win.
+7. **Show HN** (high if it lands, free, no-follow).
+8. **Dev.to republish** (do-follow, drives indexation + referral).
+
+Skip or defer: TAAFT ($49 — only if the budget exists and you want the newsletter push), MicroLaunch (SSL broken at check time), SaaSHub/Slant (overlap AlternativeTo, lower marginal value).
 
 ---
 
