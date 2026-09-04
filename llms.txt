@@ -135,6 +135,14 @@
 - [How to Write a Twitter/X Bio](https://glintai.tools/blog/how-to-make-a-twitter-bio.html): How to write a Twitter/X bio that gets the right followers - free bio ideas, no signup. The shape and the edits that matter.
 ## Resources
 - [All Tools](https://glintai.tools/tools/): The full free toolkit.
+- [How to Write a Meta Title](https://glintai.tools/blog/how-to-write-a-meta-title.html): Write a meta title that ranks and earns the click - free, no signup.
+- [How to Paraphrase a Paragraph](https://glintai.tools/blog/how-to-paraphrase-a-paragraph.html): Paraphrase a paragraph without plagiarizing - free, no signup.
+- [How to Detect AI in Student Work](https://glintai.tools/blog/how-to-detect-ai-in-student-work.html): Detect AI in student work the fair way - free, no upload.
+- [How to Remove a Background from an Image](https://glintai.tools/blog/how-to-remove-background-from-image-free.html): Remove a background from an image free - no upload, no signup.
+- [How to Reduce Reading Grade Level](https://glintai.tools/blog/how-to-reduce-reading-grade-level.html): Reduce reading grade level and reach more readers - free, no signup.
+- [How to Convert Markdown to HTML](https://glintai.tools/blog/how-to-convert-markdown-to-html.html): Convert Markdown to HTML free - no upload, no signup.
+- [How to Create a Strong Password](https://glintai.tools/blog/how-to-create-a-strong-password.html): Create a strong password free - no signup, no upload.
+- [How to Write a Resume Summary](https://glintai.tools/blog/how-to-write-a-resume-summary.html): Write a resume summary that gets interviews - free, no signup.
 - [Blog](https://glintai.tools/blog/): Guides and comparisons.
 - [Resources](https://glintai.tools/resources/): Templates and playbooks.
 - [AI Tool Reviews](https://glintai.tools/ai-tools/): Hand-picked affiliate recommendations.
