@@ -149,6 +149,7 @@
 - [AI Character Generator](https://glintai.tools/ai-character-generator.html): Cast builder with tracked emotional states.
 - [AI Plot Generator](https://glintai.tools/ai-plot-generator.html): Chapter outlines, plot threads and foreshadowing tracking.
 - [AI Romance Novel Generator](https://glintai.tools/ai-romance-novel-generator.html): Genre-tuned romance, billionaire and werewolf novels.
+- [Free AI Story Generator](https://glintai.tools/free-ai-story-generator.html): Free story opening generator, no signup — 3 per day.
 - [Fiction Guides](https://glintai.tools/guides/index.html): How to write novels with AI, story bibles and character consistency.
 - [Blog](https://glintai.tools/blog/): Guides and comparisons.
 - [Resources](https://glintai.tools/resources/): Templates and playbooks.
