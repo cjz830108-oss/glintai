@@ -143,6 +143,13 @@
 - [How to Convert Markdown to HTML](https://glintai.tools/blog/how-to-convert-markdown-to-html.html): Convert Markdown to HTML free - no upload, no signup.
 - [How to Create a Strong Password](https://glintai.tools/blog/how-to-create-a-strong-password.html): Create a strong password free - no signup, no upload.
 - [How to Write a Resume Summary](https://glintai.tools/blog/how-to-write-a-resume-summary.html): Write a resume summary that gets interviews - free, no signup.
+- [AI Novel Generator](https://glintai.tools/ai-novel-generator.html): Long-form novel generation with persistent story memory.
+- [AI Story Generator](https://glintai.tools/ai-story-generator.html): Story blueprints with characters, world and full outline.
+- [AI Fiction Writer](https://glintai.tools/ai-fiction-writer.html): Chapter-by-chapter AI writing with continuity checking.
+- [AI Character Generator](https://glintai.tools/ai-character-generator.html): Cast builder with tracked emotional states.
+- [AI Plot Generator](https://glintai.tools/ai-plot-generator.html): Chapter outlines, plot threads and foreshadowing tracking.
+- [AI Romance Novel Generator](https://glintai.tools/ai-romance-novel-generator.html): Genre-tuned romance, billionaire and werewolf novels.
+- [Fiction Guides](https://glintai.tools/guides/index.html): How to write novels with AI, story bibles and character consistency.
 - [Blog](https://glintai.tools/blog/): Guides and comparisons.
 - [Resources](https://glintai.tools/resources/): Templates and playbooks.
 - [AI Tool Reviews](https://glintai.tools/ai-tools/): Hand-picked affiliate recommendations.

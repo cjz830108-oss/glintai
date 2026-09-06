@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiction Studio Dashboard — Glint AI</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/studio/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="logo" href="/index.html">GLINT <b>AI</b> · Fiction Studio</a>
+  <nav>
+    <a href="/ai-novel-generator.html">Features</a>
+    <a href="/guides/index.html">Guides</a>
+    <a href="#" id="logout" style="display:none">Sign out</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <!-- login -->
+  <div id="login" class="card login-box" style="display:none">
+    <h1>Welcome back</h1>
+    <p class="muted">Sign in to your writing studio. Your stories, characters and chapters are waiting.</p>
+    <label>Email</label>
+    <input id="email" type="email" placeholder="you@example.com">
+    <label>Password</label>
+    <input id="password" type="password" placeholder="••••••••">
+    <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap">
+      <button class="btn primary" id="btnSignin">Sign In</button>
+      <button class="btn ghost" id="btnSignup">Create Account</button>
+      <button class="btn ghost" id="btnMagic">Email Me a Link</button>
+    </div>
+    <p class="muted" style="margin-top:14px">New here? Create an account and start with <b style="color:var(--cyan)">100 free credits</b>.</p>
+    <div id="loginMsg" class="alert" style="display:none"></div>
+  </div>
+
+  <!-- dashboard -->
+  <main id="main" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px">
+      <div>
+        <h1>Your stories</h1>
+        <p class="muted">Every project remembers its characters, plot threads and promises.</p>
+      </div>
+      <div style="text-align:right">
+        <div class="stat" id="credits">—</div>
+        <div class="muted">credits available</div>
+      </div>
+    </div>
+
+    <div style="margin:22px 0">
+      <a class="btn primary" href="/studio/new.html" style="font-size:16px">＋ Create New Story</a>
+    </div>
+
+    <div id="novels" class="grid cols3"></div>
+    <div id="empty" style="display:none" class="card">
+      <h3>No stories yet</h3>
+      <p class="muted">Start from a single idea — a rejected omega, a buried crime, a dead god. The studio builds the blueprint, the cast and the outline with you.</p>
+    </div>
+  </main>
+</div>
+
+<script src="/studio/app.js"></script>
+<script>
+(async () => {
+  try { await App.boot(); } catch (e) {
+    document.getElementById('login').style.display = '';
+    document.getElementById('loginMsg').style.display = '';
+    document.getElementById('loginMsg').textContent = e.message;
+    return;
+  }
+  const login = document.getElementById('login'), main = document.getElementById('main');
+  const show = () => {
+    if (!App.requireLogin(login, main)) return;
+    document.getElementById('logout').style.display = '';
+    refresh();
+  };
+  show();
+  App.getSession()?.user && refresh();
+
+  async function refresh() {
+    try {
+      const [cr, nv] = await Promise.all([App.api('/api/fiction/credits'), App.api('/api/fiction/novels')]);
+      document.getElementById('credits').textContent = cr.wallet.balance;
+      const grid = document.getElementById('novels');
+      grid.innerHTML = '';
+      document.getElementById('empty').style.display = nv.novels.length ? 'none' : '';
+      for (const n of nv.novels) {
+        const el = document.createElement('a');
+        el.className = 'card'; el.href = `/studio/novel.html?id=${n.id}`;
+        el.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center">
+            <h3 style="margin:0">${n.title}</h3><span class="pill ${n.status === 'writing' ? 'ok' : ''}">${n.status}</span></div>
+          <p class="muted" style="min-height:34px;margin:10px 0">${(n.logline || '').slice(0, 110)}</p>
+          <div class="muted">${n.genre.replace('_', ' ')} · ${n.chapterCount}/${n.target} chapters · updated ${App.fmtDate(n.updatedAt)}</div>`;
+        grid.appendChild(el);
+      }
+    } catch (e) { App.toast(e.message, true); }
+  }
+
+  document.getElementById('logout').onclick = async (e) => { e.preventDefault(); await App.signOut(); location.reload(); };
+
+  const msg = (t, err = true) => { const el = document.getElementById('loginMsg'); el.style.display = ''; el.textContent = t; el.style.color = err ? 'var(--bad)' : 'var(--ok)'; };
+  document.getElementById('btnSignin').onclick = async () => {
+    try { await App.signIn(email.value, password.value); show(); } catch (e) { msg(e.message); }
+  };
+  document.getElementById('btnSignup').onclick = async () => {
+    try { await App.signUp(email.value, password.value); msg('Account created. If email confirmation is on, check your inbox — otherwise you can sign in now.', false); } catch (e) { msg(e.message); }
+  };
+  document.getElementById('btnMagic').onclick = async () => {
+    try { await App.magicLink(email.value); msg('Magic link sent — check your email.', false); } catch (e) { msg(e.message); }
+  };
+})();
+</script>
+</body>
+</html>

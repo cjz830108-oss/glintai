@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How to Build a Story Bible (Template + 12 Categories)</title>
+<meta name="description" content="A story bible template for AI fiction: the 12 categories of lore to store, a copy-paste JSON example, and how a bible keeps your novel consistent chapter after chapter." />
+<meta name="keywords" content="story bible template, how to build a story bible, AI fiction worldbuilding, novel bible, story consistency" />
+<meta name="author" content="Glint AI Editorial Team" />
+<link rel="canonical" href="https://glintai.tools/guides/how-to-build-a-story-bible.html" />
+<meta property="og:url" content="https://glintai.tools/guides/how-to-build-a-story-bible.html" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="How to Build a Story Bible (Template + 12 Categories)" />
+<meta property="og:description" content="A story bible template for AI fiction: the 12 categories of lore to store, a copy-paste JSON example, and how a bible keeps your novel consistent chapter after chapter." />
+<meta property="og:image" content="https://glintai.tools/guides/assets/how-to-build-a-story-bible.png" />
+<meta name="twitter:image" content="https://glintai.tools/guides/assets/how-to-build-a-story-bible.png" />
+<meta property="og:image:alt" content="A story bible document listing twelve categories of novel lore" />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "How to Build a Story Bible (Template + 12 Categories)", "image": "https://glintai.tools/guides/assets/how-to-build-a-story-bible.png", "description": "A story bible template for AI fiction: the 12 categories of lore to store, a copy-paste JSON example, and how a bible keeps your novel consistent chapter after chapter.", "author": {"@type": "Person", "name": "Glint AI Editorial Team", "url": "https://glintai.tools/about/", "sameAs": ["https://www.youtube.com/@glintai", "https://www.tiktok.com/@glintai"]}, "publisher": {"@type": "Organization", "name": "Glint AI"}, "datePublished": "2026-09-06", "dateModified": "2026-09-06", "mainEntityOfPage": "https://glintai.tools/guides/how-to-build-a-story-bible.html"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a story bible used for?", "acceptedAnswer": {"@type": "Answer", "text": "It is the single source of truth for your book — world rules, characters, timeline, and forbidden facts. You consult it while drafting and audit against it in revision so the AI stops inventing contradictions."}}, {"@type": "Question", "name": "How is a story bible different from an outline?", "acceptedAnswer": {"@type": "Answer", "text": "An outline is the sequence of events; a story bible is the reference data those events must obey. The outline says what happens, the bible says what is true."}}, {"@type": "Question", "name": "Do I need a story bible for a short story?", "acceptedAnswer": {"@type": "Answer", "text": "Not really. The bible pays off once a story is long enough that you cannot hold every fact in your head — novels, serials, and series benefit most."}}, {"@type": "Question", "name": "Should the AI see the whole bible every time?", "acceptedAnswer": {"@type": "Answer", "text": "No. Feed the model only the categories relevant to the scene you are drafting — the character sheet, the relevant world rules, the active plot thread. Smaller, relevant context beats one giant dump."}}, {"@type": "Question", "name": "What format should a story bible be in?", "acceptedAnswer": {"@type": "Answer", "text": "Anything you will actually maintain. A structured JSON or Markdown file is ideal because tools can parse it and you can paste exact sections into prompts without retyping."}}]}
+</script>
+<style>
+:root{
+  --bg:#07070d;
+  --soft:#0e0e1a;
+  --text:#e8e8f5;
+  --muted:#9aa0c0;
+  --line:rgba(120,120,200,.22);
+  --brand:#00f0ff;
+  --brand2:#ff2e97;
+  --brandsoft:rgba(0,240,255,.10);
+  --ok:#39ff14;
+  --shadow:0 0 30px rgba(0,240,255,.18);
+  --maxw:820px
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--text);line-height:1.78;-webkit-font-smoothing:antialiased;background:#07070d;background-image:radial-gradient(900px 500px at 50% -200px, rgba(0,240,255,.10), transparent),linear-gradient(rgba(0,240,255,.04) 1px, transparent 1px),linear-gradient(90deg, rgba(0,240,255,.04) 1px, transparent 1px);background-size:auto, 40px 40px, 40px 40px}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(10,10,20,.82);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;color:var(--text)}
+.logo .dot{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:#fff}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-weight:700;font-size:14px;border:1px solid var(--line);background:var(--soft);color:var(--text)}
+.btn:hover{border-color:var(--brand);color:var(--brand);text-decoration:none}
+.breadcrumb{font-size:13.5px;color:var(--muted);margin:22px 0 0}
+.breadcrumb a{color:var(--muted)}
+.breadcrumb span{margin:0 7px;color:rgba(154,160,192,.5)}
+.cat{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--brand);background:var(--brandsoft);padding:5px 12px;border-radius:999px;margin:26px 0 12px}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.12;letter-spacing:-.02em;margin:0 0 12px;background:linear-gradient(135deg,#fff,#aef);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.meta{color:var(--muted);font-size:14px;margin-bottom:24px}
+.lead{font-size:19px;color:var(--text)}
+.content h2{font-size:25px;margin:42px 0 10px;letter-spacing:-.01em;color:#fff}
+.content h3{font-size:20px;margin:28px 0 8px;color:#eafdff}
+.content p{margin:14px 0}
+.content ul,.content ol{padding-left:22px;margin:14px 0}
+.content li{margin:8px 0}
+.callout{background:var(--brandsoft);border:1px solid rgba(0,240,255,.3);border-left:4px solid var(--brand);border-radius:10px;padding:16px 18px;margin:22px 0;font-size:15px}
+.callout b{color:var(--brand)}
+pre{background:#0b0b16;color:#cfe9ff;padding:16px;border-radius:12px;overflow:auto;font-size:13.5px;line-height:1.5;border:1px solid var(--line)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--soft);padding:2px 6px;border-radius:6px;font-size:14px}
+pre code{background:none;padding:0}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:700;color:#eafdff}
+.rel{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:20px;margin:34px 0}
+.rel h3{margin:0 0 10px;font-size:17px;color:#eafdff}
+.rel a{display:block;padding:5px 0;font-weight:600}
+.cta{display:block;margin:38px 0 10px;padding:24px;border-radius:16px;background:linear-gradient(135deg, rgba(0,240,255,.12), rgba(255,46,151,.12));border:1px solid rgba(0,240,255,.35);text-align:center}
+.cta h3{margin:0 0 8px;font-size:21px;color:#fff}
+.cta p{margin:0 0 16px;color:var(--muted)}
+.cta .btn{font-size:15px;padding:12px 22px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#07070d;border:none}
+footer{border-top:1px solid var(--line);margin-top:50px;padding:30px 0;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap nav-inner">
+<a class="logo" href="/"><span class="dot">&#10042;</span> Glint AI</a>
+<a class="btn" href="/studio/new.html">Open the Studio &rarr;</a>
+</div></header>
+
+<div class="wrap">
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/guides/index.html">Guides</a><span>/</span> How to Build a Story Bible</nav>
+
+<span class="cat">Worldbuilding</span>
+<h1>How to Build a Story Bible</h1>
+<div class="meta">Updated 2026-09-06 &middot; 11 min read &middot; by Glint AI Editorial Team</div>
+<p class="lead">A story bible is the reference document that keeps your novel honest. When an AI drafts chapter forty, it should be able to look up what is true — not guess. This guide covers the twelve categories every bible needs, a JSON template you can copy today, and how to keep it alive as you write.</p>
+
+<div class="content">
+
+<h2>Why a story bible matters for AI fiction</h2>
+<p>An AI model has no memory of your book between turns. Left to its own devices, it will invent a capital city, forget it named the capital something else last week, and present both as fact. A story bible ends that drift by making one document the arbiter of truth. Drafting consults it; revision audits against it.</p>
+<p>The payoff is not just consistency. A good bible also makes the AI more creative within bounds — because it knows the rules, it can bend them deliberately instead of breaking them by accident. If you are new to long-form AI writing, pair this with our <a href="/guides/how-to-write-a-novel-with-ai.html">novel-with-AI workflow</a>, which treats the bible as the spine of the whole process.</p>
+
+<h2>The 12 categories your story bible should hold</h2>
+
+<h3>1. Metadata</h3>
+<p>Title, working subtitle, genre, target length, point of view, tense, and the one-sentence premise. This is the header that keeps every scene aimed at the same book. Include your narrative promise — what the reader is owed by the end.</p>
+
+<h3>2. World</h3>
+<p>The setting's hard facts: geography, technology level, magic or science system and its limits, politics, economy, and culture. Write rules, not flavor. "Magic requires a blood price" is bible-worthy; "it feels spooky" is not.</p>
+
+<h3>3. Characters</h3>
+<p>One entry per significant character: fixed traits, backstory, voice, motivation, and arc goal. Keep this distinct from their changing emotional state (see category 9). The character sheet is who they are; the state is how they feel right now.</p>
+
+<h3>4. Relationships</h3>
+<p>How every pair of characters regards each other, with a short note on history. Relationships are the connective tissue of a long book and the easiest thing for an AI to corrupt, so name them explicitly: rivals, secret half-siblings, betrayed friends.</p>
+
+<h3>5. Timeline</h3>
+<p>Absolute and relative dates of key events, both in-world and in the character's personal history. A timeline prevents the classic error of a character referencing an event that has not happened yet, or mourning someone still alive.</p>
+
+<h3>6. Plot threads</h3>
+<p>Each ongoing thread: its status (open, seeded, resolved), what it needs to pay off, and where it was last advanced. Threads are how you track subplots across a hundred chapters without losing any.</p>
+
+<h3>7. Foreshadowing</h3>
+<p>Every planted clue and its intended payoff chapter. Foreshadowing is worthless if you forget to land it; the bible is where you promise yourself the payoff and check it off when written.</p>
+
+<h3>8. Chapter summaries</h3>
+<p>A one- or two-line summary of each finished chapter: who was there, what changed, and the exit state. These are the context you hand the model when drafting the next scene, far cheaper than re-feeding the whole manuscript.</p>
+
+<h3>9. Character states</h3>
+<p>The current 0–100 values for each character's trust, love, anger, fear, and any story-specific axes. Update these every chapter. They are the numerical heartbeat that keeps relationships evolving for reasons, not at random. See our <a href="/guides/how-to-maintain-character-consistency.html">character consistency guide</a> for the full method.</p>
+
+<h3>10. Style guide</h3>
+<p>Your prose rules: POV tightness, banned words, sentence-length rhythm, tone, and any voice notes ("protagonist thinks in short, bitter sentences"). The style guide is what stops each chapter from sounding like a different author.</p>
+
+<h3>11. Forbidden facts</h3>
+<p>The hard "never" list: facts that must never be contradicted. Examples: the queen is sterile, the north gate burned in year three, the protagonist is allergic to shellfish. When in doubt, put it here — forbidden facts are the cheapest insurance against a continuity disaster.</p>
+
+<h3>12. Open questions</h3>
+<p>Unresolved threads and decisions still pending, so nothing silently drops. This is your parking lot for "did we ever explain the crypt?" — answer it or plant it, but never lose it.</p>
+
+<h2>A JSON story bible template</h2>
+<p>A structured file beats a wall of prose because you can paste exact sections into a prompt. Here is a minimal, copy-paste starting point:</p>
+<pre><code>{
+  "metadata": {
+    "title": "The Tideward Crown",
+    "genre": "gaslamp fantasy",
+    "pov": "third-limited",
+    "premise": "A cartographer must map a coast that rewrites itself each tide."
+  },
+  "world": {
+    "magic": "Tide-craft requires a physical map and a blood mark.",
+    "limits": "No spell crosses the salt line at full moon."
+  },
+  "characters": {
+    "mara": {
+      "role": "protagonist",
+      "traits": ["precise", "grieving", "stubborn"],
+      "motivation": "find her brother lost to a rewriting cove"
+    }
+  },
+  "forbidden_facts": [
+    "Mara's brother vanished in year 9, not year 8.",
+    "The salt line cannot be crossed at full moon."
+  ],
+  "character_states": {
+    "mara": { "trust": 40, "love": 55, "anger": 30, "fear": 70 }
+  },
+  "open_questions": [
+    "Who maintains the lighthouse that never goes dark?"
+  ]
+}</code></pre>
+<p>You can expand each section as the book grows. The point is not the format — it is that the truth lives in one place you actually open.</p>
+
+<h2>How to keep the bible alive</h2>
+<p>A bible is a living document, not a pre-writing chore. Update it at the end of every writing session: new facts go in, resolved threads move to done, character states get their new numbers. If you only write the bible once and never touch it, it rots and the AI ignores it. A practical habit is to keep the bible file open in a second window beside your draft, so recording a new fact takes seconds and never gets deferred to "later" — which in practice means never. The writers who benefit most are the ones who treat the bible as part of the writing itself, not a separate administrative task they owe their future self.</p>
+<p>Tools like <a href="/blog/ai-story-generator-guide.html">Glint's AI story generator</a> can ingest a bible and keep relevant slices in context as you draft, which removes the manual copy-paste tax. The broader landscape of <a href="/blog/ai-tools-for-fiction-writers-2026.html">AI tools for fiction writers in 2026</a> is worth a scan if you want to automate more of the memory work.</p>
+
+<h2>Common bible mistakes</h2>
+<table>
+<thead><tr><th>Mistake</th><th>Consequence</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td>Writing it once and abandoning it</td><td>Rotting reference nobody trusts</td><td>Update at end of every session</td></tr>
+<tr><td>Storing flavor instead of facts</td><td>Nothing enforceable</td><td>Record rules and fixed data, not mood</td></tr>
+<tr><td>Feeding the whole bible every prompt</td><td>Model loses focus</td><td>Send only the relevant slices per scene</td></tr>
+<tr><td>No forbidden-facts list</td><td>Canon contradictions slip through</td><td>Maintain an explicit "never" list</td></tr>
+<tr><td>Keeping it in your head</td><td>Drift by chapter ten</td><td>Externalize it to a file you open</td></tr>
+</tbody>
+</table>
+
+<h2>Auditing against the bible in revision</h2>
+<p>The bible earns its keep during revision. With a draft complete, read it scene by scene with the bible open beside you and check four things: did any character act against a forbidden fact, did any world rule get quietly broken, did every foreshadowed clue reach its payoff, and do the chapter-exit states match the next chapter's entry states? Most long-book inconsistencies are caught here in an afternoon, whereas finding them after publication costs readers' trust.</p>
+<p>Keep a running "continuity log" during this pass: each discrepancy, where it appeared, and the fix. If the same type of error repeats — say, the model keeps forgetting a character's injury — add it to the forbidden-facts list so future drafts avoid it automatically. The bible is not static reference data; it is a feedback loop that gets stricter the more you write.</p>
+
+<h2>Scaling the bible to a series</h2>
+<p>A single novel bible is manageable; a five-book series is where the system proves itself. For a series, add a layer above the book-level bible: cross-book timeline, unresolved threads that deliberately carry over, and character states that persist across volumes. The same 0–100 model works, but now a character can enter book three still angry about book one — and the bible remembers why when the model does not. Authors who plan a series from the start save themselves the painful retrofitting of continuity that late planners face.</p>
+
+<h2>Frequently asked questions</h2>
+<p><b>What is a story bible used for?</b> It is the single source of truth for your book — world rules, characters, timeline, and forbidden facts. You consult it while drafting and audit against it in revision so the AI stops inventing contradictions.</p>
+<p><b>How is a story bible different from an outline?</b> An outline is the sequence of events; a story bible is the reference data those events must obey. The outline says what happens, the bible says what is true.</p>
+<p><b>Do I need a story bible for a short story?</b> Not really. The bible pays off once a story is long enough that you cannot hold every fact in your head — novels, serials, and series benefit most.</p>
+<p><b>Should the AI see the whole bible every time?</b> No. Feed the model only the categories relevant to the scene you are drafting — the character sheet, the relevant world rules, the active plot thread. Smaller, relevant context beats one giant dump.</p>
+<p><b>What format should a story bible be in?</b> Anything you will actually maintain. A structured JSON or Markdown file is ideal because tools can parse it and you can paste exact sections into prompts without retyping.</p>
+
+<div class="rel">
+<h3>Keep reading in the Glint Fiction Guides</h3>
+<a href="/guides/how-to-write-a-novel-with-ai.html">How to Write a Novel with AI &rarr;</a>
+<a href="/guides/how-to-maintain-character-consistency.html">How to Maintain Character Consistency &rarr;</a>
+<a href="/blog/humanize-ai-text.html">How to Humanize AI Text &rarr;</a>
+</div>
+
+<div class="cta">
+<h3>Build your bible once. Let Glint Studio keep it in context.</h3>
+<p>Store world, characters, and forbidden facts — and draft with the right slice every time.</p>
+<a class="btn" href="/studio/new.html">Open the Studio &rarr;</a>
+</div>
+
+</div>
+</div>
+
+<footer><div class="wrap">© 2026 Glint AI · Fiction Studio guides for writers who ship.</div></footer>
+</body>
+</html>

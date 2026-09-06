@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create Your Story — Glint AI Fiction Studio</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/studio/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="logo" href="/index.html">GLINT <b>AI</b> · Fiction Studio</a>
+  <nav><a href="/studio/index.html">My Stories</a></nav>
+</header>
+
+<div class="wrap">
+  <div id="login" class="card login-box" style="display:none">
+    <h1>Sign in to create</h1>
+    <p class="muted">Your story blueprint, characters and chapters are saved to your private studio.</p>
+    <label>Email</label><input id="email" type="email">
+    <label>Password</label><input id="password" type="password">
+    <div style="display:flex;gap:10px;margin-top:18px">
+      <button class="btn primary" id="btnSignin">Sign In</button>
+      <button class="btn ghost" id="btnSignup">Create Account</button>
+    </div>
+    <div id="loginMsg" class="alert" style="display:none"></div>
+  </div>
+
+  <main id="main" style="display:none">
+    <h1>Create your story</h1>
+    <p class="muted">Seven quick decisions — then the studio designs the blueprint, cast and chapter outline.</p>
+
+    <div class="steps" id="steps">
+      <span class="step on">1 Idea</span><span class="step">2 Genre</span><span class="step">3 Length</span>
+      <span class="step">4 POV</span><span class="step">5 Tone</span><span class="step">6 Pacing</span><span class="step">7 Blueprint</span>
+    </div>
+
+    <!-- STEP 1 -->
+    <section data-step="1" class="card">
+      <h2>Tell us your story idea</h2>
+      <p class="muted">One sentence is enough. Example: <i>A rejected omega discovers her billionaire alpha mate has been hiding a dangerous secret.</i></p>
+      <textarea id="idea" rows="4" placeholder="Your story idea…"></textarea>
+      <div style="margin-top:18px"><button class="btn primary" id="next1">Continue →</button></div>
+    </section>
+
+    <!-- STEPS 2-6 -->
+    <section data-step="2" class="card" style="display:none">
+      <h2>Genre</h2>
+      <div class="grid cols3" id="genres"></div>
+    </section>
+
+    <section data-step="3" class="card" style="display:none">
+      <h2>Target length</h2>
+      <p class="muted">We design the full architecture and chapter outline now — you generate chapters one at a time.</p>
+      <div class="grid cols3" id="lengths"></div>
+    </section>
+
+    <section data-step="4" class="card" style="display:none">
+      <h2>Point of view</h2>
+      <div class="grid cols3" id="povs"></div>
+    </section>
+
+    <section data-step="5" class="card" style="display:none">
+      <h2>Tone</h2>
+      <div class="grid cols3" id="tones"></div>
+    </section>
+
+    <section data-step="6" class="card" style="display:none">
+      <h2>Pacing</h2>
+      <div class="grid cols3" id="pacings"></div>
+    </section>
+
+    <!-- STEP 7: blueprint -->
+    <section data-step="7" style="display:none">
+      <div id="bpProgress" class="card"><div class="progress" id="bpStatus">Designing your Story Blueprint…</div>
+        <div class="muted">The Story Architect is working. This usually takes 20–60 seconds.</div></div>
+      <div id="bpBox" style="display:none">
+        <div class="card">
+          <h1 id="bpTitle" style="margin-top:0"></h1>
+          <p id="bpLogline" style="font-size:17px;color:var(--cyan)"></p>
+          <div id="bpBody"></div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+          <button class="btn pink" id="btnRegen">↻ Regenerate Blueprint</button>
+          <button class="btn primary" id="btnExpand">Build Characters &amp; Chapter Outline →</button>
+        </div>
+        <div id="expandBox" style="display:none;margin-top:22px">
+          <div class="card">
+            <div class="progress" id="exStatus">Casting characters and planning every chapter…</div>
+            <div class="muted">Two agents at work: Character Director → Plot Planner. Can take up to 2 minutes.</div>
+          </div>
+        </div>
+        <div id="expandDone" style="display:none;margin-top:22px" class="card">
+          <h2 id="exSummary"></h2>
+          <div id="outlinePreview" class="muted" style="max-height:260px;overflow:auto"></div>
+          <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+            <button class="btn ghost" id="btnApprove">Approve &amp; Open Studio →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="err" class="alert" style="display:none"></div>
+  </main>
+</div>
+
+<script src="/studio/app.js"></script>
+<script>
+(async () => {
+  try { await App.boot(); } catch (e) { document.getElementById('login').style.display = ''; document.getElementById('loginMsg').style.display=''; document.getElementById('loginMsg').textContent = e.message; return; }
+  const login = document.getElementById('login'), main = document.getElementById('main');
+  if (!App.requireLogin(login, main)) return;
+
+  const state = { idea: '', genre: 'romance', length: 30, pov: 'first', tone: 'emotional', pacing: 'balanced', novelId: null, blueprint: null, expanded: false };
+  const $ = (id) => document.getElementById(id);
+  const showStep = (n) => {
+    document.querySelectorAll('section[data-step]').forEach((s) => (s.style.display = Number(s.dataset.step) === n ? '' : 'none'));
+    document.querySelectorAll('#steps .step').forEach((el, i) => {
+      el.className = 'step' + (i + 1 < n ? ' done' : i + 1 === n ? ' on' : '');
+    });
+  };
+
+  const options = (id, arr, key) => {
+    const box = $(id); box.innerHTML = '';
+    arr.forEach((o) => {
+      const b = document.createElement('button');
+      b.className = 'btn ghost'; b.style.textAlign = 'left';
+      b.innerHTML = `<b>${o.label}</b><br><span class="muted">${o.desc || ''}</span>`;
+      b.onclick = () => { state[key] = o.value; advance(); };
+      box.appendChild(b);
+    });
+  };
+  const advance = () => showStep(Math.min(7, Number(document.querySelector('section[data-step]:not([style*="none"])').dataset.step) + 1));
+
+  options('genres', [
+    { value: 'romance', label: 'Romance', desc: 'Emotional, intimate, hopeful' },
+    { value: 'billionaire_romance', label: 'Billionaire Romance', desc: 'Glamour, power, desire vs pride' },
+    { value: 'werewolf', label: 'Werewolf Romance', desc: 'Fated mates, packs, primal stakes' },
+    { value: 'fantasy', label: 'Fantasy', desc: 'Wondrous worlds, real costs' },
+    { value: 'thriller', label: 'Thriller', desc: 'Tense, paranoid, ticking clock' },
+  ], 'genre');
+  options('lengths', [
+    { value: 30, label: 'Short — 30 chapters', desc: '~60k words' },
+    { value: 50, label: 'Standard — 50 chapters', desc: '~95k words' },
+    { value: 100, label: 'Epic — 100 chapters', desc: '~160k words' },
+  ], 'length');
+  options('povs', [
+    { value: 'first', label: 'First Person', desc: '"I never expected the letter."' },
+    { value: 'third_limited', label: 'Third Limited', desc: 'Deep inside one head per scene' },
+    { value: 'third_omniscient', label: 'Third Omniscient', desc: 'The camera sees everything' },
+  ], 'pov');
+  options('tones', [
+    { value: 'emotional' }, { value: 'dark' }, { value: 'romantic' }, { value: 'suspenseful' }, { value: 'light' }, { value: 'dramatic' },
+  ].map((t) => ({ value: t.value, label: t.value[0].toUpperCase() + t.value.slice(1) })), 'tone');
+  options('pacings', [
+    { value: 'fast', label: 'Fast', desc: 'Cliffhanger every chapter' },
+    { value: 'balanced', label: 'Balanced', desc: 'Tension and breathing room' },
+    { value: 'slow_burn', label: 'Slow Burn', desc: 'Long-game tension' },
+  ], 'pacing');
+
+  $('next1').onclick = () => {
+    if (idea.value.trim().length < 10) return App.toast('Give the architect at least one full sentence.', true);
+    state.idea = idea.value.trim(); advance();
+  };
+
+  $('btnRegen').onclick = async () => {
+    if (!state.novelId) return App.toast('Generate a blueprint first.', true);
+    try {
+      $('bpStatus').textContent = 'Re-designing your Story Blueprint…';
+      const r = await App.api('/api/fiction/blueprint', { body: { taskId: App.uid(), novelId: state.novelId, action: 'regenerate' } });
+      state.blueprint = r.blueprint; renderBp();
+    } catch (e) { App.toast(e.message, true); }
+  };
+
+  $('btnExpand').onclick = async () => {
+    try {
+      $('expandBox').style.display = '';
+      $('expandBox').scrollIntoView({ behavior: 'smooth' });
+      const r = await App.api('/api/fiction/blueprint', { body: { taskId: App.uid(), novelId: state.novelId, action: 'expand' } });
+      $('expandBox').style.display = 'none';
+      $('expandDone').style.display = '';
+      $('exSummary').textContent = `${r.cast.length} characters · ${r.chapterPlan.length} chapters planned · ${r.creditsUsed} credits used`;
+      $('outlinePreview').innerHTML = r.chapterPlan.slice(0, 12)
+        .map((c) => `<div class="kv"><b>Ch.${c.no}</b><span><b style="color:var(--text)">${c.title}</b> — ${c.synopsis}</span></div>`).join('')
+        + (r.chapterPlan.length > 12 ? `<div class="muted">…and ${r.chapterPlan.length - 12} more chapters</div>` : '');
+      state.expanded = true;
+      $('expandDone').scrollIntoView({ behavior: 'smooth' });
+    } catch (e) { $('expandBox').style.display = 'none'; App.toast(e.message, true); }
+  };
+
+  $('btnApprove').onclick = async () => {
+    try {
+      await App.api('/api/fiction/blueprint', { body: { taskId: App.uid(), novelId: state.novelId, action: 'approve' } });
+      location.href = `/studio/novel.html?id=${state.novelId}`;
+    } catch (e) { App.toast(e.message, true); }
+  };
+
+  function renderBp() {
+    const b = state.blueprint;
+    $('bpProgress').style.display = 'none';
+    $('bpBox').style.display = '';
+    $('bpTitle').textContent = b.title || 'Untitled';
+    $('bpLogline').textContent = b.logline || '';
+    const kv = (k, v) => v ? `<div class="kv"><b>${k}</b><span>${v}</span></div>` : '';
+    $('bpBody').innerHTML = [
+      kv('Premise', b.premise), kv('Audience', b.target_audience), kv('Main conflict', b.main_conflict),
+      kv('Central question', b.central_question), kv('Ending direction', b.ending_direction),
+      kv('Structure', b.story_structure), kv('Plan', b.chapter_plan_summary),
+      b.world?.length ? `<hr><h3>World</h3>` + b.world.map((w) => `<div class="kv"><b>${w.name}</b><span>${w.type} — ${w.description}</span></div>`).join('') : '',
+      b.plot_threads?.length ? `<h3>Plot threads</h3>` + b.plot_threads.map((t) => `<div class="kv"><b>${t.title}</b><span>${t.plan}</span></div>`).join('') : '',
+      b.foreshadowing?.length ? `<h3>Foreshadowing</h3>` + b.foreshadowing.map((f) => `<div class="kv"><b>${f.title}</b><span>planted ch.${f.introduced_chapter} → reveal ch.${f.planned_reveal_chapter} — ${f.description}</span></div>`).join('') : '',
+    ].join('');
+  }
+
+  // wizard: generate blueprint on reaching step 7
+  const obs = new MutationObserver(() => {
+    const s7 = document.querySelector('section[data-step="7"]');
+    if (s7.style.display === '' && !state.novelId) startBlueprint();
+  });
+  obs.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['style'] });
+
+  async function startBlueprint() {
+    try {
+      const r = await App.api('/api/fiction/novels', {
+        body: { taskId: App.uid(), idea: state.idea, genre: state.genre, length: state.length, pov: state.pov, tone: state.tone, pacing: state.pacing },
+      });
+      state.novelId = r.novelId; state.blueprint = r.blueprint; renderBp();
+    } catch (e) {
+      $('bpStatus').textContent = 'Failed: ' + e.message;
+      $('bpStatus').style.color = 'var(--bad)';
+      App.toast(e.message + ' — your credits were released. Try again.', true);
+    }
+  }
+})();
+</script>
+</body>
+</html>

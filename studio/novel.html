@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writing Workspace — Glint AI Fiction Studio</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/studio/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="logo" href="/index.html">GLINT <b>AI</b> · Fiction Studio</a>
+  <nav>
+    <span class="muted" id="creditTag" style="margin-right:14px"></span>
+    <a href="/studio/index.html">My Stories</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <div id="login" class="card login-box" style="display:none">
+    <h1>Sign in to continue writing</h1>
+    <label>Email</label><input id="email" type="email">
+    <label>Password</label><input id="password" type="password">
+    <div style="margin-top:16px"><button class="btn primary" id="btnSignin">Sign In</button></div>
+  </div>
+
+  <main id="main" style="display:none">
+    <div id="head"></div>
+    <div class="workspace" style="margin-top:18px">
+      <aside class="sidenav card" id="nav"></aside>
+      <div id="panel"></div>
+    </div>
+  </main>
+</div>
+
+<script src="/studio/app.js"></script>
+<script src="/studio/export.js"></script>
+<script>
+(async () => {
+  try { await App.boot(); } catch (e) { document.getElementById('login').style.display = ''; return; }
+  const login = document.getElementById('login'), main = document.getElementById('main');
+  if (!App.requireLogin(login, main)) return;
+
+  const novelId = new URLSearchParams(location.search).get('id');
+  let D = null;            // full bundle from /api/fiction/novel
+  let currentChapter = null;
+  let dirty = false;
+  const $ = (id) => document.getElementById(id);
+  const panel = $('panel');
+  const esc = (s) => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+  const SECTIONS = [
+    ['overview', 'Overview'], ['bible', 'Story Bible'], ['characters', 'Characters'],
+    ['world', 'World'], ['plot', 'Plot Threads'], ['timeline', 'Timeline'],
+    ['foreshadow', 'Foreshadowing'], ['chapters', 'Chapters'],
+  ];
+
+  await load();
+
+  async function load() {
+    D = await App.api(`/api/fiction/novel?novel=${novelId}`);
+    const cr = await App.api('/api/fiction/credits').catch(() => null);
+    $('creditTag').textContent = cr ? `${cr.wallet.balance} credits` : '';
+    $('head').innerHTML = `<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:flex-end">
+      <div><h1 style="margin:0">${esc(D.novel.title)}</h1>
+      <p class="muted">${D.novel.genre.replace('_',' ')} · ${D.novel.pov.replace('_',' ')} · ${D.novel.status} · ${D.chapters.length}/${D.novel.lengthTarget} chapters</p></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn ghost" onclick="Exporter.txt(D.novel,D.chapters)">TXT</button>
+        <button class="btn ghost" onclick="Exporter.doc(D.novel,D.chapters)">DOC</button>
+        <button class="btn ghost" onclick="Exporter.epub(D.novel,D.chapters)">EPUB</button>
+      </div></div>`;
+    renderNav('overview'); show('overview');
+  }
+
+  window.D = D; window.Exporter = Exporter;
+
+  function renderNav(active) {
+    $('nav').innerHTML = SECTIONS.map(([k, label]) =>
+      `<button data-k="${k}" class="${k === active ? 'on' : ''}">${label}</button>`).join('');
+    $('nav').querySelectorAll('button').forEach((b) => (b.onclick = () => { renderNav(b.dataset.k); show(b.dataset.k); }));
+  }
+
+  function show(key) {
+    if (key === 'chapters') return renderChapters();
+    const R = {
+      overview: vOverview, bible: vBible, characters: vCharacters, world: vWorld,
+      plot: vPlot, timeline: vTimeline, foreshadow: vForeshadow,
+    }[key];
+    panel.innerHTML = `<div class="card">${R()}</div>`;
+  }
+
+  const kv = (k, v) => v ? `<div class="kv"><b>${k}</b><span>${esc(String(v))}</span></div>` : '';
+
+  function vOverview() {
+    const b = D.blueprint || {};
+    return `<h2>Story Blueprint</h2>${kv('Logline', b.logline)}${kv('Premise', b.premise)}
+      ${kv('Main conflict', b.main_conflict)}${kv('Central question', b.central_question)}
+      ${kv('Ending', b.ending_direction)}${kv('Structure', b.story_structure)}`;
+  }
+  function vBible() {
+    const b = D.bible || {};
+    return `<h2>Story Bible</h2>
+      <h3>Important facts the AI remembers</h3>${(b.important_facts || []).map((f) => `<div class="kv"><span>• ${esc(f)}</span></div>`).join('') || '<p class="muted">Facts accumulate automatically after each chapter.</p>'}
+      <h3>Open questions</h3>${(b.open_questions || []).map((q) => `<div class="kv"><span>❓ ${esc(q)}</span></div>`).join('') || '<p class="muted">None yet.</p>'}
+      ${kv('Premise', b.premise)}`;
+  }
+  function vCharacters() {
+    return D.characters.map((c) => `<div class="card" style="margin:10px 0">
+      <div style="display:flex;justify-content:space-between"><h3 style="margin:0">${esc(c.name)} <span class="pill">${esc(c.role || '')}</span></h3></div>
+      <p class="muted" style="margin:8px 0">${esc(c.essence || c.background || '')}</p>
+      <div class="statebar">${Object.entries(c.current_state || {}).map(([k, v]) => `<span>${k}:${v}</span>`).join('')}</div>
+      ${c.secrets?.length ? `<p class="muted">🔒 ${esc(c.secrets.join(' · '))}</p>` : ''}
+    </div>`).join('');
+  }
+  function vWorld() { return D.world.length ? D.world.map((w) => `<div class="kv"><b>${esc(w.name)}</b><span>${esc(w.type)} — ${esc(w.description)}</span></div>`).join('') : '<p class="muted">No world entities yet.</p>'; }
+  function vPlot() {
+    return D.plotThreads.length ? D.plotThreads.map((t) => `<div class="kv"><b>${esc(t.title)}</b>
+      <span><span class="pill ${t.status === 'resolved' ? 'ok' : ''}">${t.status}</span> ${esc(t.kind)}${t.planned_resolution ? ` → resolves ch.${t.planned_resolution}` : ''}</span></div>`).join('')
+      : '<p class="muted">No plot threads yet — run "Build Characters & Chapter Outline" from the blueprint screen.</p>';
+  }
+  function vTimeline() { return D.timeline.length ? D.timeline.map((e) => `<div class="kv"><b>Ch.${e.chapter_no ?? '?'}</b><span>${esc(e.event)} ${e.importance === 'critical' ? '🔴' : ''}</span></div>`).join('') : '<p class="muted">Timeline builds automatically as chapters are generated.</p>'; }
+  function vForeshadow() {
+    return D.foreshadowing.length ? D.foreshadowing.map((f) => `<div class="kv"><b>${esc(f.title)}</b>
+      <span><span class="pill ${f.status === 'revealed' ? 'ok' : 'warn'}">${f.status}</span> planted ch.${f.introduced_chapter ?? '?'} → reveal ch.${f.planned_reveal_chapter ?? '?'} — ${esc(f.description)}</span></div>`).join('')
+      : '<p class="muted">No foreshadowing yet.</p>';
+  }
+
+  // ---------------- Chapters ----------------
+  function renderChapters() {
+    const next = D.chapters.length + 1;
+    panel.innerHTML = `
+      <div class="card" style="margin-bottom:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:center">
+        <div><h3 style="margin:0">Generate Chapter ${next}</h3>
+        <p class="muted" style="margin:4px 0">Pipeline: outline → draft → continuity check → literary edit → quality score → memory update. ~20 credits.</p></div>
+        <button class="btn primary" id="genBtn">✦ Generate Chapter ${next}</button>
+      </div>
+      <div class="progress" id="pipeStatus"></div>
+      <div id="issueBox"></div>
+      <div class="grid" id="chapterList"></div>
+      <div id="editorBox" style="display:none" class="card" style="margin-top:14px">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <h3 id="edTitle" style="margin:0"></h3>
+          <div class="muted" id="edMeta"></div>
+        </div>
+        <textarea id="editor" class="editor" style="margin-top:12px"></textarea>
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+          <button class="btn primary" id="saveBtn">Save</button>
+          <select id="actionSel" style="width:auto">
+            <option value="continue">Continue</option><option value="improve">Improve prose</option>
+            <option value="more_emotional">Make more emotional</option><option value="improve_dialogue">Improve dialogue</option>
+            <option value="shorten">Shorten</option><option value="expand">Expand</option>
+          </select>
+          <button class="btn pink" id="actionBtn">Run AI Action</button>
+          <span style="flex:1"></span>
+          <button class="btn ghost" id="fbGood">👍</button><button class="btn ghost" id="fbBad">👎</button>
+        </div>
+        <div class="progress" id="actionStatus"></div>
+        <div id="qualityBox"></div>
+      </div>`;
+    const list = $('chapterList');
+    list.innerHTML = D.chapters.map((c) => `
+      <a class="card" href="#" data-no="${c.chapter_no}" style="display:block">
+        <div style="display:flex;justify-content:space-between"><b>Ch.${c.chapter_no} — ${esc(c.title || 'Untitled')}</b><span class="muted">${c.word_count} words · ${c.status}</span></div>
+      </a>`).join('') || '<p class="muted">No chapters yet.</p>';
+    list.querySelectorAll('a').forEach((a) => (a.onclick = (e) => { e.preventDefault(); openEditor(Number(a.dataset.no)); }));
+    $('genBtn').onclick = () => runPipeline(next);
+    $('saveBtn').onclick = saveChapter;
+    $('actionBtn').onclick = runAction;
+    $('fbGood').onclick = () => sendFeedback('good');
+    $('fbBad').onclick = () => sendFeedback('needs_improvement');
+  }
+
+  async function runPipeline(no) {
+    const steps = ['outline', 'draft', 'continuity', 'edit', 'score', 'memory'];
+    const labels = { outline: 'Planning chapter…', draft: 'Writing chapter…', continuity: 'Checking continuity…', edit: 'Literary editing…', score: 'Scoring quality…', memory: 'Updating story memory…' };
+    const taskId = App.uid();
+    const btn = $('genBtn'); btn.disabled = true;
+    try {
+      let result = {};
+      for (const s of steps) {
+        $('pipeStatus').textContent = labels[s];
+        const r = await App.api('/api/fiction/generate', { body: { taskId, novelId, chapterNo: no, step: s } });
+        result = r;
+        if (s === 'continuity' && r.issues?.length) {
+          $('issueBox').innerHTML = r.issues.slice(0, 6).map((i) => `<div class="issue ${i.severity}"><b>${i.severity}</b> ${esc(i.problem || '')} ${i.fix ? `→ <i>${esc(i.fix)}</i>` : ''}</div>`).join('');
+        }
+        if (s === 'score' && r.quality) {
+          $('qualityBox').innerHTML = `<div class="card" style="margin-top:10px"><b>AI Writing Quality Analysis — overall ${r.quality.overall}/10</b>
+            <div class="statebar">${Object.entries(r.quality.scores || {}).map(([k, v]) => `<span>${k.replace('_', ' ')}:${v}</span>`).join('')}</div></div>`;
+        }
+      }
+      $('pipeStatus').innerHTML = `<span style="color:var(--ok)">✔ Chapter ${no} complete — ${result.creditsUsed ?? ''} credits used. Memory updated.</span>`;
+      await load(); renderNav('chapters'); renderChapters(); openEditor(no);
+    } catch (e) {
+      $('pipeStatus').innerHTML = `<span style="color:var(--bad)">✖ ${esc(e.message)}</span> <button class="btn ghost" onclick="location.reload()">Reload & retry</button>`;
+    } finally { btn.disabled = false; }
+  }
+
+  async function openEditor(no) {
+    const r = await App.api(`/api/fiction/chapter?novel=${novelId}&no=${no}`);
+    currentChapter = r.chapter;
+    if (!currentChapter) return App.toast('Chapter not generated yet.', true);
+    $('editorBox').style.display = 'block';
+    $('editorBox').style.marginTop = '14px';
+    $('edTitle').textContent = `Ch.${no} — ${currentChapter.title || 'Untitled'}`;
+    $('edMeta').textContent = `${currentChapter.word_count} words · autosave on`;
+    $('editor').value = currentChapter.content || '';
+    const qs = D.qualityScores.filter((q) => q.chapter_no === no);
+    $('qualityBox').innerHTML = qs.length ? `<div class="muted" style="margin-top:8px">Last quality score: ${qs[0].overall}/10</div>` : '';
+    $('editorBox').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  let saveTimer = null;
+  document.addEventListener('input', (e) => {
+    if (e.target?.id !== 'editor') return;
+    dirty = true;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveChapter, 4000);
+  });
+
+  async function saveChapter() {
+    if (!currentChapter || !dirty) return;
+    dirty = false;
+    try {
+      await App.api('/api/fiction/chapter', { method: 'PATCH', body: { novelId, chapterNo: currentChapter.chapter_no, content: $('editor').value } });
+      $('edMeta').textContent = `saved ${new Date().toLocaleTimeString()} · ${($('editor').value.match(/\S+/g) || []).length} words`;
+    } catch (e) { App.toast('Save failed: ' + e.message, true); dirty = true; }
+  }
+
+  async function runAction() {
+    if (!currentChapter) return;
+    await saveChapter();
+    const action = $('actionSel').value;
+    const btn = $('actionBtn'); btn.disabled = true;
+    $('actionStatus').textContent = 'Working…';
+    try {
+      const r = await App.api('/api/fiction/chapter', { body: { taskId: App.uid(), novelId, chapterNo: currentChapter.chapter_no, action } });
+      if (action === 'continue') {
+        $('editor').value = ($('editor').value + '\n\n' + (r.content || '')).trim() || $('editor').value;
+        currentChapter.content = $('editor').value;
+      } else {
+        $('editor').value = r.content || '';
+        currentChapter.content = r.content;
+      }
+      dirty = true; await saveChapter();
+      $('actionStatus').innerHTML = `<span style="color:var(--ok)">✔ done — ${r.creditsUsed} credits used</span>`;
+    } catch (e) { $('actionStatus').innerHTML = `<span style="color:var(--bad)">✖ ${esc(e.message)}</span>`; }
+    finally { btn.disabled = false; }
+  }
+
+  async function sendFeedback(rating) {
+    if (!currentChapter) return;
+    try {
+      await App.api('/api/fiction/feedback', { body: { novelId, chapterNo: currentChapter.chapter_no, rating } });
+      App.toast('Thanks — feedback recorded for skill learning.', false);
+    } catch (e) { App.toast(e.message, true); }
+  }
+})();
+</script>
+</body>
+</html>
