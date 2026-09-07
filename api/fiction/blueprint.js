@@ -36,7 +36,7 @@ export default async function handler(req, res) {
         const agent = AGENTS.story_architect;
         const out = await generate({
           tier: agent.model, system: agent.system,
-          user: agent.user({ novel, idea: novel.idea }), temperature: 1.0, maxTokens: 3500, json: true, timeoutMs: 90000,
+          user: agent.user({ novel, idea: novel.idea }), temperature: 1.0, maxTokens: 3500, json: true, timeoutMs: 240000,
         });
         const bp = out.data;
         await admin.from('novels').update({ title: bp.title || novel.title, blueprint: bp }).eq('id', novel.id);
@@ -63,7 +63,7 @@ export default async function handler(req, res) {
           try {
             castOut = await generate({
               tier: charAgent.model, system: charAgent.system,
-              user: charAgent.user({ blueprint: bp, novel }), temperature: 0.85, maxTokens: 8000, json: true, timeoutMs: 90000,
+              user: charAgent.user({ blueprint: bp, novel }), temperature: 0.85, maxTokens: 8000, json: true, timeoutMs: 240000,
             });
             cast = castOut.data;
           } catch (e) {

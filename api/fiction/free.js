@@ -44,7 +44,7 @@ export default async function handler(req, res) {
 
   try {
     const out = await generate({
-      tier: 'creative', temperature: 0.9, maxTokens: 4000, timeoutMs: 60000,
+      tier: 'creative', temperature: 0.9, maxTokens: 4000, timeoutMs: 240000,
       system: `You are a fiction opening writer. You write gripping novel openings (250-350 words) that end on a hook. Genre-level craft only, no author imitation. Output ONLY the story text: first line "Chapter 1 — <title>", then the prose.`,
       user: `Story idea: ${idea.trim()}\nGenre: ${genre}\n\nWrite the opening of Chapter 1 (250-350 words) and end on a cliffhanger hook.`,
     });

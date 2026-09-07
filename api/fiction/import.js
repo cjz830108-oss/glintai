@@ -58,7 +58,7 @@ export default async function handler(req, res) {
       }).join('\n\n');
 
       const out = await generate({
-        tier: 'deep', json: true, temperature: 0.3, maxTokens: 8000, timeoutMs: 180000,
+        tier: 'deep', json: true, temperature: 0.3, maxTokens: 8000, timeoutMs: 240000,
         system: `You reverse-engineer a Story Bible from existing novel chapters. You are precise and only record what the text supports. Output ONLY valid JSON.`,
         user: `Rebuild the story memory for this ongoing novel (sampled chapters shown):
 ${excerpt}
@@ -115,7 +115,7 @@ Return JSON exactly like:
         if (!text.trim()) continue;
         try {
           const s = await generate({
-            tier: 'light', json: true, temperature: 0.2, maxTokens: 4000, timeoutMs: 60000,
+            tier: 'light', json: true, temperature: 0.2, maxTokens: 4000, timeoutMs: 240000,
             system: sumAgent.system,
             user: sumAgent.user({ chapterNo: n, chapterText: text }),
           });
