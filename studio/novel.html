@@ -132,7 +132,7 @@
     panel.innerHTML = `
       <div class="card" style="margin-bottom:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:center">
         <div><h3 style="margin:0">Generate Chapter ${next}</h3>
-        <p class="muted" style="margin:4px 0">Pipeline: outline → draft → continuity check → literary edit → quality score → memory update. ~20 credits.</p></div>
+        <p class="muted" style="margin:4px 0">Pipeline: outline → draft → continuity check → literary edit → quality gate (auto-rewrite below 8.0) → memory update. ~30 credits.</p></div>
         <button class="btn primary" id="genBtn">✦ Generate Chapter ${next}</button>
       </div>
       <div class="progress" id="pipeStatus"></div>
@@ -172,25 +172,25 @@
   }
 
   async function runPipeline(no) {
-    const steps = ['outline', 'draft', 'continuity', 'edit', 'score', 'memory'];
-    const labels = { outline: 'Planning chapter…', draft: 'Writing chapter…', continuity: 'Checking continuity…', edit: 'Literary editing…', score: 'Scoring quality…', memory: 'Updating story memory…' };
+    const labels = { outline: 'Planning chapter…', draft: 'Writing chapter…', continuity: 'Checking continuity…', edit: 'Literary editing…', score: 'Scoring quality…', rewrite: 'Below 8.0 — rewriting to fix weak spots…', memory: 'Updating story memory…' };
     const taskId = App.uid();
     const btn = $('genBtn'); btn.disabled = true;
     try {
-      let result = {};
-      for (const s of steps) {
-        $('pipeStatus').textContent = labels[s];
-        const r = await App.api('/api/fiction/generate', { body: { taskId, novelId, chapterNo: no, step: s } });
+      let step = 'outline', result = {};
+      while (step && step !== 'done') {
+        $('pipeStatus').textContent = labels[step] || step;
+        const r = await App.api('/api/fiction/generate', { body: { taskId, novelId, chapterNo: no, step } });
         result = r;
-        if (s === 'continuity' && r.issues?.length) {
+        if (step === 'continuity' && r.issues?.length) {
           $('issueBox').innerHTML = r.issues.slice(0, 6).map((i) => `<div class="issue ${i.severity}"><b>${i.severity}</b> ${esc(i.problem || '')} ${i.fix ? `→ <i>${esc(i.fix)}</i>` : ''}</div>`).join('');
         }
-        if (s === 'score' && r.quality) {
-          $('qualityBox').innerHTML = `<div class="card" style="margin-top:10px"><b>AI Writing Quality Analysis — overall ${r.quality.overall}/10</b>
+        if (r.quality) {
+          $('qualityBox').innerHTML = `<div class="card" style="margin-top:10px"><b>AI Writing Quality Analysis — overall ${r.quality.overall}/10</b>${r.needsRewrite ? ' <span style="color:var(--warn)">· below 8.0 → auto-rewrite queued</span>' : ''}
             <div class="statebar">${Object.entries(r.quality.scores || {}).map(([k, v]) => `<span>${k.replace('_', ' ')}:${v}</span>`).join('')}</div></div>`;
         }
+        step = r.nextStep || 'done';
       }
-      $('pipeStatus').innerHTML = `<span style="color:var(--ok)">✔ Chapter ${no} complete — ${result.creditsUsed ?? ''} credits used. Memory updated.</span>`;
+      $('pipeStatus').innerHTML = `<span style="color:var(--ok)">✔ Chapter ${no} complete${result.rewritten ? ' (rewritten once after quality gate)' : ''} — ${result.creditsUsed ?? ''} credits used. Memory updated.</span>`;
       await load(); renderNav('chapters'); renderChapters(); openEditor(no);
     } catch (e) {
       $('pipeStatus').innerHTML = `<span style="color:var(--bad)">✖ ${esc(e.message)}</span> <button class="btn ghost" onclick="location.reload()">Reload & retry</button>`;

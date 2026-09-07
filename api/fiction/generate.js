@@ -127,7 +127,29 @@ export default async function handler(req, res) {
         await saveOutput(taskId, novel.id, ch, 'score', JSON.stringify(out.data), out);
         await charge(user.id, novel.id, taskId, 'scorer', task, out);
         await finishStep('score_done', { overall: out.data?.overall });
-        return json(res, 200, { nextStep: 'memory', quality: out.data, task });
+        // quality gate: below studio standard (8.0) → one genuine rewrite pass
+        const overall = Number(out.data?.overall || 0);
+        const needsRewrite = overall > 0 && overall < 8.0;
+        return json(res, 200, { nextStep: needsRewrite ? 'rewrite' : 'memory', quality: out.data, needsRewrite, overall, task });
+      }
+
+      // ---------- 5b) QUALITY-GATE REWRITE ----------
+      if (step === 'rewrite') {
+        const chapterText = await getChapterText(novel.id, ch);
+        const scoreData = (await lastOutput(novel.id, ch, 'score')) || {};
+        const cont = (await lastOutput(novel.id, ch, 'continuity')) || { issues: [] };
+        const agent = AGENTS.reviser;
+        const out = await generate({
+          tier: agent.model, temperature: 0.75, maxTokens: 3800, timeoutMs: 180000,
+          system: agent.system,
+          user: agent.user({ chapterText, scores: scoreData.scores || {}, notes: scoreData.notes || '', issues: cont.issues || [], chapterNo: ch, targetWords }),
+        });
+        const text = (out.text || '').trim();
+        if (text.length > 300) await upsertChapter(novel.id, ch, text);
+        await saveOutput(taskId, novel.id, ch, 'rewrite', text, out);
+        await charge(user.id, novel.id, taskId, 'editor', task, out);
+        await finishStep('rewrite_done', { rewritten: true });
+        return json(res, 200, { nextStep: 'memory', rewritten: true, task });
       }
 
       // ---------- 6) MEMORY UPDATE (finalizes + settles credits) ----------

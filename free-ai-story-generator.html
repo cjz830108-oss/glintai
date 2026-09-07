@@ -129,6 +129,9 @@ $('go').onclick = async () => {
     if (!r.ok) throw new Error(d.error?.message || 'Generation failed');
     $('story').textContent = d.story;
     $('out').style.display = 'block';
+    // funnel handoff: carry the idea + genre into the studio wizard
+    const cta = document.querySelector('#out a.btn.pink');
+    if (cta) cta.href = '/studio/new.html?idea=' + encodeURIComponent(idea) + '&genre=' + encodeURIComponent($('genre').value);
     left = typeof d.remaining === 'number' ? d.remaining : left - 1;
     $('remaining').textContent = left > 0 ? `${left} free generation${left === 1 ? '' : 's'} left today` : 'Daily free limit reached — create an account for 100 credits';
     $('out').scrollIntoView({ behavior: 'smooth' });

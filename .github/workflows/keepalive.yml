@@ -17,6 +17,6 @@ jobs:
       - name: Ping Supabase via Vercel proxy
         run: |
           curl -s -o /dev/null -w "keepalive HTTP %{http_code}\n" \
-            -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6cXVwbWZhYmVsaWh0bGlnZHkiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc4NjAyMTA3MiwiZXhwIjoyMTAxNTk3MDcyfQ.kPFGcwl-CCGP8SBXebmBnzUaZcQy5Z5paOyOcVY6k04" \
-            -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6cXVwbWZhYmVsaWh0bGlnZHkiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc4NjAyMTA3MiwiZXhwIjoyMTAxNTk3MDcyfQ.kPFGcwl-CCGP8SBXebmBnzUaZcQy5Z5paOyOcVY6k04" \
-            "https://glintai.tools/api/sb?_path=/rest/v1/profiles&select=id&limit=1"
+            -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4aWR6bXB2bXljdmJ0Ymtob3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwMTMwMDUsImV4cCI6MjEwMTU4OTAwNX0.YFNC0chB9fcUPqys93y2k89BRb0B6_RNt8dfoAOLINo" \
+            -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4aWR6bXB2bXljdmJ0Ymtob3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwMTMwMDUsImV4cCI6MjEwMTU4OTAwNX0.YFNC0chB9fcUPqys93y2k89BRb0B6_RNt8dfoAOLINo" \
+            "https://glintai.tools/api/sb?_path=/rest/v1/novels&select=id&limit=1"

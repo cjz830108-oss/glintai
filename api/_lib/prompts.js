@@ -155,6 +155,24 @@ CHAPTER TEXT:
 ${chapterText}`,
   },
 
+  reviser: {
+    model: 'creative',
+    system: `You are the Quality Rewriter of a fiction studio. A finished chapter scored below the studio standard. You rewrite it to fix the exact problems the reviewers found — deeper character behavior, stronger pacing, sharper dialogue, less AI-tell phrasing — while preserving every established fact, every plot beat and the ending hook exactly. Output ONLY the rewritten chapter prose, first line "Chapter N — Title".`,
+    user: ({ chapterText, scores, notes, issues, chapterNo, targetWords }) => `Rewrite Chapter ${chapterNo} (~${targetWords} words) to fix the problems below. Do NOT change what happens — change how well it happens.
+
+QUALITY SCORES (0-10, be guided by the lowest):
+${JSON.stringify(scores)}
+
+SCORER'S NOTE: ${notes || 'none'}
+
+CONTINUITY ISSUES TO FIX: ${JSON.stringify(issues || [])}
+
+CHAPTER TEXT:
+${chapterText}
+
+Rewrite the full chapter addressing every weak axis. Preserve all events, dialogue content, facts and the ending hook. Output only the improved chapter.`,
+  },
+
   action: {
     model: 'creative',
     system: `You are the Novel Writer of a fiction studio executing a focused revision instruction on part of a chapter. Preserve all established facts and character states. Output ONLY the rewritten text, no commentary.`,

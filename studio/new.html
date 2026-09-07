@@ -163,6 +163,16 @@
     state.idea = idea.value.trim(); advance();
   };
 
+  // funnel handoff: prefill from Free Story Generator (?idea=…&genre=…)
+  const qp = new URLSearchParams(location.search);
+  if ((qp.get('idea') || '').trim().length >= 10) {
+    state.idea = qp.get('idea').trim();
+    $('idea').value = state.idea;
+    const g = qp.get('genre');
+    if (g && ['romance', 'billionaire_romance', 'werewolf', 'fantasy', 'thriller'].includes(g)) state.genre = g;
+    showStep(2);
+  }
+
   $('btnRegen').onclick = async () => {
     if (!state.novelId) return App.toast('Generate a blueprint first.', true);
     try {

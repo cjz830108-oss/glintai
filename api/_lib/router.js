@@ -33,7 +33,7 @@ async function callProvider(providerName, { system, user, temperature, maxTokens
   if (!key) throw Object.assign(new Error(`No API key for ${providerName}`), { code: 'no_key' });
 
   const body = {
-    model: p.models.light && jsonMode ? p.models.light : p.models.light, // single-model tiers; deep tier resolved by caller
+    model: p.models[opts.tier] || p.models.light,
     messages: [
       { role: 'system', content: system },
       { role: 'user', content: user },
@@ -144,6 +144,6 @@ export function toCredits(costUsd, floor = 1) {
 export const ESTIMATES = {
   blueprint: 8,     // architect call
   expand: 14,       // characters + full outline
-  chapter: 20,      // outline+draft+continuity+edit+score+memory
+  chapter: 30,      // outline+draft+continuity+edit+score(+quality rewrite)+memory
   action: 6,        // single rewrite/continue/improve call
 };
