@@ -68,7 +68,12 @@ async function callProvider(providerName, { system, user, temperature, maxTokens
     const usage = data.usage || { prompt_tokens: 0, completion_tokens: 0, prompt_tokens_details: {} };
     return {
       text: choice,
-      raw: JSON.stringify(data).slice(0, 500),
+      raw: JSON.stringify({
+        model: data.model, finish: data.choices?.[0]?.finish_reason,
+        content_len: (data.choices?.[0]?.message?.content || '').length,
+        reasoning_len: (data.choices?.[0]?.message?.reasoning_content || '').length,
+        usage: data.usage, error: data.error || null,
+      }),
       provider: providerName,
       model: data.model || body.model,
       usage: {
