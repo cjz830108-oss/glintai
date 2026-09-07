@@ -27,13 +27,13 @@ const TIERS = {
   deep:     (process.env.MODEL_DEEP     || 'openai,deepseek').split(','),
 };
 
-async function callProvider(providerName, { system, user, temperature, maxTokens, jsonMode, timeoutMs }) {
+async function callProvider(providerName, { system, user, temperature, maxTokens, jsonMode, timeoutMs, tier }) {
   const p = PROVIDERS[providerName];
   const key = p.key();
   if (!key) throw Object.assign(new Error(`No API key for ${providerName}`), { code: 'no_key' });
 
   const body = {
-    model: p.models[opts.tier] || p.models.light,
+    model: p.models[tier] || p.models.light,
     messages: [
       { role: 'system', content: system },
       { role: 'user', content: user },
