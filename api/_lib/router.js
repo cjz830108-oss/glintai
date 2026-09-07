@@ -98,7 +98,7 @@ export async function generate(opts) {
       const out = await callProvider(name, opts);
       if (json) {
         out.data = extractJson(out.text);
-        if (out.data === undefined) throw Object.assign(new Error('Bad JSON from provider'), { code: 'bad_json' });
+        if (out.data === undefined) throw Object.assign(new Error(`Bad JSON from provider: ${(out.text || '(empty)').slice(0, 200)}`), { code: 'bad_json' });
       }
       return out;
     } catch (err) {
