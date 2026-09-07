@@ -86,7 +86,7 @@ export default async function handler(req, res) {
         const chapterText = await getChapterText(novel.id, ch);
         const agent = AGENTS.continuity_editor;
         const out = await generate({
-          tier: agent.model, json: true, temperature: 0.2, maxTokens: 8000, timeoutMs: 120000,
+          tier: agent.model, json: true, temperature: 0.2, maxTokens: 16000, timeoutMs: 120000,
           system: agent.system,
           user: agent.user({ ctx, chapterText, chapterNo: ch }),
         });
