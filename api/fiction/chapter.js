@@ -6,7 +6,7 @@ import { buildChapterContext, contextToPrompt } from '../_lib/retrieval.js';
 import { lockCredits, settleCredits, refundTask } from '../_lib/credits.js';
 import { recordUsage } from '../_lib/usage.js';
 
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 const ACTIONS = {
   continue:        'Continue writing seamlessly from where the text stops, for about 600 words. Match voice, tense and POV exactly.',

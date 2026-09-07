@@ -6,7 +6,7 @@ import { AGENTS } from '../_lib/prompts.js';
 import { lockCredits, settleCredits, refundTask } from '../_lib/credits.js';
 import { recordUsage } from '../_lib/usage.js';
 
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 export default async function handler(req, res) {
   if (cors(req, res)) return;

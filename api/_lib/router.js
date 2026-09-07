@@ -92,21 +92,24 @@ export async function generate(opts) {
   const { tier = 'light', json = false } = opts;
   const order = TIERS[tier] || TIERS.light;
   const errors = [];
+  const attemptsPerProvider = json ? 2 : 1; // JSON calls occasionally come back empty/truncated — retry once
 
   for (const name of order) {
     if (!PROVIDERS[name]) continue;
-    try {
-      const out = await callProvider(name, opts);
-      if (json) {
-        out.data = extractJson(out.text);
-        if (out.data === undefined) throw Object.assign(new Error(`Bad JSON from provider: text=${(out.text || '(empty)').slice(0, 150)} raw=${out.raw || '?'}`), { code: 'bad_json' });
+    for (let a = 0; a < attemptsPerProvider; a++) {
+      try {
+        const out = await callProvider(name, opts);
+        if (json) {
+          out.data = extractJson(out.text);
+          if (out.data === undefined) throw Object.assign(new Error(`Bad JSON from provider: text=${(out.text || '(empty)').slice(0, 150)} raw=${out.raw || '?'}`), { code: 'bad_json' });
+        }
+        return out;
+      } catch (err) {
+        errors.push(`${name}#${a + 1}: ${err.message}`);
       }
-      return out;
-    } catch (err) {
-      errors.push(`${name}: ${err.message}`);
     }
   }
-  throw Object.assign(new Error(`All model providers failed → ${errors.join(' | ')}`), {
+  throw Object.assign(new Error(`All model providers failed → ${errors.join(' | ')}`.slice(0, 800)), {
     code: 'router_failed',
     status: 502,
   });
