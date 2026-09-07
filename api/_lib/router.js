@@ -52,6 +52,11 @@ async function callProvider(providerName, { system, user, temperature, maxTokens
     body.thinking = { type: 'disabled' };
     body.max_tokens = Math.max(maxTokens || 4096, 8000);
   }
+  if (_noJsonMode) {
+    // retry path: ask v4 reasoning models to think silently / not at all
+    body.thinking = { type: 'disabled' };
+    body.max_tokens = Math.max(maxTokens || 4096, 8000);
+  }
 
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs || 120000);
