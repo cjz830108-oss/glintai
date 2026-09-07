@@ -370,7 +370,7 @@ do $$
 declare t text;
 begin
   foreach t in array array[
-    'novels','story_bibles','characters','relationships','world_entities',
+    'novels','story_bibles','relationships','world_entities',
     'timeline_events','plot_threads','foreshadowing','chapters','chapter_summaries',
     'generation_tasks','generation_outputs','generation_feedback','quality_scores',
     'credit_wallets','credit_transactions','model_usage','user_preferences'
@@ -382,7 +382,7 @@ begin
       execute format($f$create policy %I_owner on public.%I for all
         using (exists (select 1 from public.novels n where n.id = %I.novel_id and n.user_id = auth.uid()))
         with check (exists (select 1 from public.novels n where n.id = %I.novel_id and n.user_id = auth.uid()))$f$, t, t, t, t);
-    elsif t in ('relationships','world_entities','timeline_events','plot_threads','foreshadowing','generation_outputs','quality_scores') then
+    elsif t in ('chapters','relationships','world_entities','timeline_events','plot_threads','foreshadowing','generation_outputs','quality_scores') then
       execute format($f$create policy %I_owner on public.%I for all
         using (exists (select 1 from public.novels n where n.id = %I.novel_id and n.user_id = auth.uid()))
         with check (exists (select 1 from public.novels n where n.id = %I.novel_id and n.user_id = auth.uid()))$f$, t, t, t, t);
