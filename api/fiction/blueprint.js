@@ -116,7 +116,7 @@ export default async function handler(req, res) {
               const planOut = await generate({
                 tier: planAgent.model, system: planAgent.system,
                 user: planAgent.user({ blueprint: bp, novel, characters: cast.characters || [], range: [start, end], prev: chapterPlan.slice(-3) }),
-                temperature: 0.8, maxTokens: 4000, json: true, timeoutMs: 240000,
+                temperature: 0.8, maxTokens: 8000, json: true, timeoutMs: 240000,
               });
               chunk = planOut; planCostUsd = (planCostUsd || 0) + (planOut.costUsd || 0);
               await recordUsage(user.id, novel.id, taskId, 'planner', planOut, 0);

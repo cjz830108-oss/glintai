@@ -53,7 +53,7 @@ export default async function handler(req, res) {
         const plan = (await getBibleData(novel.id)).chapter_plan || [];
         const entry = plan.find((p) => Number(p.no) === ch) || { no: ch, synopsis: novel.idea, title: '' };
         const out = await generate({
-          tier: 'light', json: true, temperature: 0.7, maxTokens: 1500, timeoutMs: 60000,
+          tier: 'light', json: true, temperature: 0.7, maxTokens: 6000, timeoutMs: 60000,
           system: 'You expand one chapter entry into a scene-by-scene shooting outline for a novelist. Output ONLY valid JSON.',
           user: `STORY MEMORY:\n${ctx}\n\nCHAPTER ${ch} ENTRY:\n${JSON.stringify(entry)}\n\nReturn JSON: {"title":"chapter title","scenes":[{"goal":"","location":"","characters":["Names"],"conflict":"","turn":"","hook":""}],"word_target":${targetWords}}\n3-5 scenes. Last scene's hook ends the chapter.`,
         });
@@ -68,7 +68,7 @@ export default async function handler(req, res) {
         const outline = (task.result?.outline) || (await lastOutput(novel.id, ch, 'outline')) || { scenes: [], title: '' };
         const agent = AGENTS.novel_writer;
         const out = await generate({
-          tier: agent.model, temperature: 0.85, maxTokens: 3800, timeoutMs: 180000,
+          tier: agent.model, temperature: 0.85, maxTokens: 8000, timeoutMs: 180000,
           system: agent.system,
           user: agent.user({ ctx, outline: JSON.stringify(outline), chapterNo: ch, targetWords }),
         });
@@ -86,7 +86,7 @@ export default async function handler(req, res) {
         const chapterText = await getChapterText(novel.id, ch);
         const agent = AGENTS.continuity_editor;
         const out = await generate({
-          tier: agent.model, json: true, temperature: 0.2, maxTokens: 2200, timeoutMs: 120000,
+          tier: agent.model, json: true, temperature: 0.2, maxTokens: 8000, timeoutMs: 120000,
           system: agent.system,
           user: agent.user({ ctx, chapterText, chapterNo: ch }),
         });
@@ -103,7 +103,7 @@ export default async function handler(req, res) {
         const issuesData = (await lastOutput(novel.id, ch, 'continuity')) || { issues: [] };
         const agent = AGENTS.literary_editor;
         const out = await generate({
-          tier: agent.model, temperature: 0.7, maxTokens: 3800, timeoutMs: 180000,
+          tier: agent.model, temperature: 0.7, maxTokens: 8000, timeoutMs: 180000,
           system: agent.system,
           user: agent.user({ chapterText, issues: issuesData.issues || [], targetWords }),
         });
@@ -120,7 +120,7 @@ export default async function handler(req, res) {
         const chapterText = await getChapterText(novel.id, ch);
         const agent = AGENTS.quality_scorer;
         const out = await generate({
-          tier: agent.model, json: true, temperature: 0.3, maxTokens: 800, timeoutMs: 90000,
+          tier: agent.model, json: true, temperature: 0.3, maxTokens: 4000, timeoutMs: 90000,
           system: agent.system, user: agent.user({ chapterText }),
         });
         await admin.from('quality_scores').insert({ novel_id: novel.id, chapter_no: ch, scores: out.data?.scores || {}, overall: out.data?.overall || 0 });
@@ -140,7 +140,7 @@ export default async function handler(req, res) {
         const cont = (await lastOutput(novel.id, ch, 'continuity')) || { issues: [] };
         const agent = AGENTS.reviser;
         const out = await generate({
-          tier: agent.model, temperature: 0.75, maxTokens: 3800, timeoutMs: 180000,
+          tier: agent.model, temperature: 0.75, maxTokens: 8000, timeoutMs: 180000,
           system: agent.system,
           user: agent.user({ chapterText, scores: scoreData.scores || {}, notes: scoreData.notes || '', issues: cont.issues || [], chapterNo: ch, targetWords }),
         });
@@ -157,7 +157,7 @@ export default async function handler(req, res) {
         const chapterText = await getChapterText(novel.id, ch);
         const agent = AGENTS.memory_updater;
         const out = await generate({
-          tier: agent.model, json: true, temperature: 0.2, maxTokens: 1800, timeoutMs: 90000,
+          tier: agent.model, json: true, temperature: 0.2, maxTokens: 8000, timeoutMs: 90000,
           system: agent.system, user: agent.user({ chapterNo: ch, chapterText }),
         });
         const mem = out.data || {};

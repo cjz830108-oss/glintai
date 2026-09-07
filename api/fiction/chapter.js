@@ -82,7 +82,7 @@ export default async function handler(req, res) {
 
         const out = await generate({
           tier: agent.model, temperature: action === 'continue' ? 0.9 : 0.7,
-          maxTokens: action === 'expand' ? 3600 : 2800, timeoutMs: 150000,
+          maxTokens: 8000, timeoutMs: 150000,
           system: agent.system, user: agent.user({ instruction, text, ctx }),
         });
         const result = (out.text || '').trim();

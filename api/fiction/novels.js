@@ -52,7 +52,7 @@ export default async function handler(req, res) {
       const out = await generate({
         tier: agent.model, system: agent.system,
         user: agent.user({ novel: { ...novelParams, length_target: novelParams.length_target }, idea: idea.trim() }),
-        temperature: 0.9, maxTokens: 3500, json: true, timeoutMs: 90000,
+        temperature: 0.9, maxTokens: 8000, json: true, timeoutMs: 90000,
       });
       const blueprint = out.data;
 
