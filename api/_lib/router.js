@@ -32,8 +32,12 @@ async function callProvider(providerName, { system, user, temperature, maxTokens
   const key = p.key();
   if (!key) throw Object.assign(new Error(`No API key for ${providerName}`), { code: 'no_key' });
 
+  let model = p.models[tier] || p.models.light;
+  // deepseek-reasoner does not reliably support response_format json_object — downgrade JSON tasks
+  if (jsonMode && model === 'deepseek-reasoner') model = 'deepseek-chat';
+
   const body = {
-    model: p.models[tier] || p.models.light,
+    model,
     messages: [
       { role: 'system', content: system },
       { role: 'user', content: user },
