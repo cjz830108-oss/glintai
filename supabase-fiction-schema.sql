@@ -362,7 +362,21 @@ create trigger user_prefs_touch before update on public.user_preferences
   for each row execute function public.set_updated_at();
 
 -- ---------------------------------------------------------------------------
--- 12) RLS — hard isolation. UI never queries these tables directly
+-- 12) grants — newer Supabase projects no longer auto-grant API roles on
+--     SQL-editor-created tables. RLS (below) still isolates users.
+-- ---------------------------------------------------------------------------
+grant usage on schema public to anon, authenticated, service_role;
+grant all on all tables in schema public to service_role;
+grant all on all sequences in schema public to service_role;
+grant select, insert, update, delete on all tables in schema public to anon, authenticated;
+grant select, usage on all sequences in schema public to anon, authenticated;
+alter default privileges in schema public grant all on tables to service_role;
+alter default privileges in schema public grant all on sequences to service_role;
+alter default privileges in schema public grant select, insert, update, delete on tables to anon, authenticated;
+alter default privileges in schema public grant select, usage on sequences to anon, authenticated;
+
+-- ---------------------------------------------------------------------------
+-- 13) RLS — hard isolation. UI never queries these tables directly
 -- (all reads/writes go through api/fiction with verified JWT + ownership),
 -- but RLS is enabled as defense-in-depth.
 -- ---------------------------------------------------------------------------
