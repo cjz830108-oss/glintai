@@ -27,7 +27,7 @@ const TIERS = {
   deep:     (process.env.MODEL_DEEP     || 'openai,deepseek').split(','),
 };
 
-async function callProvider(providerName, { system, user, temperature, maxTokens, jsonMode, timeoutMs, tier }) {
+async function callProvider(providerName, { system, user, temperature, maxTokens, jsonMode, timeoutMs, tier, _noJsonMode }) {
   const p = PROVIDERS[providerName];
   const key = p.key();
   if (!key) throw Object.assign(new Error(`No API key for ${providerName}`), { code: 'no_key' });
@@ -46,7 +46,7 @@ async function callProvider(providerName, { system, user, temperature, maxTokens
     max_tokens: maxTokens || 4096,
     stream: false,
   };
-  if (jsonMode) body.response_format = { type: 'json_object' };
+  if (jsonMode && !_noJsonMode) body.response_format = { type: 'json_object' };
 
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs || 120000);
@@ -62,7 +62,9 @@ async function callProvider(providerName, { system, user, temperature, maxTokens
       throw Object.assign(new Error(`${providerName} ${r.status}: ${text.slice(0, 300)}`), { code: 'provider_error' });
     }
     const data = await r.json();
-    const choice = data.choices?.[0]?.message?.content ?? '';
+    const msg = data.choices?.[0]?.message || {};
+    // some deepseek reasoning models return empty content with the answer in reasoning_content
+    const choice = msg.content || msg.reasoning_content || '';
     const usage = data.usage || { prompt_tokens: 0, completion_tokens: 0, prompt_tokens_details: {} };
     return {
       text: choice,
@@ -98,7 +100,7 @@ export async function generate(opts) {
     if (!PROVIDERS[name]) continue;
     for (let a = 0; a < attemptsPerProvider; a++) {
       try {
-        const out = await callProvider(name, opts);
+        const out = await callProvider(name, a === 1 ? { ...opts, _noJsonMode: true } : opts);
         if (json) {
           out.data = extractJson(out.text);
           if (out.data === undefined) throw Object.assign(new Error(`Bad JSON from provider: text=${(out.text || '(empty)').slice(0, 150)} raw=${out.raw || '?'}`), { code: 'bad_json' });
