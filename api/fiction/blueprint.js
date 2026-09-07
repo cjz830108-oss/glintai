@@ -56,13 +56,20 @@ export default async function handler(req, res) {
       await lockCredits(user.id, fee, taskId, { kind: 'expand', novel: novel.id });
       try {
         const bp = novel.blueprint || {};
-        // 1) Character Director
+        // 1) Character Director (retry once; large casts can hit output caps)
         const charAgent = AGENTS.character_director;
-        const castOut = await generate({
-          tier: charAgent.model, system: charAgent.system,
-          user: charAgent.user({ blueprint: bp, novel }), temperature: 0.85, maxTokens: 3200, json: true, timeoutMs: 90000,
-        });
-        const cast = castOut.data;
+        let cast = null, castOut = null;
+        for (let attempt = 0; attempt < 2 && !cast; attempt++) {
+          try {
+            castOut = await generate({
+              tier: charAgent.model, system: charAgent.system,
+              user: charAgent.user({ blueprint: bp, novel }), temperature: 0.85, maxTokens: 8000, json: true, timeoutMs: 90000,
+            });
+            cast = castOut.data;
+          } catch (e) {
+            if (attempt === 1) throw e;
+          }
+        }
 
         // persist cast
         const nameToId = {};

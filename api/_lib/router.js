@@ -107,7 +107,7 @@ export async function generate(opts) {
   });
 }
 
-/** Parse JSON out of a model response (handles ```json fences and prose wrappers). */
+/** Parse JSON out of a model response (handles ```json fences, prose wrappers, and truncated output). */
 export function extractJson(text) {
   if (!text) return undefined;
   const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/);
@@ -132,7 +132,68 @@ export function extractJson(text) {
       }
     }
   }
+  // salvage: model hit the output cap mid-JSON — keep all COMPLETE child elements
+  for (const c of candidates) {
+    if (!c) continue;
+    const salvaged = salvageJson(c);
+    if (salvaged !== undefined) return salvaged;
+  }
   return undefined;
+}
+
+/** Repair truncated JSON: cut at the last complete top-level child element, then close brackets. */
+function salvageJson(text) {
+  const start = Math.min(...['{', '['].map((ch) => {
+    const i = text.indexOf(ch);
+    return i === -1 ? Infinity : i;
+  }));
+  if (start === Infinity) return undefined;
+  const s = text.slice(start);
+  const openTop = s[0];
+  const closeTop = openTop === '{' ? '}' : ']';
+
+  // scan and remember the last index where exactly 1 bracket is open (a fully parsed child)
+  const stack = [];
+  let inStr = false, esc = false, lastSafe = -1;
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i];
+    if (inStr) {
+      if (esc) esc = false;
+      else if (ch === '\\') esc = true;
+      else if (ch === '"') inStr = false;
+      continue;
+    }
+    if (ch === '"') inStr = true;
+    else if (ch === '{' || ch === '[') stack.push(ch);
+    else if (ch === '}' || ch === ']') {
+      stack.pop();
+      // a complete element at any depth below the top container = safe cut point
+      if (stack.length >= 1 && (s[i + 1] === ',' || s[i + 1] === undefined)) lastSafe = i;
+    }
+  }
+  if (lastSafe < 0) return undefined;
+  let cut = s.slice(0, lastSafe + 1).replace(/,\s*$/, '');
+  // re-scan the cut to find unclosed brackets, close innermost-first
+  const st = []; inStr = false; esc = false;
+  for (let i = 0; i < cut.length; i++) {
+    const ch = cut[i];
+    if (inStr) {
+      if (esc) esc = false;
+      else if (ch === '\\') esc = true;
+      else if (ch === '"') inStr = false;
+      continue;
+    }
+    if (ch === '"') inStr = true;
+    else if (ch === '{' || ch === '[') st.push(ch);
+    else if (ch === '}' || ch === ']') st.pop();
+  }
+  while (st.length) cut += st.pop() === '{' ? '}' : ']';
+  if (!cut.endsWith(closeTop)) cut += closeTop;
+  try {
+    return JSON.parse(cut);
+  } catch {
+    return undefined;
+  }
 }
 
 /** Credit cost model: 1 credit ≈ $0.004 raw API cost, minimum per-call floors. */
