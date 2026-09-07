@@ -209,6 +209,8 @@
   .cat-h { text-align:center; font-size:22px; margin:34px 0 16px; }
   .tool-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
   .tcard { background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius); padding:20px; display:grid; grid-template-columns:auto 1fr; grid-template-rows:auto auto; column-gap:14px; align-items:center; transition:.15s; }
+  .tcard.wide { grid-column:1 / -1; border-color:var(--brand); }
+  .tcard.wide .td { font-size:14.5px; }
   .tcard:hover { transform:translateY(-3px); box-shadow:var(--shadow); border-color:var(--brand); }
   .tic { grid-row:1 / span 2; font-size:30px; }
   .tn { font-weight:700; font-size:16px; }
@@ -321,8 +323,8 @@
         <a class="tcard" href="/ai-plot-generator.html"><span class="tic">🧵</span><span class="tn">Plot Engine</span><span class="td">Threads weave, foreshadowing pays off on schedule, hooks land.</span><span class="tgo">Learn more →</span></a>
         <a class="tcard" href="/ai-fiction-writer.html"><span class="tic">✒️</span><span class="tn">AI Writer + Literary Editor</span><span class="td">Drafts get continuity-checked, polished and scored — every chapter.</span><span class="tgo">Learn more →</span></a>
         <a class="tcard" href="/ai-story-generator.html"><span class="tic">📐</span><span class="tn">Story Blueprint</span><span class="td">Idea → premise, cast, world, thread map and full chapter outline.</span><span class="tgo">Learn more →</span></a>
-        <a class="tcard" href="/ai-romance-novel-generator.html">
-        <a class="tcard" href="/free-ai-story-generator.html"><span class="tic">🎁</span><span class="tn">Free Story Generator</span><span class="td">Get a Chapter 1 opening free — no signup, 3 per day.</span><span class="tgo">Try free →</span></a><span class="tic">💋</span><span class="tn">Genre Craft</span><span class="td">Romance, Billionaire, Werewolf, Fantasy, Thriller — genre-level skills.</span><span class="tgo">Learn more →</span></a>
+        <a class="tcard" href="/ai-romance-novel-generator.html"><span class="tic">💋</span><span class="tn">Genre Craft</span><span class="td">Romance, Billionaire, Werewolf, Fantasy, Thriller — genre-level skills.</span><span class="tgo">Learn more →</span></a>
+        <a class="tcard wide" href="/free-ai-story-generator.html"><span class="tic">🎁</span><span class="tn">Free Story Generator</span><span class="td">Get a Chapter 1 opening free — no signup, 3 per day.</span><span class="tgo">Try free →</span></a>
       </div>
       <div class="explore-cta">
         <a class="btn btn-primary" href="/studio/new.html">Create Your Story →</a>
