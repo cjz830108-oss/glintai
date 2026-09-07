@@ -66,6 +66,7 @@ async function callProvider(providerName, { system, user, temperature, maxTokens
     const usage = data.usage || { prompt_tokens: 0, completion_tokens: 0, prompt_tokens_details: {} };
     return {
       text: choice,
+      raw: JSON.stringify(data).slice(0, 500),
       provider: providerName,
       model: data.model || body.model,
       usage: {
@@ -98,7 +99,7 @@ export async function generate(opts) {
       const out = await callProvider(name, opts);
       if (json) {
         out.data = extractJson(out.text);
-        if (out.data === undefined) throw Object.assign(new Error(`Bad JSON from provider: ${(out.text || '(empty)').slice(0, 200)}`), { code: 'bad_json' });
+        if (out.data === undefined) throw Object.assign(new Error(`Bad JSON from provider: text=${(out.text || '(empty)').slice(0, 150)} raw=${out.raw || '?'}`), { code: 'bad_json' });
       }
       return out;
     } catch (err) {
