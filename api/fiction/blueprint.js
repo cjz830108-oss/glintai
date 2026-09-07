@@ -96,15 +96,29 @@ export default async function handler(req, res) {
           });
         }
 
-        // 2) Plot Planner — full chapter outline
+        // 2) Plot Planner — chapter outline in chunks (avoids JSON truncation on long books)
         const planAgent = AGENTS.plot_planner;
-        const planOut = await generate({
-          tier: planAgent.model, system: planAgent.system,
-          user: planAgent.user({ blueprint: bp, novel, characters: cast.characters || [] }),
-          temperature: 0.8, maxTokens: 12000, json: true, timeoutMs: 240000,
-        });
-        const plan = planOut.data;
-        const chapterPlan = plan.chapters || [];
+        const CHUNK = 12;
+        let chapterPlan = [];
+        let planCostUsd = 0;
+        for (let start = 1; start <= novel.length_target; start += CHUNK) {
+          const end = Math.min(start + CHUNK - 1, novel.length_target);
+          let chunk = null;
+          for (let attempt = 0; attempt < 2 && !chunk; attempt++) {
+            try {
+              const planOut = await generate({
+                tier: planAgent.model, system: planAgent.system,
+                user: planAgent.user({ blueprint: bp, novel, characters: cast.characters || [], range: [start, end], prev: chapterPlan.slice(-3) }),
+                temperature: 0.8, maxTokens: 4000, json: true, timeoutMs: 240000,
+              });
+              chunk = planOut; planCostUsd = (planCostUsd || 0) + (planOut.costUsd || 0);
+              await recordUsage(user.id, novel.id, taskId, 'planner', planOut, 0);
+            } catch (e) {
+              if (attempt === 1) throw e;
+            }
+          }
+          chapterPlan = chapterPlan.concat((chunk?.data?.chapters || []).map((c, i) => ({ ...c, no: start + i })));
+        }
 
         // store chapter plan in the bible
         const { data: bibleRow } = await admin.from('story_bibles').select('data').eq('novel_id', novel.id).maybeSingle();
@@ -112,8 +126,7 @@ export default async function handler(req, res) {
         await admin.from('story_bibles').upsert({ novel_id: novel.id, data: bibleData });
 
         await recordUsage(user.id, novel.id, taskId, 'character', castOut, 0);
-        await recordUsage(user.id, novel.id, taskId, 'planner', planOut, 0);
-        const used = Math.min(fee, toCredits(castOut.costUsd + planOut.costUsd, 8));
+        const used = Math.min(fee, toCredits(castOut.costUsd + planCostUsd, 8));
         await settleCredits(user.id, taskId, used, fee);
         return json(res, 200, {
           chapterPlan, cast: (cast.characters || []).map((c) => c.name),

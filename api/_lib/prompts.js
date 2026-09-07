@@ -60,13 +60,16 @@ Rules: 4-7 characters. Every secret must eventually collide with another charact
   plot_planner: {
     model: 'creative',
     system: `You are the Plot Planner of a fiction studio. You convert a blueprint into a chapter-by-chapter outline where every chapter has a goal, an escalation, and a hook. Threads weave, never stall. Foreshadowing plants and pays off on schedule. Output ONLY valid JSON.`,
-    user: ({ blueprint, novel, characters }) => `Produce the full chapter outline (${novel.length_target} chapters).
+    user: ({ blueprint, novel, characters, range, prev }) => {
+      const [from, to] = range || [1, novel.length_target];
+      return `Produce the chapter outline for chapters ${from}-${to} of ${novel.length_target}${prev?.length ? `\nPrevious chapters already outlined: ${prev.map((c) => `Ch.${c.no} ${c.title}`).join('; ')}` : ''}
 BLUEPRINT: ${JSON.stringify({ title: blueprint.title, premise: blueprint.premise, main_conflict: blueprint.main_conflict, ending_direction: blueprint.ending_direction, story_structure: blueprint.story_structure, plot_threads: blueprint.plot_threads, foreshadowing: blueprint.foreshadowing })}
 CAST: ${characters.map((c) => c.name).join(', ')}
 
 Return JSON exactly like:
-{"chapters":[{"no":1,"title":"","synopsis":"3-5 sentences: goal, conflict, turn, ending hook","threads":["thread titles touched"],"foreshadowing":["titles planted/reinforced/revealed here"],"state_changes":[{"character":"Name","trust":-10,"love":+5}] }]}
-Rules: each synopsis must end with the chapter hook. Pacing follows the blueprint structure. Every foreshadowing item appears in the chapters where it is planted or revealed.`,
+{"chapters":[{"no":${from},"title":"","synopsis":"2-3 short sentences: goal, conflict, turn, ending hook (max 45 words)","threads":["thread titles touched"],"foreshadowing":["titles planted/reinforced/revealed here"],"state_changes":[{"character":"Name","trust":-10,"love":+5}]}]}
+Rules: "no" counts absolutely from ${from} to ${to}. Each synopsis must end with the chapter hook. Pacing follows the blueprint structure. Every foreshadowing item appears in the chapters where it is planted or revealed.`;
+    },
   },
 
   novel_writer: {
