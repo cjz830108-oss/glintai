@@ -47,9 +47,23 @@ export default async function handler(req, res) {
       return json(res, 200, { ok: true, wordCount: words });
     }
 
-    // ---------- POST: AI action ----------
+    // ---------- POST: AI action · or chapter feedback (merged to stay under the
+    // Hobby-plan 12-functions-per-deployment cap) ----------
     if (req.method === 'POST') {
-      const { taskId, novelId: nid, chapterNo, action, selection, note, pov } = req.body || {};
+      const { taskId, novelId: nid, chapterNo, action, selection, note, pov, rating, categories } = req.body || {};
+
+      // feedback mode: { novelId, chapterNo, rating } without an action
+      if (!action && rating) {
+        if (!nid) return fail(res, 400, 'bad_request', 'novelId, rating required');
+        await ownNovel(nid, user.id);
+        const { error } = await admin.from('generation_feedback').insert({
+          user_id: user.id, novel_id: nid, chapter_no: chapterNo || null,
+          rating, categories: categories || [], note: note || null,
+        });
+        if (error) return fail(res, 500, 'db', error.message);
+        return json(res, 200, { ok: true });
+      }
+
       if (!taskId || !nid || !action) return fail(res, 400, 'bad_request', 'taskId, novelId, action required');
       const novel = await ownNovel(nid, user.id);
 

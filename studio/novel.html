@@ -291,7 +291,7 @@
   async function sendFeedback(rating) {
     if (!currentChapter) return;
     try {
-      await App.api('/api/fiction/feedback', { body: { novelId, chapterNo: currentChapter.chapter_no, rating } });
+      await App.api('/api/fiction/chapter', { body: { novelId, chapterNo: currentChapter.chapter_no, rating } });
       App.toast('Thanks — feedback recorded for skill learning.', false);
     } catch (e) { App.toast(e.message, true); }
   }
