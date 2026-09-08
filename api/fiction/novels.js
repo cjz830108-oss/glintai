@@ -27,7 +27,16 @@ export default async function handler(req, res) {
       });
     }
 
-    if (req.method !== 'POST') return fail(res, 405, 'method', 'Use GET or POST.');
+    if (req.method === 'DELETE') {
+      const id = (req.query.novel || req.query.id || '').toString();
+      if (!id) return fail(res, 400, 'bad_request', 'novel id required');
+      const novel = await ownNovel(id, user.id);
+      const { error } = await admin.from('novels').update({ deleted_at: new Date().toISOString() }).eq('id', novel.id);
+      if (error) return fail(res, 500, 'db', error.message);
+      return json(res, 200, { ok: true, deleted: id });
+    }
+
+    if (req.method !== 'POST') return fail(res, 405, 'method', 'Use GET, POST or DELETE.');
     const { taskId, idea, genre, length, pov, tone, pacing } = req.body || {};
     if (!taskId || !idea || idea.trim().length < 10) {
       return fail(res, 400, 'bad_request', 'taskId and a story idea (10+ chars) are required.');

@@ -9,7 +9,7 @@ import { GENRE_SKILLS, ANTI_AI_RULES } from './skills.js';
 export async function buildChapterContext(novel, chapterNo) {
   const novelId = novel.id;
 
-  const [characters, relationships, threads, shadows, summaries, events, bibleRow] = await Promise.all([
+  const [characters, relationships, threads, shadows, summaries, events, bibleRow, prefsRow] = await Promise.all([
     admin.from('characters').select('*').eq('novel_id', novelId).eq('active', true).order('created_at').limit(14),
     admin.from('relationships').select('*').eq('novel_id', novelId).limit(30),
     admin.from('plot_threads').select('*').eq('novel_id', novelId).in('status', ['open', 'advancing']).limit(12),
@@ -18,6 +18,7 @@ export async function buildChapterContext(novel, chapterNo) {
       .eq('novel_id', novelId).lt('chapter_no', chapterNo).order('chapter_no', { ascending: false }).limit(3),
     admin.from('timeline_events').select('*').eq('novel_id', novelId).eq('importance', 'critical').limit(24),
     admin.from('story_bibles').select('data').eq('novel_id', novelId).maybeSingle(),
+    admin.from('user_preferences').select('data').eq('user_id', novel.user_id).maybeSingle(),
   ]);
 
   const bible = bibleRow?.data || {};
@@ -59,6 +60,7 @@ export async function buildChapterContext(novel, chapterNo) {
     recent_summaries: (summaries.data || []).reverse(), // oldest → newest of last 3
     critical_events: (events.data || []).map((e) => ({ chapter: e.chapter_no, event: e.event })),
     genre_skill: skill,
+    author_preferences: prefsRow?.data || {},
     anti_ai_rules: ANTI_AI_RULES,
   };
 }
@@ -91,6 +93,9 @@ export function contextToPrompt(ctx) {
   }
   if (ctx.critical_events?.length) lines.push(`CRITICAL TIMELINE FACTS: ${ctx.critical_events.map((e) => `ch${e.chapter}:${e.event}`).slice(-12).join(' | ')}`);
   lines.push(`GENRE SKILL — ${JSON.stringify(ctx.genre_skill).slice(0, 900)}`);
+  const prefs = ctx.author_preferences || {};
+  const prefLine = Object.entries(prefs).filter(([, v]) => v).map(([k, v]) => `${k.replace(/_/g, ' ')}: ${v}`).join(' | ');
+  if (prefLine) lines.push(`AUTHOR PREFERENCES (the human author asked for this — follow it): ${prefLine.slice(0, 800)}`);
   lines.push(ctx.anti_ai_rules);
   return lines.join('\n');
 }

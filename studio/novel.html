@@ -53,7 +53,7 @@
   const SECTIONS = [
     ['overview', 'Overview'], ['bible', 'Story Bible'], ['characters', 'Characters'],
     ['world', 'World'], ['plot', 'Plot Threads'], ['timeline', 'Timeline'],
-    ['foreshadow', 'Foreshadowing'], ['chapters', 'Chapters'],
+    ['foreshadow', 'Foreshadowing'], ['chapters', 'Chapters'], ['memory', 'AI Memory'],
   ];
 
   await load();
@@ -69,6 +69,7 @@
         <button class="btn ghost" onclick="Exporter.txt(D.novel,D.chapters)">TXT</button>
         <button class="btn ghost" onclick="Exporter.doc(D.novel,D.chapters)">DOC</button>
         <button class="btn ghost" onclick="Exporter.epub(D.novel,D.chapters)">EPUB</button>
+        <button class="btn ghost" id="delBtn" title="Move to trash">🗑 Delete</button>
       </div></div>`;
     renderNav('overview'); show('overview');
   }
@@ -85,7 +86,7 @@
     if (key === 'chapters') return renderChapters();
     const R = {
       overview: vOverview, bible: vBible, characters: vCharacters, world: vWorld,
-      plot: vPlot, timeline: vTimeline, foreshadow: vForeshadow,
+      plot: vPlot, timeline: vTimeline, foreshadow: vForeshadow, memory: vMemory,
     }[key];
     panel.innerHTML = `<div class="card">${R()}</div>`;
   }
@@ -126,6 +127,33 @@
       : '<p class="muted">No foreshadowing yet.</p>';
   }
 
+  function vMemory() {
+    const b = D.bible || {};
+    const facts = (b.important_facts || []).length, qs = (b.open_questions || []).length;
+    const stats = [
+      ['Characters tracked', D.characters.length], ['Relationships', D.relationships.length],
+      ['Plot threads', D.plotThreads.length], ['Foreshadowing', D.foreshadowing.length],
+      ['Timeline events', D.timeline.length], ['World entities', D.world.length],
+      ['Durable facts', facts], ['Open questions', qs],
+      ['Chapter summaries', D.summaries.length],
+    ].map(([k, v]) => `<span>${k}: <b>${v}</b></span>`).join('');
+    const rels = D.relationships.length ? D.relationships.map((r) => {
+      const d = r.data || {};
+      return `<div class="kv"><b>${esc(d.from_name || '?')} → ${esc(d.to_name || '?')}</b>
+        <span>${esc(d.type || '')} <span class="pill ${d.status === 'resolved' ? 'ok' : ''}">${esc(d.status || '')}</span>
+        trust=${d.trust ?? '?'} attraction=${d.attraction ?? '?'} conflict=${d.conflict ?? '?'}</span></div>`;
+    }).join('') : '<p class="muted">No relationships tracked yet.</p>';
+    const sums = D.summaries.length ? D.summaries.slice(-5).reverse().map((s) =>
+      `<div class="kv"><b>Ch.${s.chapter_no}</b><span>${esc(s.summary)}</span></div>`).join('')
+      : '<p class="muted">Summaries appear after each chapter finishes the pipeline.</p>';
+    return `<h2>What the AI remembers</h2>
+      <p class="muted">Every generated chapter updates this memory automatically. The writer reads it before drafting the next one.</p>
+      <div class="statebar" style="margin:12px 0">${stats}</div>
+      <h3>Relationship matrix</h3>${rels}
+      <h3>Recent chapter summaries</h3>${sums}
+      <h3>Newest durable facts</h3>${facts ? (b.important_facts || []).slice(-8).reverse().map((f) => `<div class="kv"><span>• ${esc(f)}</span></div>`).join('') : '<p class="muted">None yet.</p>'}`;
+  }
+
   // ---------------- Chapters ----------------
   function renderChapters() {
     const next = D.chapters.length + 1;
@@ -153,22 +181,31 @@
           </select>
           <button class="btn pink" id="actionBtn">Run AI Action</button>
           <span style="flex:1"></span>
+          <button class="btn ghost" id="readerBtn">🎭 Reader Sim</button>
           <button class="btn ghost" id="fbGood">👍</button><button class="btn ghost" id="fbBad">👎</button>
         </div>
         <div class="progress" id="actionStatus"></div>
+        <div id="readerBox"></div>
         <div id="qualityBox"></div>
       </div>`;
+    const scoreOf = {};
+    for (const q of D.qualityScores) if (!scoreOf[q.chapter_no]) scoreOf[q.chapter_no] = q.overall;
     const list = $('chapterList');
-    list.innerHTML = D.chapters.map((c) => `
-      <a class="card" href="#" data-no="${c.chapter_no}" style="display:block">
-        <div style="display:flex;justify-content:space-between"><b>Ch.${c.chapter_no} — ${esc(c.title || 'Untitled')}</b><span class="muted">${c.word_count} words · ${c.status}</span></div>
-      </a>`).join('') || '<p class="muted">No chapters yet.</p>';
+    list.innerHTML = D.chapters.map((c) => {
+      const sc = scoreOf[c.chapter_no];
+      const badge = sc ? `<span class="pill ${sc >= 8 ? 'ok' : sc >= 6.5 ? 'warn' : ''}" style="margin-left:8px">★ ${sc}</span>` : '';
+      return `<a class="card" href="#" data-no="${c.chapter_no}" style="display:block">
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px"><b>Ch.${c.chapter_no} — ${esc(c.title || 'Untitled')}${badge}</b><span class="muted">${c.word_count} words · ${c.status} · ${App.fmtDate(c.updated_at)}</span></div>
+      </a>`;
+    }).join('') || '<p class="muted">No chapters yet.</p>';
     list.querySelectorAll('a').forEach((a) => (a.onclick = (e) => { e.preventDefault(); openEditor(Number(a.dataset.no)); }));
     $('genBtn').onclick = () => runPipeline(next);
     $('saveBtn').onclick = saveChapter;
     $('actionBtn').onclick = runAction;
     $('fbGood').onclick = () => sendFeedback('good');
     $('fbBad').onclick = () => sendFeedback('needs_improvement');
+    $('readerBtn').onclick = runReaderSim;
+    $('delBtn').onclick = deleteStory;
   }
 
   async function runPipeline(no) {
@@ -204,10 +241,12 @@
     $('editorBox').style.display = 'block';
     $('editorBox').style.marginTop = '14px';
     $('edTitle').textContent = `Ch.${no} — ${currentChapter.title || 'Untitled'}`;
-    $('edMeta').textContent = `${currentChapter.word_count} words · autosave on`;
+    $('edMeta').textContent = `${currentChapter.word_count} words · ${currentChapter.status || 'draft'} · updated ${App.fmtDate(currentChapter.updated_at)} · autosave on`;
     $('editor').value = currentChapter.content || '';
+    $('readerBox').innerHTML = '';
     const qs = D.qualityScores.filter((q) => q.chapter_no === no);
-    $('qualityBox').innerHTML = qs.length ? `<div class="muted" style="margin-top:8px">Last quality score: ${qs[0].overall}/10</div>` : '';
+    $('qualityBox').innerHTML = qs.length ? `<div class="card" style="margin-top:8px"><b>Last quality gate: ${qs[0].overall}/10</b>
+      <div class="statebar" style="margin-top:6px">${Object.entries(qs[0].scores || {}).map(([k, v]) => `<span>${k.replace('_', ' ')}:${v}</span>`).join('')}</div></div>` : '';
     $('editorBox').scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -255,6 +294,41 @@
       await App.api('/api/fiction/feedback', { body: { novelId, chapterNo: currentChapter.chapter_no, rating } });
       App.toast('Thanks — feedback recorded for skill learning.', false);
     } catch (e) { App.toast(e.message, true); }
+  }
+
+  async function runReaderSim() {
+    if (!currentChapter) return App.toast('Open a chapter first.', true);
+    await saveChapter();
+    const btn = $('readerBtn'); btn.disabled = true;
+    $('readerBox').innerHTML = '<p class="muted">🎭 3 simulated readers are reading the chapter…</p>';
+    try {
+      const r = await App.api('/api/fiction/generate', { body: { taskId: App.uid(), novelId, chapterNo: currentChapter.chapter_no, step: 'reader' } });
+      const d = r.readers || {};
+      const persona = (p) => `<div class="card" style="margin:10px 0">
+        <b>${esc(p.name || 'Reader')}</b> <span class="pill ${p.page_turner_score >= 7 ? 'ok' : p.page_turner_score >= 5 ? 'warn' : ''}">page-turner ${p.page_turner_score}/10</span>
+        <p class="muted" style="margin:6px 0">${esc(p.profile || '')}</p>
+        ${(p.reactions || []).map((x) => `<div class="kv"><b>${esc(x.beat || '')}</b><span>${esc(x.emotion || '')} — <i>"${esc(x.quote || '')}"</i></span></div>`).join('')}
+        <p style="margin:8px 0 0">${esc(p.why || '')}</p></div>`;
+      $('readerBox').innerHTML = `<div class="card" style="margin-top:12px"><h3 style="margin-top:0">🎭 Reader Simulation — ${r.creditsUsed ?? ''} credits</h3>
+        ${(d.personas || []).map(persona).join('') || '<p class="muted">No reactions returned.</p>'}
+        <div class="kv"><b>Strongest beat</b><span>${esc(d.strongest_beat || '—')}</span></div>
+        <div class="kv"><b>Weakest beat</b><span>${esc(d.weakest_beat || '—')}</span></div>
+        ${(d.confusions || []).length ? `<div class="kv"><b>Confusions</b><span>${d.confusions.map((c) => esc(c)).join(' · ')}</span></div>` : ''}
+        <div class="kv"><b>Hook verdict</b><span>${esc(d.hook_verdict || '—')}</span></div>
+        ${(d.suggestions || []).length ? `<p style="margin:8px 0 0"><b>Suggestions:</b><br>${d.suggestions.map((s) => `• ${esc(s)}`).join('<br>')}</p>` : ''}
+      </div>`;
+    } catch (e) { $('readerBox').innerHTML = `<p style="color:var(--bad)">✖ ${esc(e.message)}</p>`; }
+    finally { btn.disabled = false; }
+  }
+
+  async function deleteStory() {
+    const title = D.novel.title;
+    if (!confirm(`Delete "${title}"?\n\nThe story will disappear from your library (all chapters, characters and memory). This cannot be undone from the app.`)) return;
+    if (prompt(`Type the story title to confirm deletion:`) !== title) return App.toast('Title did not match — nothing deleted.', true);
+    try {
+      await App.api(`/api/fiction/novels?novel=${novelId}`, { method: 'DELETE' });
+      location.href = '/studio/index.html';
+    } catch (e) { App.toast('Delete failed: ' + e.message, true); }
   }
 })();
 </script>

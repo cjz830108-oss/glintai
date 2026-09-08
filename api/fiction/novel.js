@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     if (!id) return fail(res, 400, 'bad_request', 'novel id required');
     const novel = await ownNovel(id, user.id);
 
-    const [bible, characters, relationships, threads, shadows, timeline, chapters, scores, world] = await Promise.all([
+    const [bible, characters, relationships, threads, shadows, timeline, chapters, scores, world, summaries] = await Promise.all([
       admin.from('story_bibles').select('data').eq('novel_id', id).maybeSingle(),
       admin.from('characters').select('*').eq('novel_id', id).order('created_at'),
       admin.from('relationships').select('*').eq('novel_id', id),
@@ -21,6 +21,7 @@ export default async function handler(req, res) {
       admin.from('chapters').select('id,chapter_no,title,status,word_count,updated_at').eq('novel_id', id).order('chapter_no'),
       admin.from('quality_scores').select('chapter_no,scores,overall').eq('novel_id', id).order('created_at', { ascending: false }),
       admin.from('world_entities').select('*').eq('novel_id', id),
+      admin.from('chapter_summaries').select('chapter_no,summary').eq('novel_id', id).order('chapter_no'),
     ]);
 
     return json(res, 200, {
@@ -38,6 +39,7 @@ export default async function handler(req, res) {
       timeline: timeline.data || [],
       world: world.data || [],
       chapters: chapters.data || [],
+      summaries: summaries.data || [],
       qualityScores: scores.data || [],
     });
   });

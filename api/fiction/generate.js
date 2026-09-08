@@ -22,6 +22,41 @@ export default async function handler(req, res) {
 
     // ---- task lifecycle (idempotent by taskId) ----
     let { data: task } = await admin.from('generation_tasks').select('*').eq('id', taskId).maybeSingle();
+
+    // ---------- STANDALONE: READER SIMULATOR (lightweight, own task) ----------
+    if (step === 'reader') {
+      if (task?.status === 'completed') return json(res, 200, { done: true, cached: true, readers: task.result?.readers });
+      const fee = ESTIMATES.action;
+      await lockCredits(user.id, fee, taskId, { kind: 'reader', novel: novel.id, chapter: ch });
+      if (!task) {
+        await admin.from('generation_tasks').insert({
+          id: taskId, user_id: user.id, novel_id: novel.id, kind: 'reader', step: 'running',
+          status: 'processing', request: { chapterNo: ch, step }, locked_credits: fee,
+        });
+        task = { id: taskId, locked_credits: fee, used_credits: 0, status: 'processing' };
+      }
+      try {
+        const ctxObj = await buildChapterContext(novel, ch);
+        const ctx = contextToPrompt(ctxObj);
+        const chapterText = await getChapterText(novel.id, ch);
+        const agent = AGENTS.reader_simulator;
+        const out = await generate({
+          tier: agent.model, json: true, temperature: 0.8, maxTokens: 8000, timeoutMs: 240000,
+          system: agent.system, user: agent.user({ ctx, chapterText, chapterNo: ch }),
+        });
+        await saveOutput(taskId, novel.id, ch, 'reader', JSON.stringify(out.data), out);
+        await recordUsage(user.id, novel.id, taskId, 'reader_sim', out, 0);
+        const used = Math.min(fee, toCredits(out.costUsd, 1));
+        await settleCredits(user.id, taskId, used, fee);
+        await admin.from('generation_tasks').update({ status: 'completed', step: 'done', used_credits: used, result: { readers: out.data } }).eq('id', taskId);
+        return json(res, 200, { done: true, readers: out.data, creditsUsed: used });
+      } catch (err) {
+        await admin.from('generation_tasks').update({ status: 'failed', error: String(err.message).slice(0, 500) }).eq('id', taskId);
+        await refundTask(user.id, taskId, fee).catch(() => {});
+        return fail(res, err.status || 502, err.code || 'generation_failed', err.message);
+      }
+    }
+
     if (!task) {
       const fee = ESTIMATES.chapter;
       await lockCredits(user.id, fee, taskId, { kind: 'chapter', novel: novel.id, chapter: ch });

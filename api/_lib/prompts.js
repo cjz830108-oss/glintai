@@ -176,6 +176,30 @@ ${chapterText}
 Rewrite the full chapter addressing every weak axis. Preserve all events, dialogue content, facts and the ending hook. Output only the improved chapter.`,
   },
 
+  reader_simulator: {
+    model: 'creative',
+    system: `You are the Reader Simulator of a fiction studio. You embody 3 distinct target-audience readers and react to a chapter the way real readers do in comments and reviews: honest, specific, emotional, occasionally harsh. You never praise generically; you point at exact lines. Output ONLY valid JSON.`,
+    user: ({ ctx, chapterText, chapterNo }) => `Simulate target readers reacting to Chapter ${chapterNo}.
+
+=== STORY MEMORY (what readers know so far) ===
+${ctx}
+
+=== CHAPTER TEXT ===
+${chapterText}
+
+Return JSON exactly like:
+{"personas":[{"name":"","profile":"one line: who reads this genre and why"},
+  {"reactions":[{"beat":"which moment/line","emotion":"what they felt","quote":"short quote or paraphrase"}],
+   "page_turner_score":0,"why":"2-3 sentences: would they keep reading and what drives/drags"},
+ {"...second reader..."},{"...third reader..."}],
+ "strongest_beat":"the single moment that lands hardest",
+ "weakest_beat":"where attention dips and why",
+ "confusions":["anything a reader can't follow or doesn't buy"],
+ "hook_verdict":"1 sentence: does the ending force them to open the next chapter?",
+ "suggestions":["1-3 concrete, surgical fixes"]}
+Rules: 3 personas with genuinely different tastes (e.g. a binge romance reader, a plot-first reader, a picky prose reader). page_turner_score 0-10. Reactions must reference THIS chapter's actual content.`,
+  },
+
   action: {
     model: 'creative',
     system: `You are the Novel Writer of a fiction studio executing a focused revision instruction on part of a chapter. Preserve all established facts and character states. Output ONLY the rewritten text, no commentary.`,

@@ -59,6 +59,26 @@
       <h3>No stories yet</h3>
       <p class="muted">Start from a single idea — a rejected omega, a buried crime, a dead god. The studio builds the blueprint, the cast and the outline with you.</p>
     </div>
+
+    <details class="card" style="margin-top:24px">
+      <summary style="cursor:pointer"><b>✍️ Writing Preferences</b> <span class="muted">— the AI applies these to every story</span></summary>
+      <div style="margin-top:14px;display:grid;gap:10px;max-width:640px">
+        <label>Favorite genres / tropes you love
+          <input id="pf_genres" placeholder="e.g. enemies-to-lovers, arranged marriage, slow burn"></label>
+        <label>Tropes to avoid
+          <input id="pf_avoid" placeholder="e.g. love triangles, amnesia plots"></label>
+        <label>POV you prefer
+          <input id="pf_pov" placeholder="e.g. third person limited, dual POV"></label>
+        <label>Tone & pacing
+          <input id="pf_tone" placeholder="e.g. emotional, slow burn with cliffhangers"></label>
+        <label>Ending preference
+          <input id="pf_end" placeholder="e.g. HEA (happily ever after), bittersweet"></label>
+        <label>Anything else the AI should know (content notes, style)
+          <input id="pf_extra" placeholder="e.g. no on-page violence; spicy scenes fade to black"></label>
+        <div><button class="btn primary" id="pfSave">Save Preferences</button> <span class="muted" id="pfMsg"></span></div>
+      </div>
+    </details>
+    <p class="muted" style="margin-top:18px">🔒 Privacy: your stories, characters and memory are visible only to your account. Deleting a story removes it from your library and all AI context.</p>
   </main>
 </div>
 
@@ -82,8 +102,15 @@
 
   async function refresh() {
     try {
-      const [cr, nv] = await Promise.all([App.api('/api/fiction/credits'), App.api('/api/fiction/novels')]);
+      const [cr, nv, pf] = await Promise.all([
+        App.api('/api/fiction/credits'), App.api('/api/fiction/novels'),
+        App.api('/api/fiction/preferences').catch(() => ({ preferences: {} })),
+      ]);
       document.getElementById('credits').textContent = cr.wallet.balance;
+      const p = pf.preferences || {};
+      pf_genres.value = p.favorite_genres || ''; pf_avoid.value = p.tropes_to_avoid || '';
+      pf_pov.value = p.pov || ''; pf_tone.value = p.tone || '';
+      pf_end.value = p.ending_preference || ''; pf_extra.value = p.extra_style || '';
       const grid = document.getElementById('novels');
       grid.innerHTML = '';
       document.getElementById('empty').style.display = nv.novels.length ? 'none' : '';
@@ -100,6 +127,19 @@
   }
 
   document.getElementById('logout').onclick = async (e) => { e.preventDefault(); await App.signOut(); location.reload(); };
+
+  document.getElementById('pfSave').onclick = async () => {
+    const body = {
+      favorite_genres: pf_genres.value, tropes_to_avoid: pf_avoid.value,
+      pov: pf_pov.value, tone: pf_tone.value, ending_preference: pf_end.value, extra_style: pf_extra.value,
+    };
+    try {
+      await App.api('/api/fiction/preferences', { method: 'PATCH', body });
+      const el = document.getElementById('pfMsg');
+      el.textContent = '✔ saved — applied from the next chapter you generate';
+      setTimeout(() => (el.textContent = ''), 4000);
+    } catch (e) { App.toast('Save failed: ' + e.message, true); }
+  };
 
   const msg = (t, err = true) => { const el = document.getElementById('loginMsg'); el.style.display = ''; el.textContent = t; el.style.color = err ? 'var(--bad)' : 'var(--ok)'; };
   document.getElementById('btnSignin').onclick = async () => {
