@@ -1645,6 +1645,166 @@ POSTS = [
         ],
         closing='Draft with the free <a href="/tools/bio-resume-generator.html">bio and resume generator</a> and extend it with the <a href="/blog/write-professional-bio-guide.html">bio guide</a>.',
     ),
+    dict(
+        slug="ai-tools-for-cold-email-2026",
+        draft_date="2026-09-08",
+        title="AI Tools for Cold Email: A Free Stack That Sells",
+        description="Write personalized cold emails without the $200/mo platform. Our free AI paraphraser, summarizer and grammar tools run in-browser, no signup. Build your stack now.",
+        keywords="ai tools for cold email, best ai cold email tools, ai cold email writer free, free cold email tools no signup, how to personalize cold emails with ai, ai tools for sales outreach",
+        category="Sales",
+        accent="#ffb020",
+        readtime=11,
+        related=[
+            ("Free AI Paraphraser (No Signup)", "/tools/paraphraser.html"),
+            ("Free Grammar Checker", "/tools/grammar-checker.html"),
+            ("Free AI Text Summarizer", "/tools/ai-text-summarizer.html"),
+            ("Free Paraphraser, No Signup", "/blog/free-paraphraser-no-signup.html"),
+            ("Free AI Tools for Consultants", "/blog/ai-tools-for-consultants-2026.html"),
+        ],
+        sources=[
+            ("FTC: CAN-SPAM Act Compliance Guide", "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business", "Rules on identity, truthful claims, and unsubscribe."),
+            ("Nielsen Norman Group: Plain Language", "https://www.nngroup.com/articles/plain-language-usability/", "Short, plain sentences are easier to read."),
+            ("HubSpot: Sales Email Benchmarks", "https://www.hubspot.com/sales/email-benchmarks", "Personalization and reply-rate data."),
+            ("Glint AI Paraphraser", "/tools/paraphraser.html", "Free, no signup."),
+            ("Glint AI Text Summarizer", "/tools/ai-text-summarizer.html", "Free, browser-private."),
+        ],
+        takeaways=[
+            "Personalization beats volume in 2026 - robotic cold email gets deleted fast.",
+            "A free, no-signup stack covers the writing loop: summarize, rewrite, proofread.",
+            "Summarize the prospect's recent signal first, then rewrite the generic first line around it.",
+            "Always proofread in one click and human-edit before sending - AI drafts can hallucinate.",
+            "Stay CAN-SPAM compliant: real identity, honest claims, working unsubscribe.",
+        ],
+        closing='Rewrite your coldest lines with the free <a href="/tools/paraphraser.html">AI paraphraser</a> and research prospects with the <a href="/tools/ai-text-summarizer.html">text summarizer</a> - no signup, no upload.',
+    ),
+    dict(
+        slug="ai-tools-for-photographers-2026",
+        draft_date="2026-09-08",
+        title="AI Tools for Photographers: A Free Stack to Ship Faster",
+        description="Remove backgrounds, generate hashtags, and write captions with free AI tools that run in your browser. No signup, no per-image fees. Build your photographer stack now.",
+        keywords="ai tools for photographers, best ai tools for photographers 2026, free background remover for photographers, ai hashtag generator for instagram photos, how to write photo captions with ai, ai tools for product photographers",
+        category="Creative",
+        accent="#ff2e97",
+        readtime=11,
+        related=[
+            ("Free Background Remover", "/tools/background-remover.html"),
+            ("Free Hashtag Generator", "/tools/hashtag-generator.html"),
+            ("Best Background Remover Tools", "/blog/best-background-remover-tools-2026.html"),
+            ("Write Alt Text for Images", "/blog/how-to-create-alt-text-for-images.html"),
+            ("Free AI Tools for Social Media Managers", "/blog/ai-tools-for-social-media-managers-2026.html"),
+        ],
+        sources=[
+            ("Google Search Central: Image SEO", "https://developers.google.com/search/docs/appearance/google-images", "Alt text, filenames, and image discoverability."),
+            ("W3C: Alt Text & WCAG", "https://www.w3.org/WAI/tutorials/images/alt/", "Alt text is both accessibility and SEO."),
+            ("Nielsen Norman Group: Photos as Web Content", "https://www.nngroup.com/articles/photos-as-web-content/", "How users scan images and thumbnails."),
+            ("Glint AI Background Remover", "/tools/background-remover.html", "Free, no signup."),
+            ("Glint AI Hashtag Generator", "/tools/hashtag-generator.html", "Free, browser-private."),
+        ],
+        takeaways=[
+            "Photographers lose the most time at publishing, not editing: backgrounds, tags, captions, alt text.",
+            "A free, no-signup stack covers the pre-publish chores in the browser.",
+            "Free background removal beats per-image fees for occasional shoots.",
+            "Alt text is both WCAG accessibility and image SEO - write it per photo.",
+            "Don't over-automate: use AI for chores, keep your creative style human.",
+        ],
+        closing='Remove backgrounds with the free <a href="/tools/background-remover.html">background remover</a> and tag posts with the <a href="/tools/hashtag-generator.html">hashtag generator</a> - no signup, no per-image fees.',
+    ),
+    dict(
+        slug="ai-tools-for-therapists-2026",
+        draft_date="2026-09-08",
+        title="AI Tools for Therapists: A Privacy-First Free Stack",
+        description="Use AI in your practice without pasting client data. Free, no-signup tools for handouts, bios, and summaries run in your browser. Privacy-first for therapists and coaches.",
+        keywords="ai tools for therapists, best ai tools for therapists 2026, ai tools for private practice, free ai tools for therapists no signup, ai tools for life coaches, private ai tools for therapists",
+        category="Health",
+        accent="#39ff14",
+        readtime=11,
+        related=[
+            ("Free AI Text Summarizer", "/tools/ai-text-summarizer.html"),
+            ("Check Text Privately (No Upload)", "/blog/private-ai-detector.html"),
+            ("Free Paraphraser", "/tools/paraphraser.html"),
+            ("Free Text Summarizer, No Signup", "/blog/free-ai-text-summarizer-no-signup.html"),
+            ("Free AI Tools for Small Business", "/blog/ai-tools-for-small-business-2026.html"),
+        ],
+        sources=[
+            ("U.S. HHS: HIPAA for Professionals", "https://www.hhs.gov/hipaa/for-professionals/index.html", "PHI boundaries and BAA requirements."),
+            ("APA: Telehealth & Technology", "https://www.apa.org/topics/telehealth", "Ethics and informed consent for technology use."),
+            ("NIST: Privacy Framework", "https://www.nist.gov/privacy-framework", "De-identify data before processing."),
+            ("Glint AI Text Summarizer", "/tools/ai-text-summarizer.html", "Free, browser-private."),
+            ("Glint AI Paraphraser", "/tools/paraphraser.html", "Free, no signup."),
+        ],
+        takeaways=[
+            "The AI question isn't which tool, but what's safe to paste - keep PHI out entirely.",
+            "Free, browser-only tools cover the non-clinical 80%: handouts, bios, anonymous summaries.",
+            "Summarize anonymous themes and rewrite client copy without uploading anything.",
+            "Free local tools are enough for marketing and admin; use a BAA tool only for clinical records.",
+            "Never let AI make clinical calls, and always anonymize before prompting.",
+        ],
+        closing='Summarize anonymously with the free <a href="/tools/ai-text-summarizer.html">AI text summarizer</a> and rewrite client copy with the <a href="/tools/paraphraser.html">paraphraser</a> - browser-only, no upload.',
+    ),
+    dict(
+        slug="ai-tools-for-accountants-2026",
+        draft_date="2026-09-08",
+        title="AI Tools for Accountants: A Privacy-First Free Stack",
+        description="Speed up data formatting, PDF summaries, and client drafts with free AI tools that run in your browser. No signup, client data stays local. Built for accountants.",
+        keywords="ai tools for accountants, best ai tools for accountants 2026, ai tools for bookkeepers, free ai tools for accountants no signup, how to summarize a financial pdf with ai, ai tools for accounting data cleanup",
+        category="Finance",
+        accent="#00f0ff",
+        readtime=11,
+        related=[
+            ("Free JSON Formatter", "/tools/json-formatter.html"),
+            ("Free PDF Summarizer", "/tools/pdf-summarizer.html"),
+            ("Convert CSV to JSON Free", "/blog/how-to-convert-csv-to-json.html"),
+            ("Best Free JSON Formatters", "/blog/best-free-json-formatter.html"),
+            ("Generate API Keys Safely", "/blog/generate-api-keys-safely.html"),
+        ],
+        sources=[
+            ("AICPA: Ethics & Technology", "https://www.aicpa.org/interestareas/ethicsassurance/ethics.html", "Data security responsibility for practitioners."),
+            ("IRS: Data Security for Tax Pros", "https://www.irs.gov/tax-professionals/data-security-resources-for-tax-professionals", "Protect client tax data."),
+            ("FTC: Protecting Personal Information", "https://www.ftc.gov/business-guidance/resources/protecting-personal-information-guide-business", "Minimize and safeguard client data."),
+            ("Glint AI JSON Formatter", "/tools/json-formatter.html", "Free, browser-private."),
+            ("Glint AI PDF Summarizer", "/tools/pdf-summarizer.html", "Free, no signup."),
+        ],
+        takeaways=[
+            "AI's value for accountants is drafting, not deciding - you own every figure.",
+            "Free, browser-only tools handle light chores: CSV/JSON formatting, PDF summaries, client drafts.",
+            "Keep client financials local; never upload statements to the cloud.",
+            "JSON formatter cleans API exports; PDF summarizer condenses statements before review.",
+            "Free local tools beat a $40/mo platform for occasional, privacy-sensitive tasks.",
+        ],
+        closing='Format exports with the free <a href="/tools/json-formatter.html">JSON formatter</a> and summarize statements with the <a href="/tools/pdf-summarizer.html">PDF summarizer</a> - local, no upload, no signup.',
+    ),
+    dict(
+        slug="ai-tools-for-remote-teams-2026",
+        draft_date="2026-09-08",
+        title="AI Tools for Remote Teams: A Free Summary Stack",
+        description="Turn meeting notes into action items and summarize threads with free AI tools that run in your browser. No signup, internal notes stay local. Built for remote teams.",
+        keywords="ai tools for remote teams, best ai tools for remote teams 2026, ai productivity tools for remote teams, free ai tools for remote teams no signup, how to summarize meeting notes with ai, ai tools for async teams",
+        category="Remote Work",
+        accent="#a855f7",
+        readtime=11,
+        related=[
+            ("Free AI Text Summarizer", "/tools/ai-text-summarizer.html"),
+            ("Free Paraphraser", "/tools/paraphraser.html"),
+            ("Free Grammar Checker", "/tools/grammar-checker.html"),
+            ("Best AI Text Summarizer Tools", "/blog/best-ai-text-summarizer-tools-2026.html"),
+            ("Free AI Tools for Freelancers", "/blog/ai-tools-for-freelancers-2026.html"),
+        ],
+        sources=[
+            ("Nielsen Norman Group: Asynchronous Communication", "https://www.nngroup.com/articles/asynchronous-communication/", "Async work and cognitive load."),
+            ("Owl Labs: State of Remote Work", "https://www.owllabs.com/state-of-remote-work", "Remote and hybrid work trends."),
+            ("Gallup: Workplace & Engagement", "https://www.gallup.com/workplace.aspx", "Remote team engagement research."),
+            ("Glint AI Text Summarizer", "/tools/ai-text-summarizer.html", "Free, browser-private."),
+            ("Glint AI Paraphraser", "/tools/paraphraser.html", "Free, no signup."),
+        ],
+        takeaways=[
+            "Remote teams' hidden cost is meetings held just to avoid writing - write, then summarize.",
+            "A free, browser-only stack closes the writing loop: summarize, rewrite, proofread.",
+            "Turn notes into action items with the summarizer; rewrite updates across time zones with the paraphraser.",
+            "Keep internal and NDA discussions local - never upload them to the cloud.",
+            "Free local tools beat per-seat platforms for small 3-5 person teams.",
+        ],
+        closing='Summarize meeting notes with the free <a href="/tools/ai-text-summarizer.html">AI text summarizer</a> and rewrite async updates with the <a href="/tools/paraphraser.html">paraphraser</a> - no signup, notes stay local.',
+    ),
 ]
 
 HERO_ALT = {
@@ -1696,6 +1856,11 @@ HERO_ALT = {
     "how-to-convert-markdown-to-html": "Markdown source on one side and rendered HTML on the other",
     "how-to-create-a-strong-password": "Password strength meter showing a long random passphrase as strong",
     "how-to-write-a-resume-summary": "Resume summary draft leading with role, years, and one metric",
+    "ai-tools-for-cold-email-2026": "Free AI tools for cold email: paraphraser, summarizer, and grammar checker as a writing stack",
+    "ai-tools-for-photographers-2026": "Free AI tools for photographers: background remover, hashtag generator, and caption writer",
+    "ai-tools-for-therapists-2026": "Privacy-first free AI tools for therapists: summarize, rewrite, and check text locally",
+    "ai-tools-for-accountants-2026": "Privacy-first free AI tools for accountants: JSON formatter and PDF summarizer",
+    "ai-tools-for-remote-teams-2026": "Free AI tools for remote teams: summarize meeting notes and rewrite async updates",
 }
 
 
@@ -1829,7 +1994,7 @@ def main():
     for d in POSTS:
         if ONLY and d["slug"] not in ONLY:
             continue
-        draft = os.path.join(ROOT, "drafts", f"{d['slug']}-2026-09-01.md")
+        draft = os.path.join(ROOT, "drafts", f"{d['slug']}-{d.get('draft_date', '2026-09-01')}.md")
         md = open(draft, encoding="utf-8").read()
         d["h1"] = extract_h1(md)
         faq_pairs = extract_faq(md)
