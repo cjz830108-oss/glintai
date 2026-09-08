@@ -1,7 +1,7 @@
 // /api/fiction/chapter — GET read · PATCH save (author edits) · POST AI action (continue/rewrite/improve...)
 import { admin, json, fail, cors, requireUser, ownNovel } from '../_lib/db.js';
 import { generate, toCredits, ESTIMATES } from '../_lib/router.js';
-import { AGENTS } from '../_lib/prompts.js';
+import { getAgent } from '../_lib/prompts.js';
 import { buildChapterContext, contextToPrompt } from '../_lib/retrieval.js';
 import { lockCredits, settleCredits, refundTask } from '../_lib/credits.js';
 import { recordUsage } from '../_lib/usage.js';
@@ -90,7 +90,7 @@ export default async function handler(req, res) {
         const ch = Number(chapterNo || 0);
         const ctxObj = await buildChapterContext(novel, ch || 1);
         const ctx = contextToPrompt(ctxObj);
-        const agent = AGENTS.action;
+        const agent = await getAgent('action');
         const text = selection || (ch ? await getChapterText(novel.id, ch) : '');
         if (!text) return fail(res, 400, 'bad_request', 'chapter not found and no selection given');
 

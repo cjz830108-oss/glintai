@@ -5,6 +5,7 @@
 
 import { admin } from './db.js';
 import { GENRE_SKILLS, ANTI_AI_RULES } from './skills.js';
+import { computeLessons } from './skillLearning.js';
 
 export async function buildChapterContext(novel, chapterNo) {
   const novelId = novel.id;
@@ -23,6 +24,7 @@ export async function buildChapterContext(novel, chapterNo) {
 
   const bible = bibleRow?.data || {};
   const skill = GENRE_SKILLS[novel.genre] || GENRE_SKILLS.romance;
+  const learned = await computeLessons(novel.genre);
 
   return {
     novel: {
@@ -60,6 +62,8 @@ export async function buildChapterContext(novel, chapterNo) {
     recent_summaries: (summaries.data || []).reverse(), // oldest → newest of last 3
     critical_events: (events.data || []).map((e) => ({ chapter: e.chapter_no, event: e.event })),
     genre_skill: skill,
+    learned_lessons: learned.lessons || [],
+    skill_metrics: learned.metrics || {},
     author_preferences: prefsRow?.data || {},
     anti_ai_rules: ANTI_AI_RULES,
   };
@@ -92,6 +96,9 @@ export function contextToPrompt(ctx) {
     for (const s of ctx.recent_summaries) lines.push(`- Ch.${s.chapter_no}: ${s.summary}`);
   }
   if (ctx.critical_events?.length) lines.push(`CRITICAL TIMELINE FACTS: ${ctx.critical_events.map((e) => `ch${e.chapter}:${e.event}`).slice(-12).join(' | ')}`);
+  if (ctx.learned_lessons?.length) {
+    lines.push(`LESSONS LEARNED FROM QUALITY SCORES AND READER FEEDBACK (apply in this chapter): ${ctx.learned_lessons.map((l) => `- ${l}`).join(' ')}`);
+  }
   lines.push(`GENRE SKILL — ${JSON.stringify(ctx.genre_skill).slice(0, 900)}`);
   const prefs = ctx.author_preferences || {};
   const prefLine = Object.entries(prefs).filter(([, v]) => v).map(([k, v]) => `${k.replace(/_/g, ' ')}: ${v}`).join(' | ');

@@ -3,7 +3,7 @@
 // novel created with status 'writing', bible populated → user continues from chapter N+1.
 import { admin, json, fail, cors, requireUser } from '../_lib/db.js';
 import { generate, toCredits, ESTIMATES } from '../_lib/router.js';
-import { AGENTS } from '../_lib/prompts.js';
+import { getAgent } from '../_lib/prompts.js';
 import { lockCredits, settleCredits, refundTask } from '../_lib/credits.js';
 import { recordUsage } from '../_lib/usage.js';
 
@@ -109,7 +109,7 @@ Return JSON exactly like:
       }
 
       // 5) summaries for the sampled chapters (writer context for "continue")
-      const sumAgent = AGENTS.memory_updater;
+      const sumAgent = await getAgent('memory_updater');
       for (const n of sampleNos) {
         const text = String(byNo[n]?.content || '').slice(0, 9000);
         if (!text.trim()) continue;

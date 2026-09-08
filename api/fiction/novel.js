@@ -1,5 +1,6 @@
 // /api/fiction/novel — GET the full Story Bible bundle for one novel
 import { admin, json, fail, cors, requireUser, ownNovel } from '../_lib/db.js';
+import { computeLessons } from '../_lib/skillLearning.js';
 
 export const maxDuration = 15;
 
@@ -24,6 +25,8 @@ export default async function handler(req, res) {
       admin.from('chapter_summaries').select('chapter_no,summary').eq('novel_id', id).order('chapter_no'),
     ]);
 
+    const learned = await computeLessons(novel.genre).catch(() => ({ lessons: [], metrics: { samples: 0 } }));
+
     return json(res, 200, {
       novel: {
         id: novel.id, title: novel.title, genre: novel.genre, idea: novel.idea,
@@ -41,6 +44,8 @@ export default async function handler(req, res) {
       chapters: chapters.data || [],
       summaries: summaries.data || [],
       qualityScores: scores.data || [],
+      skillLessons: learned.lessons,
+      skillMetrics: learned.metrics,
     });
   });
 }

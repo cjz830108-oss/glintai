@@ -2,7 +2,7 @@
 // action: 'approve' (save edits + go to writing) | 'regenerate' (re-run architect) | 'expand' (characters + full outline)
 import { admin, json, fail, cors, requireUser, ownNovel } from '../_lib/db.js';
 import { generate, toCredits, ESTIMATES } from '../_lib/router.js';
-import { AGENTS } from '../_lib/prompts.js';
+import { getAgent } from '../_lib/prompts.js';
 import { lockCredits, settleCredits, refundTask } from '../_lib/credits.js';
 import { recordUsage } from '../_lib/usage.js';
 
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
       const fee = ESTIMATES.blueprint;
       await lockCredits(user.id, fee, taskId, { kind: 'blueprint_regen', novel: novel.id });
       try {
-        const agent = AGENTS.story_architect;
+        const agent = await getAgent('story_architect');
         const out = await generate({
           tier: agent.model, system: agent.system,
           user: agent.user({ novel, idea: novel.idea }), temperature: 1.0, maxTokens: 3500, json: true, timeoutMs: 240000,
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
       try {
         const bp = novel.blueprint || {};
         // 1) Character Director (retry once; large casts can hit output caps)
-        const charAgent = AGENTS.character_director;
+        const charAgent = await getAgent('character_director');
         let cast = null, castOut = null;
         for (let attempt = 0; attempt < 2 && !cast; attempt++) {
           try {
@@ -104,7 +104,7 @@ export default async function handler(req, res) {
         }
 
         // 2) Plot Planner — chapter outline in chunks (avoids JSON truncation on long books)
-        const planAgent = AGENTS.plot_planner;
+        const planAgent = await getAgent('plot_planner');
         const CHUNK = 12;
         let chapterPlan = [];
         let planCostUsd = 0;

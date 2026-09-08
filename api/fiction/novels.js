@@ -1,7 +1,7 @@
 // /api/fiction/novels — GET list · POST create (Story Architect step)
 import { admin, json, fail, cors, requireUser, ownNovel } from '../_lib/db.js';
 import { generate, toCredits, ESTIMATES } from '../_lib/router.js';
-import { AGENTS } from '../_lib/prompts.js';
+import { getAgent } from '../_lib/prompts.js';
 import { ensureWallet, lockCredits, settleCredits, refundTask } from '../_lib/credits.js';
 import { recordUsage } from '../_lib/usage.js';
 
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
 
     const novelParams = { genre, length_target: Number(length) || 30, pov, tone, pacing };
     try {
-      const agent = AGENTS.story_architect;
+      const agent = await getAgent('story_architect');
       const out = await generate({
         tier: agent.model, system: agent.system,
         user: agent.user({ novel: { ...novelParams, length_target: novelParams.length_target }, idea: idea.trim() }),

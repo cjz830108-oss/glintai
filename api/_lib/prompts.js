@@ -1,6 +1,10 @@
 // Glint Fiction — Prompt Engine
 // ALL prompts live here, server-side only. Never ship to the browser.
-// Versioned by constant; DB prompt_templates/prompt_versions ready for runtime overrides (P1).
+// Runtime overrides: a prompt_templates row (key = agent name) + matching
+// prompt_versions row replaces the built-in SYSTEM prompt. Cached 5 min, fail-open.
+// See docs/prompt-overrides.md.
+
+import { admin } from './db.js';
 
 export const PROMPT_VERSION = '1.0.0';
 
@@ -214,3 +218,34 @@ ${text}
 Rewrite according to the instruction. Output only the resulting text.`,
   },
 };
+
+// ---- runtime overrides (prompt_templates / prompt_versions) ----------------
+// key = agent name (e.g. 'novel_writer'); body = replacement SYSTEM prompt.
+// Cached for 5 minutes per instance; any DB error falls back to built-ins.
+let _ov = { at: 0, map: new Map() };
+
+async function loadOverrides() {
+  if (Date.now() - _ov.at < 5 * 60 * 1000) return _ov.map;
+  try {
+    const { data, error } = await admin.from('prompt_templates')
+      .select('key, current_version, prompt_versions(version, body)');
+    if (!error && Array.isArray(data)) {
+      const map = new Map();
+      for (const t of data) {
+        const v = (t.prompt_versions || []).find((x) => x.version === t.current_version);
+        if (v?.body) map.set(t.key, String(v.body));
+      }
+      _ov = { at: Date.now(), map };
+    }
+  } catch { /* fail open to built-in prompts */ }
+  return _ov.map;
+}
+
+/** Resolve an agent with any DB runtime override applied. Always await this. */
+export async function getAgent(name) {
+  const base = AGENTS[name];
+  if (!base) throw new Error(`unknown agent: ${name}`);
+  const map = await loadOverrides();
+  const system = map.get(name);
+  return system ? { ...base, system } : base;
+}

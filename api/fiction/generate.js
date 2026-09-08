@@ -2,10 +2,11 @@
 // step: outline → draft → continuity → edit → score → memory   |  'abort' cancels + refunds
 import { admin, json, fail, cors, requireUser, ownNovel } from '../_lib/db.js';
 import { generate, toCredits, ESTIMATES } from '../_lib/router.js';
-import { AGENTS } from '../_lib/prompts.js';
+import { getAgent } from '../_lib/prompts.js';
 import { buildChapterContext, contextToPrompt } from '../_lib/retrieval.js';
 import { lockCredits, settleCredits, refundTask } from '../_lib/credits.js';
 import { recordUsage } from '../_lib/usage.js';
+import { recordSignal } from '../_lib/skillLearning.js';
 
 export const maxDuration = 300;
 
@@ -39,7 +40,7 @@ export default async function handler(req, res) {
         const ctxObj = await buildChapterContext(novel, ch);
         const ctx = contextToPrompt(ctxObj);
         const chapterText = await getChapterText(novel.id, ch);
-        const agent = AGENTS.reader_simulator;
+        const agent = await getAgent('reader_simulator');
         const out = await generate({
           tier: agent.model, json: true, temperature: 0.8, maxTokens: 8000, timeoutMs: 240000,
           system: agent.system, user: agent.user({ ctx, chapterText, chapterNo: ch }),
@@ -101,7 +102,7 @@ export default async function handler(req, res) {
       // ---------- 2) DRAFT ----------
       if (step === 'draft') {
         const outline = (task.result?.outline) || (await lastOutput(novel.id, ch, 'outline')) || { scenes: [], title: '' };
-        const agent = AGENTS.novel_writer;
+        const agent = await getAgent('novel_writer');
         const out = await generate({
           tier: agent.model, temperature: 0.85, maxTokens: 8000, timeoutMs: 240000,
           system: agent.system,
@@ -119,7 +120,7 @@ export default async function handler(req, res) {
       // ---------- 3) CONTINUITY ----------
       if (step === 'continuity') {
         const chapterText = await getChapterText(novel.id, ch);
-        const agent = AGENTS.continuity_editor;
+        const agent = await getAgent('continuity_editor');
         const out = await generate({
           tier: agent.model, json: true, temperature: 0.2, maxTokens: 16000, timeoutMs: 240000,
           system: agent.system,
@@ -136,7 +137,7 @@ export default async function handler(req, res) {
         const chapterText = await getChapterText(novel.id, ch);
         const issues = (task.result && task.result.verdict !== undefined && task.result) || {};
         const issuesData = (await lastOutput(novel.id, ch, 'continuity')) || { issues: [] };
-        const agent = AGENTS.literary_editor;
+        const agent = await getAgent('literary_editor');
         const out = await generate({
           tier: agent.model, temperature: 0.7, maxTokens: 8000, timeoutMs: 240000,
           system: agent.system,
@@ -153,7 +154,7 @@ export default async function handler(req, res) {
       // ---------- 5) QUALITY SCORE ----------
       if (step === 'score') {
         const chapterText = await getChapterText(novel.id, ch);
-        const agent = AGENTS.quality_scorer;
+        const agent = await getAgent('quality_scorer');
         const out = await generate({
           tier: agent.model, json: true, temperature: 0.3, maxTokens: 4000, timeoutMs: 240000,
           system: agent.system, user: agent.user({ chapterText }),
@@ -173,7 +174,7 @@ export default async function handler(req, res) {
         const chapterText = await getChapterText(novel.id, ch);
         const scoreData = (await lastOutput(novel.id, ch, 'score')) || {};
         const cont = (await lastOutput(novel.id, ch, 'continuity')) || { issues: [] };
-        const agent = AGENTS.reviser;
+        const agent = await getAgent('reviser');
         const out = await generate({
           tier: agent.model, temperature: 0.75, maxTokens: 8000, timeoutMs: 240000,
           system: agent.system,
@@ -190,7 +191,7 @@ export default async function handler(req, res) {
       // ---------- 6) MEMORY UPDATE (finalizes + settles credits) ----------
       if (step === 'memory') {
         const chapterText = await getChapterText(novel.id, ch);
-        const agent = AGENTS.memory_updater;
+        const agent = await getAgent('memory_updater');
         const out = await generate({
           tier: agent.model, json: true, temperature: 0.2, maxTokens: 8000, timeoutMs: 240000,
           system: agent.system, user: agent.user({ chapterNo: ch, chapterText }),
@@ -199,6 +200,7 @@ export default async function handler(req, res) {
         await applyMemory(novel, ch, mem);
         await saveOutput(taskId, novel.id, ch, 'memory', JSON.stringify(mem), out);
         await charge(user.id, novel.id, taskId, 'memory', task, out);
+        recordSignal(novel.genre, { overall: task.result?.overall }).catch(() => {});
 
         // settle: charge actual usage of the whole pipeline, refund the rest
         const used = Math.min(task.locked_credits || ESTIMATES.chapter, Math.max(task.used_credits || 0, 1));
