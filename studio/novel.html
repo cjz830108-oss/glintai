@@ -137,6 +137,11 @@
       ['Durable facts', facts], ['Open questions', qs],
       ['Chapter summaries', D.summaries.length],
     ].map(([k, v]) => `<span>${k}: <b>${v}</b></span>`).join('');
+    const lessons = D.skillLessons || [];
+    const met = D.skillMetrics || {};
+    const lessonBlock = lessons.length ? lessons.map((l) => `<div class="kv"><span>🎓 ${esc(l)}</span></div>`).join('')
+      : `<p class="muted">No lessons yet — they appear automatically once a few chapters have been scored${met.feedback ? '' : ' and rated'}.</p>`;
+    const metLine = met.samples ? `<p class="muted">Based on ${met.samples} scored chapters (avg ${met.overall}/10)${met.feedback ? ` and ${met.feedback} reader ratings` : ''}. Updated continuously as you write.</p>` : '';
     const rels = D.relationships.length ? D.relationships.map((r) => {
       const d = r.data || {};
       return `<div class="kv"><b>${esc(d.from_name || '?')} → ${esc(d.to_name || '?')}</b>
@@ -149,6 +154,7 @@
     return `<h2>What the AI remembers</h2>
       <p class="muted">Every generated chapter updates this memory automatically. The writer reads it before drafting the next one.</p>
       <div class="statebar" style="margin:12px 0">${stats}</div>
+      <h3>🎓 Lessons learned (from scores & ratings)</h3>${metLine}${lessonBlock}
       <h3>Relationship matrix</h3>${rels}
       <h3>Recent chapter summaries</h3>${sums}
       <h3>Newest durable facts</h3>${facts ? (b.important_facts || []).slice(-8).reverse().map((f) => `<div class="kv"><span>• ${esc(f)}</span></div>`).join('') : '<p class="muted">None yet.</p>'}`;
