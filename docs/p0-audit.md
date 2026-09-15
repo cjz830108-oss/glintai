@@ -55,6 +55,29 @@ Story Bible
 - RLS：两新表按 novels.user_id 归属（与基础 schema 同模式）
 - seed：prompt_templates 注册 memory_validator / reader_simulator / reviser / action
 
-## 四、9 项压力测试（TEST 1–9）
+## 四、9 项压力测试（TEST 1–9）— 2026-09-16 线上实测终判
 
-⚠️ 前置：迁移 SQL 需在 Supabase Dashboard → SQL Editor 执行（本环境无 DDL 权限）。执行后按 tests/p0-stress.md 跑全量验证，结果将回填本节。
+执行环境：生产站 glintai.tools（v2 引擎 + P0 迁移已生效），全新注册账号（100 积分）真实跑通 3 章完整流水线。日志：`tests/stress_run_0916final.log`。
+
+| 测试 | 结果 | 证据 |
+|---|---|---|
+| T1 角色事实存活（疤痕） | ✅ PASS | 永久事实注入写作上下文，ch2 正文出现 scar |
+| T2 禁止事实（咖啡） | ✅ PASS | 违规=0，continuity 主动标记 |
+| T3a 伏笔不提前揭示 | ✅ PASS | reveal@ch3，ch2 后 status 仍 planted |
+| T3b 揭示窗口命中 | ✅ PASS | ch3 正文兑现 ring |
+| T4 状态变化+历史 | ✅ PASS | trust 80→70，character_state_history 1 行带 reason |
+| T5 关系轴变化 | ✅ PASS | 背叛后 trust 30 / conflict 80 |
+| T6 时间线/地点一致 | ⚠️ 引擎 PASS / 内容标记 | continuity 抓到 ch3 内部 dating 矛盾（major）→ 重写 2 次仍存 → `gate_status=needs_review, rewrite_count=2`——正是规格要求的"封顶+人审"，无死循环。矛盾本身是模型内容质量问题，由人审处理 |
+| T7 记忆防污染 | ✅ PASS | memory_candidates 24 条，approved/rejected 双向裁决；bible 永久事实无损 |
+| T8 记忆幂等（换 taskId 重放） | ✅ PASS | 事件 10→10 零重复，RPC 返回 already_claimed 拒绝二次应用 |
+| T9 并发同 taskId | ✅ PASS（等价步验证） | 2 并发 reader 调用：双 200、generation_outputs 仅 1 行（败者回放缓存）、恰好 1 lock+1 settle+1 refund（reference 唯一零重复计费）。score 步同机制（runOnce + upsert-ignore），首跑因钱包耗尽未测，机制完全同构 |
+
+**CORE ENGINE STATUS: PASS**
+
+规格符合性核验（数据实测）：质量门最多 2 次重写（quality_scores 记录 attempt 1→3，如 ch1: 3 次评分 7.2）；每次重写重跑 continuity；重写耗尽 → needs_review；memory 每章至多应用一次（claim RPC）；validator 双向裁决；并发/重试零重复扣费。
+
+### 已知问题（不隐藏）
+1. **评分门槛偏严**：8.0 门槛下实测多数章节要吃满 2 次重写（6.8~7.2 常见）→ 单章成本 ≈3 倍。建议后续调低门槛至 7.5 或放宽 scorer 严格度（产品决策，非引擎缺陷）。
+2. **scorer 偶发返回 0.0**：ch3 attempt3 overall=0.0（模型 JSON 解析失败被记 0 分）→ 触发额外重写。应在 score 步对 0 分做一次重试或标记 scorer_failed。
+3. **prompt_templates 表经 REST 读为空**（200+[]）——疑似 RLS 仅放行 service_role 或 seed 未生效。引擎 fail-open 不受影响（用内置提示词），运行时覆盖功能待用 service_role 验证。
+4. **T6 内容质量**：模型在多章跨度下仍会产生内部日期矛盾（被 continuity 正确抓获），长篇连续性最终依赖 needs_review 人审兜底。

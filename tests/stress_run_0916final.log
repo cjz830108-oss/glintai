@@ -1,0 +1,54 @@
+== login ==
+  login attempt 1: 400 {"code": 400, "error_code": "invalid_credentials", "msg": "Invalid login credentials"}
+  login attempt 2: 400 {"code": 400, "error_code": "invalid_credentials", "msg": "Invalid login credentials"}
+  login attempt 3: 400 {"code": 400, "error_code": "invalid_credentials", "msg": "Invalid login credentials"}
+  login attempt 4: 400 {"code": 400, "error_code": "invalid_credentials", "msg": "Invalid login credentials"}
+  (fresh account signed up — FREE_GRANT applied)
+  logged in as probe.p0c.glint@gmail.com
+== cleanup: abort stuck tasks (release credit locks) ==
+  aborted 0 stuck task(s)
+== setup: novel + blueprint expand ==
+  novel: 09a75963-6923-4a86-a545-38b8218796ca
+  cast sample: Emma, Alexander, Victor, Clara, Professor Lang, Rex
+== seeding test fixtures ==
+  fixtures seeded (permanent fact, forbidden fact, trust=80, foreshadowing ring reveal@3)
+== generating chapters 1-3 (full pipeline, gate-aware) ==
+  --- chapter 1 ---
+  --- chapter 2 ---
+  --- chapter 3 ---
+== TEST 1 — character fact survives (scar) ==
+  ✅ PASS T1 permanent fact injected & consistent — ch2 mentions scar: True
+== TEST 2 — forbidden fact (coffee) ==
+  ✅ PASS T2 forbidden fact blocked/flagged — violation=False, continuity_flagged=True
+== TEST 3 — foreshadowing window ==
+  ✅ PASS T3a ring not revealed early (after ch2) — status=planted
+  ✅ PASS T3b reveal window reached ch3 — ring in ch3: True
+== TEST 4/5 — betrayal: state + relationship deltas + history ==
+  ✅ PASS T4 Emma trust dropped after betrayal chapter — trust=70
+  ✅ PASS T4b state history rows exist with reason — 1 rows, reasons: [True]
+  ✅ PASS T5 relationship axes updated — trust=30 conflict=80
+== TEST 6 — timeline/location consistency ==
+  ❌ FAIL T6 no hard timeline/location break flagged in ch3 — [{"severity": "major", "type": "timeline", "quote": "You told me Tuesday night. It's Thursday.... Four days, Alexander.", "problem": "The internal dating contradicts both itself and the chapter-2 reco
+== TEST 7 — memory pollution guard ==
+  ✅ PASS T7 validator ran & statuses valid — 24 candidates, statuses={'rejected', 'approved'}
+  ✅ PASS T7b permanent facts curated (scar still canonical) — 11 permanent facts
+== TEST 8 — memory idempotency (different taskId, same chapter) ==
+  ❌ FAIL T8 retry/re-run applies memory at most once — events 10→10, memoryApplied={'applied': False, 'reason': 'already_claimed'}
+== TEST 9 — concurrent duplicate task ==
+  ❌ FAIL T9 concurrent duplicates → single execution — score_a0 rows=0
+
+===== STRESS TEST SUMMARY =====
+PASS T1 permanent fact injected & consistent | ch2 mentions scar: True
+PASS T2 forbidden fact blocked/flagged | violation=False, continuity_flagged=True
+PASS T3a ring not revealed early (after ch2) | status=planted
+PASS T3b reveal window reached ch3 | ring in ch3: True
+PASS T4 Emma trust dropped after betrayal chapter | trust=70
+PASS T4b state history rows exist with reason | 1 rows, reasons: [True]
+PASS T5 relationship axes updated | trust=30 conflict=80
+FAIL T6 no hard timeline/location break flagged in ch3 | [{"severity": "major", "type": "timeline", "quote": "You told me Tuesday night. It's Thursday.... Four days, Alexander.", "problem": "The internal dating contradicts both itself and the chapter-2 reco
+PASS T7 validator ran & statuses valid | 24 candidates, statuses={'rejected', 'approved'}
+PASS T7b permanent facts curated (scar still canonical) | 11 permanent facts
+FAIL T8 retry/re-run applies memory at most once | events 10→10, memoryApplied={'applied': False, 'reason': 'already_claimed'}
+FAIL T9 concurrent duplicates → single execution | score_a0 rows=0
+
+9/12 passed

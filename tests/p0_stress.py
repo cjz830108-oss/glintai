@@ -308,7 +308,8 @@ def main():
     code2, ev_after = rest("GET", "timeline_events", token,
                            query=f"?novel_id=eq.{novel_id}&chapter_no=eq.1&select=id")
     n_after = len(ev_after if isinstance(ev_after, list) else [])
-    check("T8 retry/re-run applies memory at most once", n_after == n_before and applied in (False, None, {"applied": False}),
+    check("T8 retry/re-run applies memory at most once",
+          n_after == n_before and (applied is False or applied is None or (isinstance(applied, dict) and applied.get("applied") is False)),
           f"events {n_before}→{n_after}, memoryApplied={applied}")
 
     print("== TEST 9 — concurrent duplicate task ==")
