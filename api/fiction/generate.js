@@ -200,13 +200,15 @@ export default async function handler(req, res) {
         });
         await charge(user.id, novel.id, taskId, 'scorer', task, out);
         const attemptNo = rc() + 1;
-        await admin.from('quality_scores').insert({
-          novel_id: novel.id, chapter_no: ch, attempt_no: attemptNo,
-          scores: out.data?.scores || {}, overall: out.data?.overall || 0,
-        }).catch(async () => {
+        try {
+          await admin.from('quality_scores').insert({
+            novel_id: novel.id, chapter_no: ch, attempt_no: attemptNo,
+            scores: out.data?.scores || {}, overall: out.data?.overall || 0,
+          });
+        } catch {
           // legacy DB without attempt_no uniqueness yet — retry plain
           await admin.from('quality_scores').insert({ novel_id: novel.id, chapter_no: ch, scores: out.data?.scores || {}, overall: out.data?.overall || 0 });
-        });
+        }
         const overall = Number(out.data?.overall || 0);
         const attempts = [...(task.result?.attempts || []), { attempt: attemptNo, overall }];
         await patchTask({ attempts, overall }, { step: 'score_done' });
@@ -285,6 +287,21 @@ export default async function handler(req, res) {
 
 // ------------------------------------------------------------------ helpers
 
+/**
+ * supabase-js query builders are thenables but NOT promises — `.catch()` does not
+ * exist on them. All best-effort writes go through this helper instead.
+ */
+async function insertSafe(table, row, opts = {}) {
+  try {
+    let q = admin.from(table);
+    q = opts.onConflict ? q.upsert(row, { onConflict: opts.onConflict }) : q.insert(row);
+    const { error } = await q;
+    if (error) console.error(`[generate] ${table} write ignored:`, error.message);
+  } catch (e) {
+    console.error(`[generate] ${table} write failed:`, String(e.message).slice(0, 200));
+  }
+}
+
 /** P0-9: insert-if-absent; on race the first inserter wins and both callers proceed on the same row. */
 async function insertTask(taskId, userId, novelId, kind, request, fee) {
   await admin.from('generation_tasks').upsert(
@@ -350,13 +367,13 @@ async function validateFacts(novel, ch, taskId, mem) {
         status: decision, validator_note: v?.reason || 'validator unreachable — fail-open',
       };
     });
-    await admin.from('memory_candidates').insert(rows).catch(() => {});
+    await insertSafe('memory_candidates', rows)
     return { approvedFacts: rows.filter((r) => r.status === 'approved').map((r) => r.content), verdicts };
   } catch {
-    await admin.from('memory_candidates').insert(proposed.map((p) => ({
+    await insertSafe('memory_candidates', proposed.map((p) => ({
       novel_id: novel.id, chapter_no: ch, task_id: taskId, type: 'fact',
       content: p, source: 'memory_updater', confidence: 0.5, status: 'approved', validator_note: 'validator errored — fail-open',
-    }))).catch(() => {});
+    })))
     return { approvedFacts: proposed, verdicts: [] };
   }
 }
@@ -398,11 +415,11 @@ async function applyMemoryV2(novel, ch, taskId, mem, approvedFacts) {
       st[k] = Math.max(0, Math.min(100, (st[k] ?? 50) + v));
     }
     await admin.from('characters').update({ current_state: st, last_chapter: ch }).eq('id', c.id);
-    await admin.from('character_state_history').upsert({
+    await insertSafe('character_state_history', {
       novel_id: novel.id, character_id: c.id, chapter_no: ch,
       state: st, state_deltas: clean,
       reason: mem.delta_reasons?.[name] || null, source_task_id: taskId,
-    }, { onConflict: 'novel_id,character_id,chapter_no' }).catch(() => {});
+    }, { onConflict: 'novel_id,character_id,chapter_no' });
     if (c.first_chapter == null) await admin.from('characters').update({ first_chapter: ch }).eq('id', c.id);
   }
 
@@ -429,9 +446,9 @@ async function applyMemoryV2(novel, ch, taskId, mem, approvedFacts) {
     const ev = event || '';
     if (!ev || have.has(ev)) return;
     have.add(ev);
-    await admin.from('timeline_events').insert({
+    await insertSafe('timeline_events', {
       novel_id: novel.id, chapter_no: ch, event: ev, importance, source_task_id: taskId, ...extra,
-    }).catch(() => {});
+    });
   };
   for (const e of mem.timeline || []) await pushEvent(e.event, e.importance || 'normal');
   for (const e of mem.events || []) {
