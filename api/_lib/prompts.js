@@ -100,7 +100,7 @@ ${outline}
 
   continuity_editor: {
     model: 'deep',
-    system: `You are the Continuity Editor of a fiction studio. You hunt contradictions: character behavior vs state, timeline errors, broken world rules, relationship drift, foreshadowing revealed too early, forgotten injuries/objects/knowledge ("who knows what"). Output ONLY valid JSON.`,
+    system: `You are the Continuity Editor of a fiction studio and the FINAL GATEKEEPER of factual correctness. You hunt contradictions: character facts (appearance, scars, habits, possessions), character behavior vs emotional state, personality drift, timeline errors, locations and travel, broken world rules, relationship state vs behavior, foreshadowing revealed before its planned chapter, forgotten injuries/objects/knowledge ("who knows what"), POV head-hopping, and knowledge consistency. Output ONLY valid JSON.`,
     user: ({ ctx, chapterText, chapterNo }) => `Check Chapter ${chapterNo} for continuity against the story memory.
 
 === STORY MEMORY ===
@@ -110,10 +110,13 @@ ${ctx}
 ${chapterText}
 
 Return JSON exactly like:
-{"issues":[{"severity":"critical|major|minor","type":"character|timeline|fact|relationship|foreshadowing|world","quote":"","problem":"","fix":""}],
+{"issues":[{"severity":"critical|major|minor","type":"character|timeline|fact|relationship|foreshadowing|world|pov|knowledge","quote":"","problem":"","fix":""}],
  "facts_learned":["new durable facts established in this chapter"],
- "verdict":"pass|revise"}
-Be strict: an AI writer that contradicts chapter 1 by chapter 30 is a failure. If nothing critical, verdict=pass.`,
+ "verdict":"pass|fail"}
+Rules:
+- verdict = "fail" if ANY critical or major issue exists (the chapter must NOT move forward with broken facts).
+- verdict = "pass" only for minor or no issues.
+- An AI writer that contradicts chapter 1 by chapter 30 is a failure. Be strict.`,
   },
 
   literary_editor: {
@@ -144,22 +147,46 @@ ${chapterText}`,
 
   memory_updater: {
     model: 'light',
-    system: `You extract durable story memory from a finished chapter. You are terse and factual; you never interpret, only record. Output ONLY valid JSON.`,
+    system: `You extract durable story memory from a finished chapter. You are terse and factual; you never interpret, only record. Distinguish PERMANENT facts (identity, appearance, possessions, skills, world rules — true forever unless the plot explicitly changes them) from TEMPORARY facts (current location, short-term plans, moods). Output ONLY valid JSON.`,
     user: ({ chapterNo, chapterText }) => `Extract memory updates from Chapter ${chapterNo}. Return JSON exactly like:
 {"summary":"4-6 sentences for the story bible",
  "events":[{"event":"","characters":["Names"],"importance":"low|normal|critical"}],
  "state_deltas":{"Character Name":{"trust":0,"love":0,"anger":0,"fear":0,"suspicion":0,"confidence":0,"jealousy":0}},
- "relationship_updates":[{"from":"","to":"","trust":0,"attraction":0,"conflict":0,"status":""}],
+ "delta_reasons":{"Character Name":"one line: the event that caused this character's biggest change"},
+ "relationship_updates":[{"from":"","to":"","trust":0,"love":0,"attraction":0,"anger":0,"fear":0,"suspicion":0,"jealousy":0,"intimacy":0,"conflict":0,"respect":0,"status":""}],
  "timeline":[{"event":"","importance":"normal|critical"}],
  "plot_thread_updates":[{"title":"","status":"open|advancing|paused|resolved","current_chapter":${chapterNo}}],
  "foreshadowing_updates":[{"title":"","status":"planted|reinforced|revealed"}],
- "important_facts":["durable facts stated as short sentences"],
+ "important_facts":[{"fact":"","scope":"permanent|character|world|temporary","characters":["Names or empty"]}],
  "open_questions":["questions the story now owes answers to"]}
 
-Deltas are SIGNED integers added to current values (e.g. trust:-10). Include only characters whose state materially changed. Max 8 important_facts.
+Rules:
+- Deltas are SIGNED integers added to current values (e.g. trust:-10). Include only characters whose state materially changed. Every delta entry should have a matching delta_reasons line when possible.
+- relationship_updates: include ONLY the numeric fields that actually changed (e.g. a romance pair: love/attraction/trust/jealousy/intimacy/conflict; enemies: trust/fear/anger/suspicion/respect/conflict). Never invent zeros for unrelated fields.
+- important_facts.scope: "permanent" only for identity/appearance/possession/skill/world-rule facts that must hold for the rest of the book. Locations and plans are "temporary". Trust your judgment; the validator reviews after you.
+- Max 10 important_facts.
 
 CHAPTER TEXT:
 ${chapterText}`,
+  },
+
+  memory_validator: {
+    model: 'deep',
+    system: `You are the Memory Validator of a fiction studio. Proposed memory entries arrive from the Memory Updater. Your job: prevent story-memory pollution. An entry that records something the chapter got wrong, contradicts the established Story Bible/Character Data/Timeline/Relationships, or is mere transient narration would PERMANENTLY poison every future chapter. Be conservative about "permanent": only identity, appearance, possessions, skills and hard world rules deserve it. Output ONLY valid JSON.`,
+    user: ({ bibleSummary, proposed }) => `Validate these proposed memory entries against the established story knowledge.
+
+=== ESTABLISHED STORY KNOWLEDGE (bible, characters, relationships, recent facts) ===
+${bibleSummary}
+
+=== PROPOSED ENTRIES ===
+${proposed}
+
+Return JSON exactly like:
+{"verdicts":[{"index":0,"decision":"approved|rejected","confidence":0.0,"reason":"max 1 line"}]}
+Rules:
+- Approve ordinary, consistent chapter events and state changes without friction.
+- Reject anything that contradicts established knowledge, that reads like an AI hallucination (sudden unexplained new identities/objects/powers), or that elevates transient narration to permanent fact.
+- Index each verdict to the entry's position in PROPOSED ENTRIES.`,
   },
 
   reviser: {
