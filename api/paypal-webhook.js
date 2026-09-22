@@ -21,14 +21,15 @@
  *   BILLING.SUBSCRIPTION.EXPIRED
  *   BILLING.SUBSCRIPTION.SUSPENDED
  *   BILLING.SUBSCRIPTION.PAYMENT.FAILED
+ *   PAYMENT.SALE.COMPLETED          (fires on first payment AND every renewal — grants monthly credits)
  *
- * NOTE (Vercel): bodyParser is disabled below so we can read the RAW body,
- * which is required for PayPal signature verification. On Netlify/Functions,
- * use `event.body` directly instead of readRaw(req).
+ * Credit grants are idempotent by unique reference `paypal:sale:<sale_id>`,
+ * so PayPal retries / webhook redelivery never double-credits a wallet.
  * ========================================================================= */
 
 import { createClient } from '@supabase/supabase-js';
 import crypto from 'crypto';
+import { grantCredits } from './_lib/credits.js';
 
 export const config = { api: { bodyParser: false } };
 
@@ -36,6 +37,26 @@ const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_R
 const BASE = process.env.PAYPAL_MODE === 'live'
   ? 'https://api.paypal.com'
   : 'https://api.sandbox.paypal.com';
+
+// plan_id → tier mapping (env overrides the configured live plan ids)
+const PLAN_IDS = {
+  [process.env.PAYPAL_PLAN_PRO || 'P-8JY348393B145582ENJ2IRFQ']: 'pro',
+  [process.env.PAYPAL_PLAN_TEAM || 'P-5C811609NL238632RNJ2ITIA']: 'team',
+};
+// tier → monthly credits granted on every billing cycle
+const PLAN_CREDITS = { pro: 8000, team: 60000 };
+
+function tierFromPlanId(planId) {
+  return (planId && PLAN_IDS[planId]) || null;
+}
+
+function tierFromAmount(total) {
+  const n = parseFloat(total);
+  if (Number.isNaN(n)) return null;
+  if (n >= 29) return 'team';
+  if (n >= 9) return 'pro';
+  return null;
+}
 
 async function getAccessToken() {
   const id = process.env.PAYPAL_CLIENT_ID;
@@ -93,7 +114,16 @@ export default async function handler(req, res) {
                || event.resource?.payer?.email_address;
 
     if (t === 'BILLING.SUBSCRIPTION.ACTIVATED') {
-      await upsertPlan(email, 'pro', 'active');
+      const tier = tierFromPlanId(event.resource?.plan_id) || 'pro';
+      await upsertPlan(email, tier, 'active');
+    } else if (t === 'PAYMENT.SALE.COMPLETED') {
+      const tier = tierFromAmount(event.resource?.amount?.total);
+      if (tier) {
+        await upsertPlan(email, tier, 'active');
+        await grantMonthlyCredits(email, tier, event.resource?.id);
+      } else {
+        console.warn('PAYMENT.SALE.COMPLETED with unmapped amount', event.resource?.amount?.total);
+      }
     } else if (['BILLING.SUBSCRIPTION.CANCELLED',
                 'BILLING.SUBSCRIPTION.EXPIRED',
                 'BILLING.SUBSCRIPTION.SUSPENDED'].includes(t)) {
@@ -117,4 +147,21 @@ async function upsertPlan(email, plan, status) {
     .update({ plan, sub_status: status, paypal_email: email })
     .eq('email', email);
   if (error) console.error('upsertPlan failed:', error);
+}
+
+/** Grant the plan's monthly credits. Idempotent: `paypal:sale:<sale_id>` is unique. */
+async function grantMonthlyCredits(email, tier, saleId) {
+  if (!email || !saleId) { console.error('grantMonthlyCredits: missing email/saleId'); return; }
+  const amount = PLAN_CREDITS[tier] || 0;
+  if (!amount) return;
+  const { data: profile } = await sb.from('profiles').select('id').eq('email', email).maybeSingle();
+  if (!profile) { console.error('grantMonthlyCredits: no profile for', email); return; }
+  // ensure a wallet row exists (grantCredits bumps an existing row)
+  const { data: w } = await sb.from('credit_wallets').select('user_id').eq('user_id', profile.id).maybeSingle();
+  if (!w) {
+    const { error } = await sb.from('credit_wallets').insert({ user_id: profile.id, balance: 0 });
+    if (error && error.code !== '23505') console.error('wallet create failed:', error);
+  }
+  await grantCredits(profile.id, amount, `paypal:sale:${saleId}`, { source: 'paypal', tier });
+  console.log(`[webhook] granted ${amount} credits (${tier}) for sale ${saleId} → ${email}`);
 }
