@@ -19,3 +19,16 @@ node_modules/
 Thumbs.db
 .DS_Store
 .ssh_tmp/
+
+# ===== One-off audit scripts / temp artifacts =====
+audit.py
+glint_audit*.py
+cfg.json
+0786*.txt
+_deploy.log
+_deploys.json
+_check.html
+vercel_deploy_*.log
+outputs/
+tests/__pycache__/
+tests/stress_run_*.log
