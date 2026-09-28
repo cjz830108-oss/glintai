@@ -1,10 +1,11 @@
 name: Supabase keepalive
 # Keeps the free-tier Supabase project from auto-pausing after 7 days of
-# inactivity. The job pings the DB every 6h through the Vercel proxy
-# (https://glintai.tools/api/sb), which forwards to Supabase from an
-# overseas edge node and counts as real database activity.
+# inactivity. Pings the Supabase REST + Auth endpoints DIRECTLY every 6h
+# (the old version went through a /api/sb Vercel proxy that never existed,
+# so every run 404'd and Supabase never saw a request).
 # The anon key is public by design (row-level security protects data),
-# so it is safe to embed here.
+# so it is safe to embed here. HTTP status is enforced so a silent 404/5xx
+# shows up as a FAILED run instead of a fake success.
 on:
   schedule:
     - cron: '17 */6 * * *'
@@ -14,9 +15,18 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Supabase via Vercel proxy
+      - name: Ping Supabase REST (counts as DB activity)
         run: |
-          curl -s -o /dev/null -w "keepalive HTTP %{http_code}\n" \
-            -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4aWR6bXB2bXljdmJ0Ymtob3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwMTMwMDUsImV4cCI6MjEwMTU4OTAwNX0.YFNC0chB9fcUPqys93y2k89BRb0B6_RNt8dfoAOLINo" \
-            -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4aWR6bXB2bXljdmJ0Ymtob3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwMTMwMDUsImV4cCI6MjEwMTU4OTAwNX0.YFNC0chB9fcUPqys93y2k89BRb0B6_RNt8dfoAOLINo" \
-            "https://glintai.tools/api/sb?_path=/rest/v1/novels&select=id&limit=1"
+          KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4aWR6bXB2bXljdmJ0Ymtob3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwMTMwMDUsImV4cCI6MjEwMTU4OTAwNX0.YFNC0chB9fcUPqys93y2k89BRb0B6_RNt8dfoAOLINo"
+          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 \
+            -H "apikey: $KEY" \
+            -H "Authorization: Bearer $KEY" \
+            "https://ixidzmpvmycvbtbkhoxz.supabase.co/rest/v1/novels?select=id&limit=1")
+          echo "keepalive REST HTTP $code"
+          [ "$code" = "200" ] || exit 1
+      - name: Ping Supabase Auth health
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 \
+            "https://ixidzmpvmycvbtbkhoxz.supabase.co/auth/v1/health")
+          echo "keepalive AUTH HTTP $code"
+          [ "$code" = "200" ] || exit 1
