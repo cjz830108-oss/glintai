@@ -13,7 +13,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 BLOG = os.path.join(ROOT, "blog")
 ASSETS = os.path.join(BLOG, "assets")
 TEMPLATE = os.path.join(BLOG, "humanize-ai-text.html")
-DATE = "2026-09-05"
+DATE = "2026-10-04"
 SITE = "https://glintai.tools"
 
 
@@ -1805,6 +1805,166 @@ POSTS = [
         ],
         closing='Summarize meeting notes with the free <a href="/tools/ai-text-summarizer.html">AI text summarizer</a> and rewrite async updates with the <a href="/tools/paraphraser.html">paraphraser</a> - no signup, notes stay local.',
     ),
+    dict(
+        slug="how-to-outline-a-novel-with-ai",
+        draft_date="2026-10-04",
+        title="How to Outline a Novel with AI: Beat Sheets & Templates (2026)",
+        description="Learn how to outline a novel with AI: beat sheets, scene cards with entry/exit states, plot-hole stress tests, and free genre templates. No signup, nothing uploaded.",
+        keywords="how to outline a novel with ai, ai novel outline generator, novel beat sheet template, ai beat sheet generator, scene card template novel, ai novel outline free",
+        category="Writing",
+        accent="#00f0ff",
+        readtime=11,
+        related=[
+            ("AI Tools for Fiction Writers", "/blog/ai-tools-for-fiction-writers-2026.html"),
+            ("How to Fix Plot Holes with AI", "/blog/how-to-fix-plot-holes-ai.html"),
+            ("AI Prompt Engineering Guide", "/blog/ai-prompt-engineering-guide.html"),
+            ("Free AI Text Summarizer", "/tools/ai-text-summarizer.html"),
+            ("Try AI Fiction Studio", "/studio/index.html"),
+        ],
+        sources=[
+            ("Wikipedia: Three-act structure", "https://en.wikipedia.org/wiki/Three-act_structure", "The structural backbone of most beat sheets."),
+            ("Wikipedia: Save the Cat", "https://en.wikipedia.org/wiki/Save_the_Cat", "Blake Snyder's influential 15-beat framework."),
+            ("Wikipedia: Scene and sequel", "https://en.wikipedia.org/wiki/Scene_and_sequel", "Scene-level goal, conflict, disaster pattern."),
+            ("Glint AI Text Summarizer", "/tools/ai-text-summarizer.html", "Free, browser-private."),
+            ("Glint AI Fiction Studio", "/studio/index.html", "Outline alongside your manuscript."),
+        ],
+        takeaways=[
+            "When you draft with AI, the outline is the steering wheel - without it, the model drives.",
+            "Pick your depth first: beat sheet for story control, scene cards for POV and timelines.",
+            "AI beat sheets always sag in the middle - interrogate every beat you cannot defend.",
+            "Entry/exit states on scene cards are what keep AI-drafted scenes from drifting.",
+            "Stress-test the outline while fixes are cheap - not at 80,000 words.",
+        ],
+        closing='Condense your notes with the free <a href="/tools/ai-text-summarizer.html">AI text summarizer</a>, hold your drafting pace with the <a href="/tools/word-counter.html">word counter</a>, and if you want the full workspace, <a href="/studio/index.html">AI Fiction Studio</a> keeps your outline and manuscript in one private place.',
+    ),
+    dict(
+        slug="how-to-fix-plot-holes-ai",
+        draft_date="2026-10-04",
+        title="How to Fix Plot Holes in Your Novel with AI (2026 System)",
+        description="Find and fix plot holes with AI: continuity ledgers, chapter summary audits, setup-payoff tracking, and repair depth that doesn't break the book. Free, nothing uploaded.",
+        keywords="how to fix plot holes, ai plot hole finder, plot holes examples, story continuity checker, fix plot holes in a novel, ai novel continuity audit",
+        category="Writing",
+        accent="#ff2e97",
+        readtime=11,
+        related=[
+            ("AI Tools for Fiction Writers", "/blog/ai-tools-for-fiction-writers-2026.html"),
+            ("How to Outline a Novel with AI", "/blog/how-to-outline-a-novel-with-ai.html"),
+            ("AI Story Generator Guide", "/blog/ai-story-generator-guide.html"),
+            ("Free AI Text Summarizer", "/tools/ai-text-summarizer.html"),
+            ("Try AI Fiction Studio", "/studio/index.html"),
+        ],
+        sources=[
+            ("Wikipedia: Plot hole", "https://en.wikipedia.org/wiki/Plot_hole", "Definition and famous examples."),
+            ("Wikipedia: Chekhov's gun", "https://en.wikipedia.org/wiki/Chekhov%27s_gun", "The setup-and-payoff principle."),
+            ("Wikipedia: Deus ex machina", "https://en.wikipedia.org/wiki/Deus_ex_machina", "Payoff without setup."),
+            ("Glint AI Text Summarizer", "/tools/ai-text-summarizer.html", "Free, browser-private audits."),
+            ("Glint AI Fiction Studio", "/studio/index.html", "Story memory while you draft."),
+        ],
+        takeaways=[
+            "Plot holes are a memory problem, not a talent problem - 80,000 words exceed one brain.",
+            "Four types to audit: contradictions, impossible events, unpaid setups, vanishing motivations.",
+            "Chapter summaries turn 400-page contradictions into visible six-bullet errors.",
+            "Match repair depth to severity: patch, bridge, or reshape - never symptom-patch.",
+            "Browser-local tools audit your unpublished manuscript without uploading a page.",
+        ],
+        closing='Audit a draft chapter by chapter with the free <a href="/tools/ai-text-summarizer.html">AI text summarizer</a>, and let <a href="/studio/index.html">AI Fiction Studio</a> track continuity while you draft - no signup, nothing uploaded.',
+    ),
+    dict(
+        slug="how-to-write-a-romance-novel-with-ai",
+        draft_date="2026-10-04",
+        title="How to Write a Romance Novel with AI: Beats & Tropes (2026)",
+        description="Write a romance novel with AI: the 12-beat arc, tropes that sell, word counts by subgenre, and a private drafting workflow. Free, no signup, nothing uploaded.",
+        keywords="how to write a romance novel with ai, ai romance novel generator, romance beat sheet, romance tropes that sell, romance novel word count by subgenre, writing romance with ai",
+        category="Writing",
+        accent="#ffb020",
+        readtime=11,
+        related=[
+            ("Free AI Romance Novel Generator", "/ai-romance-novel-generator.html"),
+            ("AI Tools for Fiction Writers", "/blog/ai-tools-for-fiction-writers-2026.html"),
+            ("AI Prompt Engineering Guide", "/blog/ai-prompt-engineering-guide.html"),
+            ("Free Word Counter", "/tools/word-counter.html"),
+            ("Free Grammar Checker", "/tools/grammar-checker.html"),
+        ],
+        sources=[
+            ("Wikipedia: Romance novel", "https://en.wikipedia.org/wiki/Romance_novel", "Genre history and market size."),
+            ("Wikipedia: Trope (literature)", "https://en.wikipedia.org/wiki/Trope_(literature)", "Why trope conventions carry reader promises."),
+            ("Amazon KDP Content Guidelines", "https://kdp.amazon.com/en_US/help/topic/G200672390", "AI disclosure requirements at publish time."),
+            ("Glint AI Romance Novel Generator", "/ai-romance-novel-generator.html", "Free, browser-private drafting."),
+            ("Glint AI Word Counter", "/tools/word-counter.html", "Track subgenre word targets."),
+        ],
+        takeaways=[
+            "Romance rewards exactly what AI drafting is good at: hitting known beats on schedule.",
+            "Readers expect the 12-beat arc - missing beats kill a romance faster than flat prose.",
+            "Prompt for tension, not dialogue: ban resolution, demand subtext and micro-tells.",
+            "Word count is category signaling - pick your subgenre's midpoint and track daily.",
+            "Human-rewrite the four emotional peaks: meet-cute, first kiss, dark moment, grand gesture.",
+        ],
+        closing='Draft privately with the free <a href="/ai-romance-novel-generator.html">AI romance novel generator</a>, track your subgenre target with the <a href="/tools/word-counter.html">word counter</a>, and polish with the <a href="/tools/grammar-checker.html">grammar checker</a> - no signup, nothing uploaded.',
+    ),
+    dict(
+        slug="ai-tools-for-screenwriters-2026",
+        draft_date="2026-10-04",
+        title="Free AI Tools for Screenwriters: The Privacy-First Stack (2026)",
+        description="Free AI tools for screenwriters: summarize research, trim loglines to industry length, proof pages, prep pitch decks. No signup, browser-local, nothing uploaded.",
+        keywords="ai tools for screenwriters, free ai tools for screenwriters 2026, ai logline generator free, best ai screenwriting tools no signup, ai coverage notes summarizer, privacy first screenwriting ai",
+        category="Screenwriting",
+        accent="#a855f7",
+        readtime=10,
+        related=[
+            ("Free AI Text Summarizer", "/tools/ai-text-summarizer.html"),
+            ("Free Word Counter", "/tools/word-counter.html"),
+            ("Free Grammar Checker", "/tools/grammar-checker.html"),
+            ("Free Paraphraser", "/tools/paraphraser.html"),
+            ("Free Background Remover", "/tools/background-remover.html"),
+        ],
+        sources=[
+            ("Writers Guild of America", "https://www.wga.org/", "Guild position on AI-generated material."),
+            ("Wikipedia: Screenwriting", "https://en.wikipedia.org/wiki/Screenwriting", "Industry-standard formats and lengths."),
+            ("Wikipedia: Spec script", "https://en.wikipedia.org/wiki/Spec_script", "What an unproduced script is worth and why it needs protection."),
+            ("Glint AI Text Summarizer", "/tools/ai-text-summarizer.html", "Free, browser-private."),
+            ("Glint AI Word Counter", "/tools/word-counter.html", "Logline and synopsis length checks."),
+        ],
+        takeaways=[
+            "Unproduced scripts are your most sensitive asset - never paste them into cloud AI.",
+            "AI's valuable screenwriting work is mechanical: research briefs, length checks, proofing.",
+            "Industry lengths are unforgiving: loglines 25-50 words, synopses one page.",
+            "Fix coverage patterns, not individual notes - summarize the coverage you receive.",
+            "A detector pass on your first ten pages catches machine-sounding prose before readers do.",
+        ],
+        closing='Trim your logline with the free <a href="/tools/word-counter.html">word counter</a>, digest research with the <a href="/tools/ai-text-summarizer.html">AI text summarizer</a>, and check your sample with the <a href="/tools/ai-content-detector.html">AI content detector</a> - all browser-local, no signup.',
+    ),
+    dict(
+        slug="ai-tools-for-journalists-2026",
+        draft_date="2026-10-04",
+        title="Free AI Tools for Journalists: No-Upload, Privacy-First (2026)",
+        description="Free AI tools for journalists: digest court filings, tighten copy to word limits, deadline grammar, AI-smell checks. No upload, no signup, nothing leaves your laptop.",
+        keywords="ai tools for journalists, free ai tools for journalists 2026, ai summarizer for court documents, ai journalism ethics no upload, best ai tools for newsroom 2026, ai press release summarizer",
+        category="Journalism",
+        accent="#39ff14",
+        readtime=11,
+        related=[
+            ("Free AI Text Summarizer", "/tools/ai-text-summarizer.html"),
+            ("Free PDF Summarizer", "/tools/pdf-summarizer.html"),
+            ("Free Paraphraser", "/tools/paraphraser.html"),
+            ("Free Word Counter", "/tools/word-counter.html"),
+            ("Free Grammar Checker", "/tools/grammar-checker.html"),
+        ],
+        sources=[
+            ("Associated Press", "https://www.ap.org/", "Newsroom AI standards direction."),
+            ("Wikipedia: Journalism ethics and standards", "https://en.wikipedia.org/wiki/Journalism_ethics_and_standards", "Verification and accountability principles."),
+            ("Wikipedia: Source protection", "https://en.wikipedia.org/wiki/Source_protection", "Why confidential material must not leave your device."),
+            ("Glint AI Text Summarizer", "/tools/ai-text-summarizer.html", "Free, browser-private."),
+            ("Glint AI PDF Summarizer", "/tools/pdf-summarizer.html", "Local PDF digestion, no upload."),
+        ],
+        takeaways=[
+            "For journalism, privacy is not a feature - it is the entry requirement.",
+            "AI digests documents; humans verify every claim against the source before it reaches copy.",
+            "Quotes are never reworded by a tool - trim only with bracketed ellipses.",
+            "Run a browser-local detector pass before filing so editors never surprise you.",
+            "Browser-only processing keeps leaked and embargoed material off vendor servers entirely.",
+        ],
+        closing='Digest filings with the free <a href="/tools/ai-text-summarizer.html">AI text summarizer</a> and <a href="/tools/pdf-summarizer.html">PDF summarizer</a>, cut to slot with the <a href="/tools/word-counter.html">word counter</a> - local, no signup, nothing uploaded.',
+    ),
 ]
 
 HERO_ALT = {
@@ -1861,6 +2021,11 @@ HERO_ALT = {
     "ai-tools-for-therapists-2026": "Privacy-first free AI tools for therapists: summarize, rewrite, and check text locally",
     "ai-tools-for-accountants-2026": "Privacy-first free AI tools for accountants: JSON formatter and PDF summarizer",
     "ai-tools-for-remote-teams-2026": "Free AI tools for remote teams: summarize meeting notes and rewrite async updates",
+    "how-to-outline-a-novel-with-ai": "Novel outline workflow: premise brief expanding into a beat sheet and scene cards",
+    "how-to-fix-plot-holes-ai": "Chapter-by-chapter continuity ledger flagging an injured character drawing a bow",
+    "how-to-write-a-romance-novel-with-ai": "Twelve-beat romance arc mapped across chapters with trope pairings",
+    "ai-tools-for-screenwriters-2026": "Free AI tools for screenwriters: research briefs, logline trimming, pitch prep",
+    "ai-tools-for-journalists-2026": "Free AI tools for journalists digesting court filings locally on deadline",
 }
 
 

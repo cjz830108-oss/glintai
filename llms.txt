@@ -77,6 +77,9 @@
 ### Health
 - [AI Tools for Therapists: A Privacy-First Free Stack](https://glintai.tools/blog/ai-tools-for-therapists-2026.html): Use AI in your practice without pasting client data. Free, no-signup tools for handouts, bios, and summaries run in your browser. Privacy-first for therapists and coaches.
 
+### Journalism
+- [Free AI Tools for Journalists: No-Upload, Privacy-First (2026)](https://glintai.tools/blog/ai-tools-for-journalists-2026.html): Free AI tools for journalists: digest court filings, tighten copy to word limits, deadline grammar, AI-smell checks. No upload, no signup, nothing leaves your laptop.
+
 ### Legal
 - [Free AI Tools for Lawyers: Faster Drafting Without Risking Privilege](https://glintai.tools/blog/ai-tools-for-lawyers-2026.html): Free, no-signup AI tools for lawyers and paralegals — summarize, rewrite, and proofread in your browser. Keep client privilege intact with client-side processing.
 
@@ -126,6 +129,9 @@
 ### Sales
 - [AI Tools for Cold Email: A Free Stack That Sells](https://glintai.tools/blog/ai-tools-for-cold-email-2026.html): Write personalized cold emails without the $200/mo platform. Our free AI paraphraser, summarizer and grammar tools run in-browser, no signup. Build your stack now.
 
+### Screenwriting
+- [Free AI Tools for Screenwriters: The Privacy-First Stack (2026)](https://glintai.tools/blog/ai-tools-for-screenwriters-2026.html): Free AI tools for screenwriters: summarize research, trim loglines to industry length, proof pages, prep pitch decks. No signup, browser-local, nothing uploaded.
+
 ### Security
 - [Best Free Password Generator Tools in 2026 (Client-Side, No Signup)](https://glintai.tools/blog/best-free-password-generator-tools-2026.html): The best free password generator tools in 2026, ranked by one rule: client-side generation. Compare options that create strong passwords and API keys in your browser, with no upload and no signup.
 - [Free Password Generator (No Signup): Strong Keys in One Click](https://glintai.tools/blog/free-password-generator-no-signup.html): Create strong random passwords with our free generator. No signup, browser-private, no upload. Build better security in one click. Try it free.
@@ -174,9 +180,12 @@
 - [Grammar Checking That Actually Catches the Mistakes That Matter](https://glintai.tools/blog/grammar-checker-guide.html): Most grammar mistakes cost trust before they cost clicks. Learn how to catch the errors readers actually notice with a fast, free checker.
 - [10 Free Grammarly Alternatives That Actually Work in 2026](https://glintai.tools/blog/grammarly-alternative-free.html): We tested 10 free Grammarly alternatives for accuracy, languages, and privacy. Find no-signup, multilingual, and client-side picks to fit your writing in 2026
 - [How to Count Words in a PDF (Without Copy-Pasting)](https://glintai.tools/blog/how-to-count-words-in-a-pdf.html): Count words in a PDF accurately and privately - no upload, no signup. Learn why paste counts lie and the free browser method. Try it now.
+- [How to Fix Plot Holes in Your Novel with AI (2026 System)](https://glintai.tools/blog/how-to-fix-plot-holes-ai.html): Find and fix plot holes with AI: continuity ledgers, chapter summary audits, setup-payoff tracking, and repair depth that doesn't break the book. Free, nothing uploaded.
 - [How to Write a Twitter/X Bio That Gets the Right Followers](https://glintai.tools/blog/how-to-make-a-twitter-bio.html): Write a Twitter/X bio that earns the right followers - free bio ideas, no signup. Learn the shape and the edits that matter. Try it now.
+- [How to Outline a Novel with AI: Beat Sheets & Templates (2026)](https://glintai.tools/blog/how-to-outline-a-novel-with-ai.html): Learn how to outline a novel with AI: beat sheets, scene cards with entry/exit states, plot-hole stress tests, and free genre templates. No signup, nothing uploaded.
 - [How to Paraphrase a Paragraph Without Plagiarizing (Free)](https://glintai.tools/blog/how-to-paraphrase-a-paragraph.html): Paraphrase a paragraph without plagiarizing - free, no signup. Learn the rebuild-the-meaning method, see a worked example, and avoid the synonym-swap trap. Try it now.
 - [How to Reduce Reading Grade Level (Free, No Signup)](https://glintai.tools/blog/how-to-reduce-reading-grade-level.html): Reduce reading grade level and reach more readers - free, no signup. Learn the plain-language method, see a before-after, and avoid dumbing down. Try it now.
+- [How to Write a Romance Novel with AI: Beats & Tropes (2026)](https://glintai.tools/blog/how-to-write-a-romance-novel-with-ai.html): Write a romance novel with AI: the 12-beat arc, tropes that sell, word counts by subgenre, and a private drafting workflow. Free, no signup, nothing uploaded.
 - [How to Humanize AI Text So Detectors Don't Flag It](https://glintai.tools/blog/humanize-ai-text.html): AI-generated text often follows predictable patterns. Learn how to humanize AI content, remove the &quot;AI smell,&quot; and keep your natural voice without losing speed.
 - [Improve Reading Ease Score: 7 Ways to Write Clear Text](https://glintai.tools/blog/improve-reading-ease-score.html): Improve reading ease score with concrete fixes: shorter sentences, simpler words, active voice, and less filler. Glint AI&#x27;s free analyzer shows your score.
 - [How to Paraphrase Without Losing Meaning (or Your Voice)](https://glintai.tools/blog/paraphrase-without-losing-meaning.html): Paraphrasing is more than swapping words. Learn how to rewrite sentences in your own voice while keeping the original meaning intact.
