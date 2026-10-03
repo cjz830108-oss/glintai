@@ -8,11 +8,17 @@ That is the real promise here. AI accelerates the drafting; the beat sheet and w
 
 ## Why Romance Is the Best Genre to Write with AI (and Its One Big Risk)
 
-Romance rewards exactly what AI drafting is good at: hitting a known structure, producing scene-level momentum, and keeping a book moving toward emotional checkpoints. Readers of the genre read four, ten, sometimes twenty books a month. They are not hunting for experimental prose — they are hunting for the satisfaction of the arc. That means a writer who can deliver clean beats on schedule already has a commercial product.
+Romance rewards exactly what AI drafting is good at: hitting a known structure, producing scene-level momentum, and keeping a book moving toward emotional checkpoints. Readers of the genre read four, ten, sometimes twenty books a month. That means a writer who can deliver clean beats on schedule already has a commercial product.
 
 The genre is also the engine of Kindle Unlimited. Romance dominates the charts, and KU authors who publish consistently build a real income from page reads alone. Speed matters, and a free AI workflow that runs locally in your browser lets you draft privately — no signup, no account, nothing uploaded — which matters when your half-finished manuscript is your livelihood.
 
 Now the one big risk: romance lives and dies on chemistry, and unedited AI output has the emotional temperature of a spreadsheet. In an early test draft, an author we know asked a cloud model to write the first kiss scene and got back two people exchanging polite dialogue in a beautifully described kitchen. Technically competent, romantically dead. Readers notice instantly, reviews use the word "generic," and the series dies at book one. The fix — prompting for tension instead of dialogue, which we cover below — is the difference between AI as a ghostwriter (bad) and AI as a drafting engine (very good).
+
+### HEA, HFN, and the RWA Two-Plot Rule
+
+Romance has a technical definition, stricter than outsiders assume. The Romance Writers of America (RWA) defines a romance by two requirements: a central love story, and an emotionally satisfying, optimistic ending, the HEA (happily ever after). The shorthand HFN (happy for now) is accepted in much of the genre, series romance and young adult especially, where the couple's future is secure without a wedding-and-baby epilogue. What disqualifies a book is not low heat or a miserable middle act; it is an ending that leaves the central couple apart. A novel with a romantic subplot and an ambiguous ending is women's fiction, not romance — shelved differently, and punished by readers who expected an HEA.
+
+The second structural rule is the two-plot rule: a romance needs a central love story and an external plot, each with its own arc. The external plot — the restaurant competition, the murder investigation, the fae war — is not decoration: it is the machine that forces the couple together and applies pressure. A test: if you could delete it without breaking the relationship arc, you do not have a second plot; you have wallpaper.
 
 ## The Romance Arc: 12 Beats Every Reader Expects
 
@@ -32,6 +38,12 @@ The modern romance arc is remarkably consistent across subgenres. Whether your c
 - The epilogue or HEA marker — the happily-ever-after (or happy-for-now) proof readers require
 
 If you want a deeper structural foundation before layering romance on top, the guide on [how fiction writers use AI tools](/blog/ai-tools-for-fiction-writers-2026.html) covers outlining and worldbuilding for genre fiction generally.
+
+### Gwen Hayes' Romancing the Beat: The Five Phases
+
+If the twelve beats above are the checkpoints, Gwen Hayes' *Romancing the Beat* is the pacing system romance writers use in workshops. Hayes organizes the relationship arc into five phases: Setup (the pre-story state, where one or both leads have closed the door on love), Falling (attraction becomes undeniable), Erosion (doubt and outside pressure corrode the bond), Collapse (the dark moment — the relationship breaks), and Resolution (the grand gesture and reunion). It solves a problem generic beat sheets like Save the Cat do not: in romance the relationship *is* the plot, so beats track emotional distance between two people, not external events. Where it does not apply: non-linear literary romance, or a romantic subplot inside another genre.
+
+Critique partners use Hayes' nicknames: the sheet opens with a beat titled "No Chemistry" and reaches "Adhesion" — where an external circumstance (shared job, fake engagement, snowed-in cabin) plausibly sticks the couple together. Briefing an AI scene by phase — "this is Erosion; the bond should fray, not break" — beats naming a chapter number.
 
 ### Meet-Cute to Commitment: Mapping the Beats to Chapters
 
@@ -53,24 +65,40 @@ The commercial sweet spot is combining a relationship trope with a situational o
 
 One warning when drafting with AI: models default to resolving tension too fast. Your prompts should explicitly instruct the tool to keep the leads at odds, to let misunderstanding breathe, and to withhold the reconciliation until the beat you have planned. Structure is your job; the tool accelerates execution.
 
+### Fake Dating, Second Chance, and Grumpy/Sunshine
+
+The taxonomy runs deeper, and each additional trope carries a built-in mechanical problem you inherit with it:
+
+- Fake dating — the premise does your forced-proximity work for you, and the internal contradiction — pretend intimacy producing real feelings — is the whole engine. The trap is the reveal: readers want the collapse at the worst possible moment, not the plot-convenient one.
+- Second chance — comes with free emotional backstory, which is both appeal and risk: the book must answer early why it failed the first time, and that reason must be strong enough that the couple could plausibly fail again.
+- Grumpy/sunshine — a temperature-contrast pairing where each lead is the other's arc — the grump learns softness, the sunshine lead learns boundaries. Easy to outline, hard to keep from becoming a quirk machine.
+
+Tropes also carry heat-level expectations readers shop by: "sweet" or "clean" means closed-door or no on-page intimacy, "steamy" and up means explicit — and BookTok's "spice" ratings have made the scale semi-public. These tropes are formulaic by definition, so AI drafts them easily; what the model cannot supply is the emotional history that makes your second-chance book unlike the other forty on the chart.
+
 ## Word Count Targets by Subgenre (Contemporary, Fantasy, Historical, Romantasy)
 
 Word count in romance is not vanity — it is category signaling. Bookstore placement, reader expectations, and KU economics all hang on hitting your subgenre's range. Commonly cited targets:
 
-- Category or series contemporary (Harlequin-style): 45,000–55,000 words
+- Category or series romance (Harlequin-style lines): 50,000–55,000 words
 - Sweet or clean contemporary romance: 55,000–75,000 words
-- Contemporary romance (standalone): 70,000–90,000 words
-- Paranormal romance: 75,000–90,000 words
+- Contemporary romance (single title, standalone): 75,000–90,000 words
+- Paranormal romance: 80,000–100,000 words
 - Historical romance: 90,000–110,000 words
-- Fantasy romance: 90,000–120,000 words
+- Fantasy romance: 95,000–120,000 words
 - Romantasy: 100,000–130,000 words
 - YA romance: 50,000–80,000 words
 
-A practical way to use this list: pick the midpoint of your range as a draft target, put it in a word counter, and track daily progress against it. The [free word counter tool](/tools/word-counter.html) runs in your browser with no signup, and tracking your subgenre target against your daily output is the single cheapest habit that gets a first draft finished. Nothing you paste is uploaded anywhere — the count happens on your device.
+The category range is the tightest for a reason: a 58,000-word submission to a 50,000–55,000 Harlequin line is a rejection before page one. A practical way to use this list: pick the midpoint of your range as a draft target, put it in a word counter, and track daily progress against it. The [free word counter tool](/tools/word-counter.html) runs in your browser with no signup, and tracking your subgenre target against your daily output is the single cheapest habit that gets a first draft finished. Nothing you paste is uploaded anywhere — the count happens on your device.
 
 ### Chapter Length and Pacing for Romance
 
 Most published romance runs chapters of 1,500 to 3,000 words — long enough to settle into a scene, short enough to earn the phrase "just one more chapter." Two pacing rules earn their keep. First, end every chapter on a hook: a revelation, a reversal, a line of dialogue that reframes everything. Second, compress the space between attraction beats; romance readers will forgive a thin plot but never a slow courtship. If you want a second opinion on whether your chapters are ballooning, a [character and word counter walkthrough](/blog/word-character-counter.html) shows how to audit chapter lengths across a whole manuscript.
+
+### Kindle Unlimited and the Rapid-Release Economy
+
+Romance dominates Kindle Unlimited for structural reasons. KU pays per page read — the per-page rate recalculates monthly from the subscription fund and has hovered just under half a cent — so income scales with backlist pages finished, and romance readers are the most serial readers in fiction.
+
+That is why rapid release dominates KU romance: a new title every four to eight weeks keeps a reader inside one author's funnel — finish book one, book two is live, book three is on pre-order. The practice descends from category romance: Harlequin built its lines on monthly publication, and authors writing for them have long produced four to six books a year against editorial deadlines. The tradeoff is KDP Select's 90-day exclusivity — page reads in exchange for staying off other retailers; wide authors take the opposite bet, long-tail sales instead of page reads. What quietly kills careers is the middle: one book a year on KU — too slow to hold a funnel, too few books to build a backlist.
 
 ## The AI Workflow: Drafting Scenes That Have Actual Chemistry
 
@@ -112,7 +140,7 @@ A final structural check: verify every beat from the twelve-point arc exists in 
 
 <p><b>What is the best AI romance novel generator?</b> Look for three things: control over beats and tropes rather than one-click generic output, privacy for your unpublished pages, and no cost barrier for drafting at volume. Glint's free AI romance novel generator runs locally in your browser with no signup and nothing uploaded, so your manuscript never leaves your device — which matters when unpublished pages are your most valuable asset.</p>
 
-<p><b>How long should a romance novel be?</b> It depends on the subgenre: category contemporary runs 45,000–55,000 words, standalone contemporary 70,000–90,000, historical 90,000–110,000, and romantasy 100,000–130,000. Pick the midpoint of your subgenre's range as a draft target and track your daily word count against it until the draft is done.</p>
+<p><b>How long should a romance novel be?</b> It depends on the subgenre: category romance (Harlequin-style lines) runs about 50,000–55,000 words, standalone contemporary romance 75,000–90,000, historical 90,000–110,000, and romantasy 100,000–130,000. Pick the midpoint of your subgenre's range as a draft target and track your daily word count against it until the draft is done.</p>
 
 <p><b>Can AI write a romance novel that readers actually feel?</b> AI can draft the scaffolding — scenes, beats, dialogue structure — but the emotional peaks need human rewriting to land. Use AI to get a complete draft fast, then rewrite the meet-cute, first kiss, dark moment, and grand gesture yourself. Readers feel those four scenes; everything else is connective tissue.</p>
 
