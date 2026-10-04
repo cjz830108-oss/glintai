@@ -26,7 +26,15 @@ jobs:
           [ "$code" = "200" ] || exit 1
       - name: Ping Supabase Auth health
         run: |
-          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 \
-            "https://ixidzmpvmycvbtbkhoxz.supabase.co/auth/v1/health")
-          echo "keepalive AUTH HTTP $code"
-          [ "$code" = "200" ] || exit 1
+          KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4aWR6bXB2bXljdmJ0Ymtob3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwMTMwMDUsImV4cCI6MjEwMTU4OTAwNX0.YFNC0chB9fcUPqys93y2k89BRb0B6_RNt8dfoAOLINo"
+          # /auth/v1/health returns 401 "No API key found in request" without
+          # the apikey header (gateway enforces it since ~2026-10-04 UTC).
+          for i in 1 2 3; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 \
+              -H "apikey: $KEY" \
+              "https://ixidzmpvmycvbtbkhoxz.supabase.co/auth/v1/health")
+            echo "keepalive AUTH HTTP $code (attempt $i)"
+            [ "$code" = "200" ] && exit 0
+            sleep 5
+          done
+          exit 1
