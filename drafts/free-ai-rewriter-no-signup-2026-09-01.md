@@ -10,6 +10,10 @@ Think of it as a fast first draft of an edit you would otherwise do by hand. You
 
 For a privacy-first workflow, the key feature is where the work happens. A browser-based rewriter that processes text on the page means your words never leave your device. That is a different model from tools that upload text to a server to generate a response. If you want to try one, the [free paraphraser](/tools/paraphraser.html) works without an account and runs the rewrite in your browser.
 
+### Rewriting vs editing vs proofreading
+
+Beginners mix up three different jobs, and the mix-up wastes effort. Rewriting restructures: it moves paragraphs, cuts whole sections, merges sentences that say the same thing twice. Editing fixes sentences: word choice, clarity, rhythm. Proofreading catches surface errors: typos, doubled words, punctuation. The order matters. If you line-edit before you restructure, you polish sentences that are about to be deleted — perfectly tuned prose on a paragraph that no longer belongs. Professional editors work in exactly the reverse order of what feels natural: big concerns first, commas last. A rewriter is a restructuring and sentence-level tool, so use it after you have decided what the draft needs to say, not before.
+
 ## When a rewriter helps (and when it does not)
 
 A rewriter is a sharp tool for specific jobs and a poor fit for others. Use it when:
@@ -22,6 +26,12 @@ A rewriter is a sharp tool for specific jobs and a poor fit for others. Use it w
 Skip the rewriter when accuracy is non-negotiable. Legal clauses, technical specifications, statistics, and direct quotations should stay exactly as written. Rewording a quote changes what someone said; rewording a spec can change what a system does. In those cases, edit only for clarity you are certain about, and leave the substance alone.
 
 The honest framing is this: a rewriter improves wording, not truth. It cannot tell you whether your argument is right. That judgment stays with you.
+
+### Rewriting your own drafts with AI
+
+With your own words there is no integrity issue at all — the point of using a rewriter on your own draft is quality, not disguise. Two strengths are real. Variety: after a long writing session, every sentence tends to share the same rhythm, and a rewriter's alternatives break the pattern you have gone numb to. Concision: a good tool often finds the shorter path to your own point, the way a fresh reader would.
+
+Two risks are just as real. Voice flattening: machine alternatives drift toward generic smoothness, and a page of them erases the specific phrasing that makes your writing yours — accept the suggestions selectively, not wholesale. Meaning drift: a rewrite can quietly change "sales grew" into "sales doubled," which is a different claim. The habit that catches both: keep the original open beside the rewrite and compare sentence by sentence. If a line changed facts, fix it; if it lost your voice, keep yours.
 
 ## A quick scenario
 
@@ -39,16 +49,14 @@ Now imagine the same update needs three versions. The executive summary wants pr
 
 ## Free vs paid rewriters
 
-Most rewriting needs are intermittent, and a free tool covers the daily cases. Paid plans add volume, faster processing, and more tone presets. The table below shows where each makes sense.
+Most rewriting needs are intermittent, and a free tool covers the daily cases. Paid plans add volume, faster processing, and more tone presets. Where each approach makes sense:
 
-| Approach | Best for | Watch out for |
-| --- | --- | --- |
-| Free no-signup rewriter | Daily emails, posts, study notes, quick drafts | Lower word limits, fewer tone modes |
-| Paid subscription | High-volume professional rewriting | Cost, account required, privacy varies |
-| Manual rewriting | Quotes, specs, anything precision-critical | Slow, mentally tiring at scale |
-| AI-humanizer add-on | Generic AI text that needs a human voice | Not a substitute for real editing |
+- **Free no-signup rewriter** — best for daily emails, posts, study notes, quick drafts. Watch out for lower word limits and fewer tone modes.
+- **Paid subscription** — best for high-volume professional rewriting. Watch out for cost, required accounts, and privacy postures that vary by vendor.
+- **Manual rewriting** — best for quotes, specs, anything precision-critical. Slow and mentally tiring at scale.
+- **AI-humanizer add-on** — best for generic AI text that needs a human voice. Not a substitute for real editing.
 
-A free browser-based rewriter is enough for most people most of the time. If you rewrite constantly for work, a paid plan can save minutes per day, but test the free version first. You can follow the difference between the two in our [free paraphraser no-signup](/blog/free-paraphraser-no-signup.html) guide.
+A free browser-based rewriter is enough for most people most of the time. If you rewrite constantly for work, a paid plan can save minutes per day, but test the free version first. You can follow the difference between the two in our [free paraphraser no-signup](/blog/free-paraphraser-no-signup.html) guide, and for a broader comparison see our [best AI paraphrasing tools](/blog/best-ai-paraphrasing-tools-2026.html) roundup.
 
 ## How to rewrite without losing meaning
 
@@ -61,6 +69,18 @@ The goal is a new sentence that a reader would understand the same way as the or
 5. Measure readability if the audience is broad. The [word readability analyzer](/tools/word-readability-analyzer.html) shows whether the new version is actually easier than the old one.
 
 If the source is long, summarize first with the [AI text summarizer](/tools/ai-text-summarizer.html), then rewrite the key points. That order keeps you from paraphrasing material you did not need to keep.
+
+### The clarity pass: three habits
+
+When you rewrite for clarity, three habits do most of the work. First, keep subjects and verbs close together. Compare: "The report, which had been reviewed by three managers and revised twice since the March meeting, was finally approved" versus "The report was finally approved — after three manager reviews and two revisions since March." The second version puts the verb next to its subject and moves the detail aside. Second, one idea per sentence. "We missed the deadline because the client added requirements and the designer was out sick" is two excuses wearing one sentence; split it and each gets understood. Third, front-load the point. Readers absorb the first five words of a sentence better than the last five, so "Sales fell 12% in Q3, driven by churn in the mid-market tier" beats "Due to churn in the mid-market tier, Q3 sales fell 12%."
+
+### The 10% cut pass
+
+Almost every draft survives losing ten percent of its words. Stephen King's editor gave him the formula in *On Writing*: second draft equals first draft minus ten percent. Run one pass whose only job is deletion — no improving, just cutting. The filler phrases go first, because they hide in plain sight: "in order to" becomes "to," "due to the fact that" becomes "because," "at this point in time" becomes "now," "the majority of" becomes "most," "has the ability to" becomes "can." Strunk and White compressed the whole discipline into three words: omit needless words. Cut each filler phrase and the prose does not just shrink — it speeds up.
+
+### Sentence variety and voice
+
+Flat drafts share two symptoms: every sentence is the same length, and every sentence starts the same way. Fix length by alternating — a long explanatory sentence followed by a short one. The short one lands harder. Fix starting patterns by varying openings: begin with a phrase ("After two rewrites,"), a subordinate clause ("When the deadline moved,"), or a conjunction — not always the subject. On voice: active verbs clarify who did what ("Marketing approved the copy"), and that is usually what you want. Passive is not an error, though — it is the right choice when the actor is unknown or irrelevant: "The office was repainted over the weekend" does not need a painter's name, and "Mistakes were made" may be exactly as specific as the moment allows.
 
 ## Privacy: why no signup matters
 
@@ -77,6 +97,7 @@ If you want external reading on responsible use, Purdue OWL's paraphrase and pla
 - Using a rewriter to disguise plagiarism. Reword only what you understand and always credit the source. The [paraphrase without plagiarizing](/blog/paraphrase-without-plagiarizing.html) guide explains the line.
 - Forgetting the final pass. A generated sentence can be grammatically off; a quick grammar check catches what the rewriter missed.
 - Over-rewriting short, already-clear sentences. If it reads well, leave it. Not every line needs a second draft.
+- Line-editing before restructuring. Polishing sentences you are about to delete is the most common wasted hour in drafting.
 
 ## Building a rewriting habit
 
